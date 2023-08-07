@@ -1,10 +1,18 @@
-export default {
+import { defineConfig } from "vite";
+import babel from "@rollup/plugin-babel";
+
+export default defineConfig({
   build: {
-    outDir: "dist",
+    minify: true,
+    target: 'esnext'
   },
-  server: {
-    watch: {
-      include: "src/components/**/*.css",
-    },
-  },
-};
+  plugins: [
+    babel({
+      babelrc: false,
+      configFile: './.babelrc',
+      extensions: ['.js'],
+      exclude: 'node_modules/**',
+      babelHelpers: 'bundled'
+    })
+  ]
+});
