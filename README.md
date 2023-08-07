@@ -1,4 +1,4 @@
-![Breeze Components](./breeze-components.svg)
-
-<h1 align="center">Breeze Web Components </h1>
+<div align="center"><img align="center" src="./breeze-components.svg" alt="Breeze Components Logo"></div>
 <p align="center">A collection of native web components built on top of web standards.</p>
+
+
