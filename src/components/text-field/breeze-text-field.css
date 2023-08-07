@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  --border-radius: 8px;
+  --border-color-normal: #adaba8;
+  --border-color-focus: hsl(252, 100%, 65%);
+  /* TODO: how to connect to hsl? */
+  --box-shadow-color: rgba(109, 74, 255, 0.2);
+  --helper-text-color: #5c5958;
+  --label-font-weight: 600;
+}
+
+input {
+  width: 100%;
+  height: auto;
+  background: none;
+  border-radius: var(--border-radius);
+  min-height: 0;
+  min-width: 0;
+  color: inherit;
+  outline: none;
+  padding: 0.5em 1em;
+  -webkit-appearance: none;
+  font: inherit;
+  margin: 0;
+  border: 0;
+}
+
+label {
+  font-weight: var(--label-font-weight);
+}
+
+[part="input-container"] {
+  margin-top: .25rem;
+  border: 1px solid var(--border-color-normal);
+  border-radius: var(--border-radius);
+  display: flex;
+  position: relative;
+  transition: .15s cubic-bezier(.22,1,.36,1), visibility 0s;
+}
+
+[part=input-container]:focus-within {
+  border-color: var(--border-color-focus);
+  box-shadow: 0 0 0 0.1875rem var(--box-shadow-color);
+}
+
+[part="helper-text"]:not(:empty) {
+  color: var(--helper-text-color);
+  font-size: 0.9em;
+  margin-top: .25rem;
+}
