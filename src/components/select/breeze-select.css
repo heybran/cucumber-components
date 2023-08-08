@@ -1,0 +1,57 @@
+:host {
+
+}
+
+button {
+  cursor: pointer;
+  -webkit-appearance: none;
+  background: transparent;
+  font: inherit;
+  margin: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--_border-color-normal);
+  transition: .15s cubic-bezier(.22,1,.36,1), visibility 0s;
+  border-radius: var(--_border-radius-md);
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+button:is(:focus-visible, :focus) {
+  outline: 1px auto var(--_outline-color-focus);
+  box-shadow: var(--_box-shadow);
+}
+
+button[part="close"] {
+  display: none; /* todo */
+}
+
+[part="dropdown"] {
+  transform: scale(0);
+  background-color: #fff;
+  border-radius: var(--_border-radius-md);
+  max-height: calc(min(var(--available-height, var(--max-height)), var(--max-height)) - 2px);
+  max-width: calc(min(var(--available-width, var(--max-width)), var(--max-width)) - 2px);
+  min-height: min(var(--min-height,1em),100vh);
+  min-width: min(var(--min-width,1.5em),100vw);
+  overflow: auto;
+  width: var(--width);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  position: fixed;
+  z-index: 999;
+}
+
+[part="dropdown"].visible {
+  transform: scale(1);
+  left: var(--left);
+  top: var(--top);
+  transition: .15s cubic-bezier(.22,1,.36,1), visibility 0s;
+}
+
+[part="dropdown-content"] {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
