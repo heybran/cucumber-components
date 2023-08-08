@@ -10,3 +10,8 @@ export function defer(callback) {
 export function camelToKebab(camelCaseString) {
   return camelCaseString.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
+
+/** @param {HTMLElement} element */
+export function isCustomElement(element) {
+  return element instanceof HTMLElement && element.tagName.includes('-');
+}
