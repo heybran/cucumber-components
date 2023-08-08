@@ -4,6 +4,10 @@ import css from "./breeze-text-field.css?inline";
 
 @customElement('breeze-text-field')
 export default class BreezeTextField extends HTMLElement {
+  static get is() {
+    return `breeze-text-field`;
+  }
+  
   /** @type {string} */
   @property({ type: String }) label;
 

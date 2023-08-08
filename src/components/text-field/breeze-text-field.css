@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 :host {
   --border-radius: 8px;
   --border-color-normal: #adaba8;
