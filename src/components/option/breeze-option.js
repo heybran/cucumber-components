@@ -9,10 +9,20 @@ export default class BreezeOption extends HTMLElement {
     return `breeze-option`;
   }
   /** @type {string} */
-  @property({ type: String }) text;
+  // @property({ type: String }) text;
 
   /** @type {string} */
-  @property({ type: String }) value;
+  // @property({ type: String }) value;
+
+  /** @returns {string} */
+  get value() {
+    return this.getAttribute('value') ?? '';
+  }
+
+  /** @returns {string} */
+  get text() {
+    return this.getAttribute('text') ?? '';
+  }
 
   constructor() {
     super();
@@ -29,10 +39,21 @@ export default class BreezeOption extends HTMLElement {
     this.root.innerHTML = `
       <style>${shared}${css}</style>
       <li>
-        <button type="button" title="${this.text}">
+        <button type="button" title="${this.text}" onclick="this.getRootNode().host.handleClick()">
           ${this.text}
         </button>
       </li>
     `;
+  }
+
+  handleClick() {
+    this.dispatchEvent(new CustomEvent('breeze-option-selected', {
+      bubbles: true, 
+      composed: true, 
+      cancelable: true,
+      detail: {
+        value: this.value,
+      }
+    }));
   }
 }
