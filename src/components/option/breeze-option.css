@@ -27,11 +27,26 @@ button {
   padding: 0.5rem 1rem;
   width: 100%;
   position: relative;
-  border-radius: var(--_border-radius-sm);
+  /* border-radius: var(--_border-radius-sm); */
+  text-align: left;
 }
 
-button:focus-visible {
-  outline-color: var(--_outline-focus-color);
+button::after {
+  border: 1px solid transparent;
+  border-radius: var(--_border-radius-sm);
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  transition: .15s cubic-bezier(.5,1,.89,1);
+  z-index: 1;
+  bottom: 0.1875rem;
+  left: 0.1875rem;
+  right: 0.1875rem;
+  top: 0.1875rem;
+}
+
+button:focus-visible::after {
+  border-color: var(--_outline-color-focus);
   box-shadow: var(--_box-shadow);
 }
 
