@@ -1,5 +1,5 @@
 // @ts-check
-import { defer, camelToKebab } from "./helper.js";
+import { defer, camelToKebab, isCustomElement } from "./helper.js";
 /**
  * @typedef {boolean|number|string} PropertyValueType
  */
@@ -21,9 +21,9 @@ export function customElement(name) {
 }
 
 /**
- * @param {{ type: PropertyType }} options
+ * @param {{ type: PropertyType, selector: string }} options
  */
-export function property({ type }) {
+export function property({ type, selector }) {
   /**
    * @param {undefined} _value
    * @param {{ kind: string, name: string | symbol }} options
@@ -36,14 +36,18 @@ export function property({ type }) {
      * @returns {PropertyValueType}
      */
     return function(initialValue) {
-      initialValue = this.getAttribute(name);
+      if (type === Boolean) {  
+        initialValue = this.hasAttribute(name);
+      } else if (type === String) {  
+        initialValue = this.getAttribute(name) ?? '';
+      }
 
-      defer(() => {
+      customElements.whenDefined(this.constructor.is).then(() => {
         Object.defineProperty(this, name, {
-          get() {
-            if (type === Boolean) {
+          async get() {
+            if (type === Boolean) {  
               return this.hasAttribute(name);
-            } else if (type === String) {
+            } else if (type === String) {  
               return this.getAttribute(name) ?? '';
             }
           },
@@ -59,7 +63,34 @@ export function property({ type }) {
         });
       });
 
-      return initialValue ?? '';
+      return initialValue;
+    }
+  }
+}
+
+/**
+ * @param {{ type: HTMLElement, selector: string }} options
+ */
+export function query({ type, selector }) {
+  /**
+   * @param {undefined} _value
+   * @param {{ kind: string, name: string | symbol }} options
+   */
+  return function(_value, { kind, name }) {
+    if (kind !== 'field') return;
+    /**
+     * @param {PropertyValueType} initialValue 
+     * @returns {HTMLElement}
+     */
+    return function(initialValue) {
+      if (type === HTMLElement) {
+        const element = this.querySelector(selector);
+ 
+          initialValue = element;
+          // customElements.whenDefined(element.localName);
+      }
+
+      return initialValue;
     }
   }
 }
