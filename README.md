@@ -1,8 +1,9 @@
 <div align="center"><img align="center" src="./breeze-components.svg" alt="Breeze Components Logo"></div>
 
 <p align="center">A collection of native web components built on top of web standards with a focus on:</p>
-<ul align="center" style="display: flex;"><li>🚹 Accessibility</li><li>🏗 Easy to use</li><li>🎨 Easy to style</li></ul>
-<div align="center">Inspired by <a href="https://github.com/thepassle/generic-components" target="_blank">https://github.com/thepassle/generic-components</a></p>
+<ul align="center" style="display: flex;"><span role="listitem">🚹 Accessibility  </span role="listitem"><span>🏗 Easy to use  </span role="listitem"><span>🎨 Easy to style</span></ul>
+<p align="center">Inspired by <a href="https://github.com/thepassle/generic-components" target="_blank">https://github.com/thepassle/generic-components</a></p>
+
 
 ## Collection
 
