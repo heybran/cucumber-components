@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  --_background-color: #fff;
+  --_text-color: inherit;
+}
+
+:host([selected]) {
+  --_background-color: var(--_primary-color);
+  --_text-color: #fff;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  display: block;
+  border: 0;
+  outline: 1px solid transparent;
+  background-color: var(--_background-color);
+  color: var(--_text-color);
+  font: inherit;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  position: relative;
+  border-radius: var(--_border-radius-sm);
+}
+
+button:focus-visible {
+  outline-color: var(--_outline-focus-color);
+  box-shadow: var(--_box-shadow);
+}
+
+:host(:not([selected])) button:hover {
+  background-color: var(--_hover-color);
+}
