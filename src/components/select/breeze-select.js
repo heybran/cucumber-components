@@ -38,6 +38,11 @@ export default class BreezeSelect extends HTMLElement {
     return this.querySelector('[selected]');
   }
 
+  /** @returns {NodeList[]} */
+  get options() {
+    return this.querySelectorAll('breeze-option');
+  }
+
   /**
    * no solutions yet
    */
@@ -53,9 +58,40 @@ export default class BreezeSelect extends HTMLElement {
   connectedCallback() {
     this.render();
     document.addEventListener('click', this.closeDropdownWhenClickOutside.bind(this));
-    document.addEventListener('keydown', this.closeDropdownWhenPressESC.bind(this));
+    // document.addEventListener('keydown', this.closeDropdownWhenPressESC.bind(this));
     window.addEventListener('scroll', this.updatePosition.bind(this));
     this.addEventListener('breeze-option-selected', this.handleSelect.bind(this));
+    this.addEventListener('keydown', this.openWithArrows);
+  }
+
+  /**
+   * https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
+   * @param {KeyboardEvent} event 
+   */
+  openWithArrows = (event) => {
+    if (!this.isSelfFocused) {
+      return;
+    }
+
+    /**
+     * Down Arrow: 
+     * - Opens the listbox if it is not already displayed without moving focus or changing selection.
+     * - DOM focus remains on the combobox.
+     */
+    if (event.key === 'ArrowDown') {
+      this.openDropdown();
+    }
+
+    /**
+     * Up Arrow: 
+     * - First opens the listbox if it is not already displayed and then moves visual focus to the first option.
+     * - DOM focus remains on the combobox.
+     * - But native select element does not have this behavior: 
+     * - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
+     */
+    if (event.key === 'ArrowUp') {
+      this.openDropdown();
+    }
   }
 
   handleSelect(event) {
@@ -79,6 +115,22 @@ export default class BreezeSelect extends HTMLElement {
     }));
   }
 
+  handleUpAndDownArrows(event) {
+    if (!['ArrowDown', 'ArrowUp'].includes(event.key)) {
+      return;
+    }
+
+    const options = Array.from(this.options);
+    let index = options.indexOf(document.activeElement);
+    let nextIndex = (index + 1 === options.length) ? 0 : (index + 1);
+    let previousIndex = index === 0 ? options.length - 1 : index - 1;
+    if (event.key === 'ArrowDown') {
+      options[nextIndex]?.focus();
+    } else if (event.key === 'ArrowUp') {
+      options[previousIndex]?.focus(); 
+    }
+  }
+
   updatePosition() {
     const { left, top, width, height } = this.getBoundingClientRect();
     const availableHeight = window.innerHeight - height - top;
@@ -97,17 +149,38 @@ export default class BreezeSelect extends HTMLElement {
 
   openDropdown(event) {
     this.updatePosition();
-    this.dropdown?.classList.add('visible');
+    // this.dropdown?.classList.add('visible');
+    this.selectedOption?.focus();
+    this.dropdown.showModal();
+    this.dropdown.addEventListener('keydown', this.handleUpAndDownArrows.bind(this));
     this.classList.add('dropdown-opened');
     this.dropdown?.addEventListener('animationend', () => {
       this.trigger.setAttribute('aria-expanded', 'true');
+    });
+    this.dropdown?.addEventListener('keydown', this.selectOptionWhenTyping);
+  }
+
+  /**
+   * https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
+   * Like an HTML <select>, users can type characters to select matching options.
+   * @param {KeyboardEvent} event 
+   */
+  selectOptionWhenTyping = (event) => {
+    console.log(this);
+    var textTyped = event.key.toLowerCase();
+    Array.from(this.options).forEach(option => {
+      if (option.text.toLowerCase().startsWith(textTyped)) {
+        option.focus();
+      }
     });
   }
 
   closeDropdown() {
     this.trigger.setAttribute('aria-expanded', 'false');
-    this.dropdown?.classList.remove('visible');
+    // this.dropdown?.classList.remove('visible');
     this.classList.remove('dropdown-opened');
+    this.dropdown.close();
+    this.dropdown?.removeEventListener('keydown', this.constructor.selectOptionWhenTyping);
   }
 
   get dropdown() {
@@ -116,6 +189,10 @@ export default class BreezeSelect extends HTMLElement {
 
   get trigger() {
     return this.shadowRoot?.querySelector('button[type="button"]');
+  }
+
+  get isSelfFocused() {
+    return document.activeElement === this;
   }
 
   closeDropdownWhenClickOutside(event) {
@@ -150,14 +227,14 @@ export default class BreezeSelect extends HTMLElement {
           <span class="text">${this.text}</span>
           <slot name="suffix"></slot>
         </button>
-        <div role="dialog" tabindex="-1" part="dropdown">
+        <dialog role="listbox" tabindex="-1" part="dropdown">
           <button part="close">
             <span class="sr-only">Close</span>
           </button>
           <div part="dropdown-content">
             <slot></slot>
           </div>
-        </div>
+        </dialog>
       </div>
     `;
   }
