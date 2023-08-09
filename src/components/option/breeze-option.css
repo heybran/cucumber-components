@@ -31,6 +31,10 @@ button {
   text-align: left;
 }
 
+:host([selected]) button:focus-visible {
+  background-color: unset;
+}
+
 button::after {
   border: 1px solid transparent;
   border-radius: var(--_border-radius-sm);
@@ -52,4 +56,9 @@ button:focus-visible::after {
 
 :host(:not([selected])) button:hover {
   background-color: var(--_hover-color);
+}
+
+:host([selected]) button:focus-visible::after {
+  background-color: var(--_primary-color);
+  z-index: -1;
 }
