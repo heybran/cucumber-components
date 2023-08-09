@@ -92,6 +92,6 @@ button[part="close"] {
   pointer-events: none;
 }
 
-:host(.dropdown-opened) ::slotted([slot="suffix"]) {
+button[aria-expanded="true"] ::slotted([slot="suffix"]) {
   transform: rotate(180deg);
 }
