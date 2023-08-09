@@ -1,0 +1,46 @@
+@import url("./table.css");
+
+body {
+  display: grid;
+  grid-template-areas:
+    "header content"
+    "header footer"
+  ;
+  grid-template-columns: 300px 1fr;
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body > header {
+  grid-area: header;
+  background-color: aliceblue;
+  height: 100vh;
+  height: 100dvh;
+  padding: 2rem;
+}
+
+body > footer {
+  grid-area: footer;
+}
+
+body > main {
+  padding: 2rem;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+}
+
+header ul {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+
+ul {
+  padding-inline-start: 0;
+}
+
+a {
+  color: inherit;
+}

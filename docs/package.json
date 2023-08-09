@@ -1,0 +1,18 @@
+{
+  "name": "breeze-components-docs",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/plugin-proposal-decorators": "^7.22.7",
+    "@open-wc/testing": "^3.2.0",
+    "@rollup/plugin-babel": "^6.0.3",
+    "vite": "^4.3.8"
+  }
+}
