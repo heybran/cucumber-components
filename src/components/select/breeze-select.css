@@ -19,7 +19,8 @@ button {
   width: 100%;
 }
 
-button:is(:focus-visible, :focus) {
+button:is(:focus-visible, :focus),
+:host(:focus-within) button {
   outline: 1px auto var(--_outline-color-focus);
   box-shadow: var(--_box-shadow);
 }
@@ -42,10 +43,19 @@ button[part="close"] {
   z-index: 999;
   visibility: hidden;
   pointer-events: none;
-  
+  display: gird;
+  inset: 0;
+  margin: 0;
+  border: 0;
+  padding: 0;
 }
 
-[part="dropdown"].visible {
+[part="dropdown"]::backdrop {
+  background-color: transparent;
+  pointer-events: none;
+}
+
+[part="dropdown"][open] {
   /* transform: scale(1); */
   left: var(--left);
   top: var(--top);
@@ -79,6 +89,7 @@ button[part="close"] {
   height: 1em;
   line-height: 1;
   transition: 0.2s color;
+  pointer-events: none;
 }
 
 :host(.dropdown-opened) ::slotted([slot="suffix"]) {
