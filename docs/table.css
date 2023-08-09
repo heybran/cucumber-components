@@ -1,0 +1,30 @@
+table {
+  padding: 0.5em 1em;
+  background: #def;
+  margin: 1.2em 0;
+  border-left: 0.5em solid #8ccbf2;
+  color: black;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: initial;
+  text-align: left;
+}
+
+th {
+  font-style: italic;
+  font-weight: normal;
+  padding-left: 1em;
+}
+
+th, td {
+  padding: 0.5em;
+  vertical-align: baseline;
+  border: 0;
+  border-bottom: 1px solid #bbd7e9;
+  color: black;
+  background: #def;
+}
+
+th:first-child {
+  width: 20em;
+}
