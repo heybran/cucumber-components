@@ -33,12 +33,30 @@ export default class BreezeSelect extends HTMLElement {
     return this.selectedOption.text;
   }
 
-  /** @returns {HTMLElement} */
+  /** 
+   * @returns {HTMLElement} 
+   * @throws {Error} - No breeze-option element error
+   */
   get selectedOption() {
-    return this.querySelector('[selected]');
+    const option = this.querySelector('breeze-option');
+    if (!option) {
+      throw new Error(`Missing 'breeze-option' inside 'breeze-select'`);
+    }
+
+    const selectedOption = this.querySelector('breeze-option[selected]');
+
+    if (!selectedOption) {
+      console.info(`
+        No 'selected' attribute found on 'breeze-option',
+        default to first 'breeze-option'.
+      `);
+      return option;
+    }
+    
+    return selectedOption;
   }
 
-  /** @returns {NodeList[]} */
+  /** @returns {HTMLElement[]} */
   get options() {
     return this.querySelectorAll('breeze-option');
   }
@@ -55,13 +73,65 @@ export default class BreezeSelect extends HTMLElement {
     this.attachShadow({ mode: 'open' });
   }
 
-  connectedCallback() {
+  render() {
+    // @ts-ignore
+    console.log(this.selectedOption);
+    console.log(this.selectedOption.text);
+    console.log('select', performance.now());
+
+    this.shadowRoot.innerHTML = `
+      <style>${shared}${css}</style>
+      <div part="container">
+        <button 
+          type="button"
+          aria-expanded="false"
+          aria-live="assertive"
+          aria-label=""
+          aria-describedby=""
+          onclick="this.getRootNode().host.openDropdown(event);"
+        >
+          <slot name="prefix"></slot>
+          <span class="text">${this.text}</span>
+          <slot name="suffix"></slot>
+        </button>
+        <dialog role="listbox" tabindex="-1" part="dropdown">
+          <button part="close">
+            <span class="sr-only">Close</span>
+          </button>
+          <div part="dropdown-content">
+            <slot></slot>
+          </div>
+        </dialog>
+      </div>
+    `;
+  }
+
+  async connectedCallback() {
+    await customElements.whenDefined(this.selectedOption.localName);
     this.render();
     document.addEventListener('click', this.closeDropdownWhenClickOutside.bind(this));
-    // document.addEventListener('keydown', this.closeDropdownWhenPressESC.bind(this));
     window.addEventListener('scroll', this.updatePosition.bind(this));
     this.addEventListener('breeze-option-selected', this.handleSelect.bind(this));
     this.addEventListener('keydown', this.openWithArrows);
+    this.dropdown?.addEventListener('close', this.onDropdownClose.bind(this));
+  }
+
+  /**
+   * @param {Event} event 
+   * @returns void
+   */
+  onDropdownClose(event) {
+    /**
+     * Update aria-expanded on trigger button
+     */
+    console.log(this.dropdown.returnValue);
+    this.trigger?.setAttribute('aria-expanded', 'false');
+
+
+    /**
+     * Remove support of selecting option when typing, (TODO) need review.
+     */
+    this.dropdown?.removeEventListener('keydown', this.selectOptionWhenTyping);
   }
 
   /**
@@ -97,14 +167,14 @@ export default class BreezeSelect extends HTMLElement {
   handleSelect(event) {
     const { value } = event.detail;
     if (this.value === value) {
-      this.closeDropdown();
+      this.dropdown.close();
       return;
     }
 
     this.selectedOption.removeAttribute('selected');
     event.target.setAttribute('selected', '');
     this.shadowRoot.querySelector('.text').textContent = event.target.text;
-    this.closeDropdown();
+    this.dropdown.close();
     this.dispatchEvent(new CustomEvent('change', {
       bubbles: true, 
       composed: true, 
@@ -153,7 +223,6 @@ export default class BreezeSelect extends HTMLElement {
     this.selectedOption?.focus();
     this.dropdown.showModal();
     this.dropdown.addEventListener('keydown', this.handleUpAndDownArrows.bind(this));
-    this.classList.add('dropdown-opened');
     this.dropdown?.addEventListener('animationend', () => {
       this.trigger.setAttribute('aria-expanded', 'true');
     });
@@ -175,14 +244,6 @@ export default class BreezeSelect extends HTMLElement {
     });
   }
 
-  closeDropdown() {
-    this.trigger.setAttribute('aria-expanded', 'false');
-    // this.dropdown?.classList.remove('visible');
-    this.classList.remove('dropdown-opened');
-    this.dropdown.close();
-    this.dropdown?.removeEventListener('keydown', this.constructor.selectOptionWhenTyping);
-  }
-
   get dropdown() {
     return this.shadowRoot?.querySelector('[part="dropdown"]');
   }
@@ -199,43 +260,13 @@ export default class BreezeSelect extends HTMLElement {
     if (
       !event.composedPath().includes(this.dropdown) && 
       this.trigger?.getAttribute('aria-expanded') === 'true') {
-        this.closeDropdown();
+        this.dropdown.close('Click outside');
     }
   }
 
-  closeDropdownWhenPressESC(event) {
-    if (event.key === "Escape" && this.dropdown.classList.contains('visible')) {
-      this.closeDropdown();
-    }
-  }
-
-  render() {
-    // @ts-ignore
-    console.log(this.selectedOption.text);
-    this.shadowRoot.innerHTML = `
-      <style>${shared}${css}</style>
-      <div part="container">
-        <button 
-          type="button"
-          aria-expanded="false"
-          aria-live="assertive"
-          aria-label=""
-          aria-describedby=""
-          onclick="this.getRootNode().host.openDropdown(event);"
-        >
-          <slot name="prefix"></slot>
-          <span class="text">${this.text}</span>
-          <slot name="suffix"></slot>
-        </button>
-        <dialog role="listbox" tabindex="-1" part="dropdown">
-          <button part="close">
-            <span class="sr-only">Close</span>
-          </button>
-          <div part="dropdown-content">
-            <slot></slot>
-          </div>
-        </dialog>
-      </div>
-    `;
-  }
+  // closeDropdownWhenPressESC(event) {
+  //   if (event.key === "Escape" && this.dropdown.classList.contains('visible')) {
+  //     this.closeDropdown();
+  //   }
+  // }
 }
