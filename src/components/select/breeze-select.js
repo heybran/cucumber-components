@@ -112,7 +112,7 @@ export default class BreezeSelect extends HTMLElement {
     document.addEventListener('click', this.closeDropdownWhenClickOutside.bind(this));
     window.addEventListener('scroll', this.updatePosition.bind(this));
     this.addEventListener('breeze-option-selected', this.handleSelect.bind(this));
-    this.addEventListener('keydown', this.openWithArrows);
+    this.addEventListener('keydown', this.onKeyDown);
     this.dropdown?.addEventListener('close', this.onDropdownClose.bind(this));
   }
 
@@ -138,7 +138,7 @@ export default class BreezeSelect extends HTMLElement {
    * https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
    * @param {KeyboardEvent} event 
    */
-  openWithArrows = (event) => {
+  onKeyDown = (event) => {
     if (!this.isSelfFocused) {
       return;
     }
@@ -160,6 +160,14 @@ export default class BreezeSelect extends HTMLElement {
      * - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
      */
     if (event.key === 'ArrowUp') {
+      this.openDropdown();
+    }
+
+    if (event.key === 'Home') {
+      this.openDropdown();
+    }
+
+    if (event.key === 'End') {
       this.openDropdown();
     }
   }
