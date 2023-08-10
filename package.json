@@ -8,7 +8,8 @@
     "test:watch": "web-test-runner ./src/components/*.test.js --coverage --node-resolve --watch",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cypress:open": "cypress open"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
@@ -16,6 +17,7 @@
     "@open-wc/testing": "^3.2.0",
     "@rollup/plugin-babel": "^6.0.3",
     "@web/test-runner": "^0.17.0",
+    "cypress": "^12.17.3",
     "lit": "^2.8.0",
     "vite": "^4.3.8"
   }
