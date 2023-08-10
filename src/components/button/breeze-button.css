@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  position: relative;
+  display: inline-block;
+}
+
+button {
+  background-color: var(--_button-background-color, transparent);
+  border: 1px solid var(--_button-border-color, transparent);
+  color: var(--button-text-color, inherit);
+  cursor: pointer;
+  font: inherit;
+  margin: 0;
+  /* maybe make this available via global setting? */
+  padding: 0.5em 1em;
+  border-radius: var(--_border-radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: var(--_button-gap, .2em);
+  transition: .15s cubic-bezier(.22,1,.36,1);
+}
+
+button:hover {
+  /* TODO */
+  background-color: rgba(194, 193, 192, 0.2);
+}
+
+button:focus-visible {
+  outline: 1px auto var(--_outline-color-focus);
+  box-shadow: var(--_box-shadow);
+}
+
+[part="prefix"], [part="suffix"], [part="label"] {
+  display: inline-flex;
+  align-items: center;
+}
+
+:host([theme~="icon"]) button {
+  gap: 0;
+  padding: 0.5rem;
+}
