@@ -1,4 +1,8 @@
-// @ts-check
+import { customElement } from "../../util/decorators";
+import shared from "../shared/shared.css?inline";
+import css from "./breeze-tooltip.css?inline";
+
+@customElement('breeze-tooltip')
 export default class BreezeTooltip extends HTMLElement {
   constructor() {
     super();
@@ -9,9 +13,33 @@ export default class BreezeTooltip extends HTMLElement {
     window.addEventListener("scroll", this.setPositionOnScroll.bind(this));
   }
 
+  /**
+   * @returns {HTMLElement}
+   */
+  get target() {
+    /**
+     * If slot attribute is present, target should be the custom element that owns the slot
+     */
+    if (this.hasAttribute('slot')) {
+      const host = this.assignedSlot.getRootNode().host;
+      return host;
+    }
+
+    /**
+     * <h2 id="heading">Heading with tooltip</h2>
+     * <breeze-tooltip for="heading" text="This is a tooltip" position="top-center"></-tooltip>
+     * - look for sibling elements or ancestor elements
+     */
+    if (this.hasAttribute('for')) {
+      // TODO
+    }
+
+    // TODO: fallback?
+  }
+
   connectedCallback() {
     this.shadowRoot.innerHTML = `
-      <style>${this.constructor.css}</style>
+      <style>${shared}${css}</style>
       <div part="content" class="content">
         ${this.getAttribute('text') ?? this.innerHTML}
       </div>
@@ -23,11 +51,15 @@ export default class BreezeTooltip extends HTMLElement {
         this.ariaExpanded = "false";
       }
     });
-    this.target = this.closest('[breeze-tooltip-target]');
+    
     if (this.target) {
       this.target?.addEventListener('focusin', this.openTooltip);
       this.target?.addEventListener('focusout', this.closeTooltip);
     }
+  }
+
+  get opened() {
+    return this.classList.contains('visible');
   }
 
   get tooltipContent() {
@@ -68,58 +100,4 @@ export default class BreezeTooltip extends HTMLElement {
     if (this.ariaExpanded === "false") return;
     this.setPosition();
   }
-
-  static get css() {
-    return `
-      :host {
-        display: inline-flex;
-        --tooltip-arrow-size: 12px;
-        position: absolute;
-        left: var(--tooltip-left);
-        top: calc(var(--tooltip-top) - var(--tooltip-arrow-size));
-        transition: opacity .3s ease;
-        will-change: opacity;
-        z-index: 99999;
-        opacity: 0;
-        pointer-events: none;
-        visibility: hidden;
-      }
-
-      :host(.visible) {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: initial;
-      }
-
-      .content {
-        background-color: var(--tooltip-background-color, #333);
-        border-radius: 4px;
-        padding: 1em 1.2em;
-        width: max(25em, 350px);
-        display: grid;
-        gap: .75em;
-      }
-
-      .content * {
-        color: inherit;
-        margin: 0;
-      }
-
-      .content::before {
-        content: '';
-        position: absolute;
-        bottom: calc(var(--tooltip-arrow-size) * -0.5);
-        left: 0;
-        border-width: 8px 8px 0;
-        border-top-color: initial;
-        width: var(--tooltip-arrow-size);
-        height: var(--tooltip-arrow-size);
-        background: var(--tooltip-background-color, #333);
-        transform: rotate(45deg);
-        left: calc(50% - var(--tooltip-arrow-size) / 2);
-      }
-    `;
-  }
 }
-
-customElements.define("breeze-tooltip", BreezeTooltip);
