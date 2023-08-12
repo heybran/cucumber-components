@@ -1,16 +1,11 @@
-import { customElement } from "../../util/decorators";
 import shared from "../shared/shared.css?inline";
 import css from "./breeze-tooltip.css?inline";
+import calculatePosition from "../../util/position-calculator";
 
-@customElement('breeze-tooltip')
 export default class BreezeTooltip extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.defer = (window.requestIdleCallback || requestAnimationFrame).bind(
-      window,
-    );
-    window.addEventListener("scroll", this.setPositionOnScroll.bind(this));
   }
 
   /**
@@ -38,23 +33,32 @@ export default class BreezeTooltip extends HTMLElement {
   }
 
   connectedCallback() {
+    // @ts-ignore
     this.shadowRoot.innerHTML = `
       <style>${shared}${css}</style>
       <div part="content" class="content">
         ${this.getAttribute('text') ?? this.innerHTML}
       </div>
     `;
-    this.tooltipContent.addEventListener("transitionend", () => {
-      if (this.tooltipContent.classList.contains("visible")) {
-        this.ariaExpanded = "true";
-      } else {
-        this.ariaExpanded = "false";
-      }
-    });
     
     if (this.target) {
       this.target?.addEventListener('focusin', this.openTooltip);
       this.target?.addEventListener('focusout', this.closeTooltip);
+      this.target?.addEventListener('mouseenter', this.openTooltip);
+      this.target?.addEventListener('mouseleave', this.closeTooltip);
+      
+    }
+  }
+
+  /**
+   * https://www.w3.org/WAI/about/using-wai-material/
+   * It typically appears after a small delay and disappears when Escape is pressed or on mouse out.
+   * @param {KeyboardEvent} event 
+   */
+  onKeydown = (event) => {
+    if (!this.opened) return;
+    if (event.key === 'Escape') {
+      this.closeTooltip();
     }
   }
 
@@ -62,42 +66,57 @@ export default class BreezeTooltip extends HTMLElement {
     return this.classList.contains('visible');
   }
 
-  get tooltipContent() {
+  /**
+   * @returns {string}
+   */
+  get position() {
+    if (!this.hasAttribute('position')) {
+      return 'top';
+    } 
+
+    return this.getAttribute('position')?.trim();
+  }
+
+  /**
+   * @returns {HTMLElement}
+   */
+  get content() {
+    // @ts-ignore
     return this.shadowRoot.querySelector(".content");
-  }
-
-  get tooltipContentWidth() {
-    return this.tooltipContent.getBoundingClientRect().width;
-  }
-
-  get tooltipContentHeight() {
-    return this.tooltipContent.getBoundingClientRect().height;
   }
 
   closeTooltip = () => {
     this.classList.remove("visible");
+    document.removeEventListener('keydown', this.onKeydown);
+    window.removeEventListener("scroll", this.onScroll);
   }
 
   openTooltip = () => {
     this.setPosition();
     this.classList.add("visible");
+    document.addEventListener('keydown', this.onKeydown);
+    document.addEventListener("wheel", this.onScroll);
   }
 
-  get targetWidth() {
-    return this.target?.getBoundingClientRect().width;
+  get arrowSize() {
+    const stringValue = window.getComputedStyle(this).getPropertyValue('--tooltip-arrow-size');
+    return +stringValue.replace('px', '');
   }
 
   setPosition() {
-    const { left, top } = this.target.getBoundingClientRect();
-    const y = top - this.tooltipContentHeight - 2;
-    const x = left + this.targetWidth / 2 - this.tooltipContentWidth / 2;
-    console.log(x, this.targetWidth, this.tooltipContentWidth);
+    const { x, y } = calculatePosition({
+      element: this.content, 
+      target: this.target,
+      position: this.position,
+      offset: 2 + this.arrowSize,
+    });
     this.style.setProperty("--tooltip-left", `${x}px`);
     this.style.setProperty("--tooltip-top", `${y}px`);
   }
 
-  setPositionOnScroll() {
-    if (this.ariaExpanded === "false") return;
+  onScroll = () => {
     this.setPosition();
   }
 }
+
+customElements.define('breeze-tooltip', BreezeTooltip);

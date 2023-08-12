@@ -7,7 +7,7 @@
   --tooltip-arrow-size: 12px;
   position: fixed;
   left: var(--tooltip-left);
-  top: calc(var(--tooltip-top) - var(--tooltip-arrow-size));
+  top: var(--tooltip-top);
   transition: opacity .3s ease;
   will-change: opacity;
   z-index: 99999;
@@ -49,4 +49,8 @@
   background: var(--tooltip-background-color, #0c0c14);
   transform: rotate(45deg);
   left: calc(50% - var(--tooltip-arrow-size) / 2);
+}
+
+:host([position="bottom"]) .content::before {
+  bottom: calc(100% + var(--tooltip-arrow-size) * -0.5);
 }
