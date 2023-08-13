@@ -67,6 +67,13 @@ export default class BreezeTooltip extends HTMLElement {
   }
 
   /**
+   * @returns {boolean}
+   */
+  get hasArrow() {
+    return true;
+  }
+
+  /**
    * @returns {string}
    */
   get position() {
@@ -88,7 +95,7 @@ export default class BreezeTooltip extends HTMLElement {
   closeTooltip = () => {
     this.classList.remove("visible");
     document.removeEventListener('keydown', this.onKeydown);
-    window.removeEventListener("scroll", this.onScroll);
+    document.removeEventListener("wheel", this.onScroll);
   }
 
   openTooltip = () => {
@@ -105,7 +112,7 @@ export default class BreezeTooltip extends HTMLElement {
 
   setPosition() {
     const { x, y } = calculatePosition({
-      element: this.content, 
+      element: this, 
       target: this.target,
       position: this.position,
       offset: 2 + this.arrowSize,

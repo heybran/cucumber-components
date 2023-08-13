@@ -40,17 +40,30 @@
 .content::before {
   content: '';
   position: absolute;
-  bottom: calc(var(--tooltip-arrow-size) * -0.5);
-  left: 0;
   border-width: 8px 8px 0;
   border-top-color: initial;
   width: var(--tooltip-arrow-size);
   height: var(--tooltip-arrow-size);
   background: var(--tooltip-background-color, #0c0c14);
   transform: rotate(45deg);
+}
+
+:host([arrow-position="bottom"]) .content::before {
+  bottom: calc(var(--tooltip-arrow-size) * -0.5);
   left: calc(50% - var(--tooltip-arrow-size) / 2);
 }
 
-:host([position="bottom"]) .content::before {
+:host([arrow-position="top"]) .content::before {
+  left: calc(50% - var(--tooltip-arrow-size) / 2);
   bottom: calc(100% + var(--tooltip-arrow-size) * -0.5);
+}
+
+:host([arrow-position="left"]) .content::before {
+  top: calc(50% - var(--tooltip-arrow-size) / 2);
+  right: calc(100% + var(--tooltip-arrow-size) * -0.5);
+}
+
+:host([arrow-position="right"]) .content::before {
+  top: calc(50% - var(--tooltip-arrow-size) / 2);
+  left: calc(100% + var(--tooltip-arrow-size) * -0.5);
 }
