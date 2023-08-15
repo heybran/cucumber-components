@@ -1,0 +1,23 @@
+:host {
+  --track-width: 2px;
+  --track-color: #adaba8;
+  --indicator-color: #6d4aff;
+  --speed: 1s;
+  --size: 1em;
+  display: inline-block;
+}
+
+[part="spinner"] {
+  height: var(--size);
+  width: var(--size);
+  border-width: var(--track-width);
+  border-style: solid;
+  border-color: var(--indicator-color) var(--track-color) var(--track-color) var(--track-color);
+  border-radius: 50%;
+  animation: spin var(--speed) linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
