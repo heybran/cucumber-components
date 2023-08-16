@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+[part="container"] {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  border-radius: 1ch;
+  background-color: #000;
+  color: #fff;
+  padding: .5ch;
+  transform: translateY(50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .2s ease-in, opacity .2s;
+}
+
+:host([open]) [part="container"] {
+  pointer-events: initial;
+  opacity: 1;
+  transform: translateY(0);
+}

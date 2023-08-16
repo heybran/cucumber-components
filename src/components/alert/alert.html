@@ -1,0 +1,13 @@
+<div part="container" role="alert" aria-hidden="true">
+  <div part="icon">
+    <slot name="icon"></slot>
+  </div>
+  <div part="message" aria-live="polite">
+    <slot></slot>
+  </div>
+  <div part="close">
+    <breeze-button theme="icon" no-border onclick="this.getRootNode().host.hide();">
+      <breeze-icon icon="cross" size="medium"></breeze-icon>
+    </breeze-button>
+  </div>
+</div>
