@@ -74,7 +74,7 @@ export default class BreezeTextField extends FormElement {
 
     this.getForm()?.addEventListener('formdata', (event) => {
       const formData = event.formData;
-      if (this.hasAttribute('name')) {
+      if (!this.hasAttribute('name')) {
         return console.warn(`No 'name' attribute found on ${this.localName}, so this form field will not particiate on form submit.`);
       }
       // @ts-ignore
