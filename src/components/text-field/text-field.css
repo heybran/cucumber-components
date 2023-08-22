@@ -17,7 +17,7 @@ input {
   min-width: 0;
   color: inherit;
   outline: none;
-  padding: 0.5em 1em;
+  padding: 1ch 1.5ch;
   -webkit-appearance: none;
   font: inherit;
   margin: 0;
@@ -29,7 +29,7 @@ label {
 }
 
 [part="input-container"] {
-  margin-top: .25rem;
+  margin-top: .25em;
   border: 1px solid var(--border-color-normal);
   border-radius: var(--border-radius);
   display: flex;
@@ -45,5 +45,5 @@ label {
 [part="helper-text"]:not(:empty) {
   color: var(--helper-text-color);
   font-size: 0.9em;
-  margin-top: .25rem;
+  margin-top: .25em;
 }
