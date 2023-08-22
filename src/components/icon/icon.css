@@ -1,0 +1,16 @@
+:host {
+  display: inline-flex;
+  --size: 1em;
+  width: var(--size);
+  height: var(--size);
+  align-items: center;
+  justify-content: center;
+}
+
+:host([size="medium"]) {
+  --size: 3ch;
+}
+
+svg {
+  width: 100%;
+}
