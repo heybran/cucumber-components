@@ -1,109 +1,160 @@
+import FormElement from "../../shared/form-element.js";
+import css from "./text-field.css?inline";
 // @ts-check
 import html from "./text-field.html?raw";
-import css from "./text-field.css?inline";
-import FormElement from "../../shared/form-element.js";
 
 export default class BreezeTextField extends FormElement {
-  get input() {
-    // @ts-ignore
-    return this.shadowRoot.querySelector('input');
-  }
-  
-  /**
-   * @param {string} arg
-   */
-  set label(arg) {
-    // @ts-ignore
-    this.shadowRoot.querySelector('[part="label"] span').textContent = arg;
-  }
+	/**
+	 * @returns {HTMLInputElement}
+	 */
+	get input() {
+		// @ts-ignore
+		return this.shadowRoot.querySelector("input");
+	}
 
-  /**
-   * @param {string} arg
-   */
-  set placeholder(arg) {
-    // @ts-ignore
-    this.input.placeholder = arg;
-  }
+	/**
+	 * @param {string} arg
+	 */
+	set label(arg) {
+		// @ts-ignore
+		this.shadowRoot.querySelector('[part="label"] span').textContent = arg;
+	}
 
-  /**
-   * @param {string} arg
-   */
-  set helperText(arg) {
-    // @ts-ignore
-    this.shadowRoot.querySelector('[part="helper-text"]').textContent = arg;
-  }
+	/**
+	 * @param {string} arg
+	 */
+	set placeholder(arg) {
+		// @ts-ignore
+		this.input.placeholder = arg;
+	}
 
-  /**
-   * @returns {string}
-   */
-  get value() {
-    // @ts-ignore
-    return this.input.value;
-  }
+	/**
+	 * @param {string} arg
+	 */
+	set helperText(arg) {
+		// @ts-ignore
+		this.shadowRoot.querySelector('[part="helper-text"]').textContent = arg;
+	}
 
-  /**
-   * @param {string} arg
-   */
-  set value(arg) {
-    // @ts-ignore
-    this.input.value = arg;
-  }
+	/**
+	 * @returns {string}
+	 */
+	get value() {
+		return this.input.value;
+	}
 
-  connectedCallback() {
-    super.render(html, css);
-    if (this.value) {
-      this.value = this.getAttribute('value') ?? '';
-    }
+	/**
+	 * @param {string} arg
+	 */
+	set value(arg) {
+		this.input.value = arg;
+	}
 
-    /**
-     * Store an initial value to be used on form resetting
-     */
-    this._initialValue = this.value;
+	/**
+	 * @param {boolean} flag
+	 */
+	set required(flag) {
+		this.input.required = flag;
+	}
 
-    if (this.hasAttribute('label')) {
-      this.label = this.getAttribute('label') ?? '';
-    }
+	connectedCallback() {
+		super.render(html, css);
 
-    if (this.hasAttribute('placeholder')) {
-      this.placeholder = this.getAttribute('placeholder') ?? '';
-    }
+		this.defer(() => {
+			const id = `input-${this.uuid()}`;
+			// @ts-ignore
+			this.shadowRoot.querySelector('[part="label"]').setAttribute("for", id);
+			this.input.id = id;
+		});
 
-    if (this.hasAttribute('helper-text')) {
-      this.helperText = this.getAttribute('helper-text') ?? '';
-    }
+		if (this.hasAttribute("value")) {
+			this.value = this.getAttribute("value") ?? "";
+		}
 
-    this.getForm()?.addEventListener('formdata', (event) => {
-      const formData = event.formData;
-      if (!this.hasAttribute('name')) {
-        return console.warn(`No 'name' attribute found on ${this.localName}, so this form field will not particiate on form submit.`);
-      }
-      // @ts-ignore
-      formData.set(this.getAttribute('name'), this.value);
-    });
+		/**
+		 * Store an initial value to be used on form resetting
+		 */
+		this._initialValue = this.value;
 
-    this.getForm()?.addEventListener('reset', (event) => {
-      // @ts-ignore
-      this.value = this._initialValue;
-    });
-  }
+		if (this.hasAttribute("label")) {
+			this.label = this.getAttribute("label") ?? "";
+		}
 
-  /**
-   * @returns {string[]}
-   */
-  static get observedAttributes() {
-    return [...super.observedAttributes];
-  }
+		if (this.hasAttribute("placeholder")) {
+			this.placeholder = this.getAttribute("placeholder") ?? "";
+		}
 
-  /**
-   * @param {string} attr 
-   * @param {string} oldValue 
-   * @param {string} newValue 
-   */
-  attributeChangedCallback(attr, oldValue, newValue) {
-    super.attributeChangedCallback(attr, oldValue, newValue);
-  }
+		if (this.hasAttribute("helper-text")) {
+			this.helperText = this.getAttribute("helper-text") ?? "";
+		}
+
+		this.required = this.hasAttribute("required");
+
+		this.getForm()?.addEventListener("formdata", this.setFormData);
+
+		this.getForm()?.addEventListener("reset", (event) => {
+			// @ts-ignore
+			this.value = this._initialValue;
+		});
+
+		// @ts-ignore
+		this.input.addEventListener("input", (event) => {
+			this.dispatchEvent(new Event("input"));
+		});
+
+		// @ts-ignore
+		this.input.addEventListener("change", (event) => {
+			this.dispatchEvent(new Event("change"));
+		});
+	}
+
+	/**
+	 * @param {FormDataEvent} event
+	 * @returns void
+	 */
+	setFormData = (event) => {
+		const formData = event.formData;
+		if (!this.hasAttribute("name")) {
+			return console.warn(
+				`No 'name' attribute found on ${this.localName}, so this form field will not particiate on form submit.`,
+			);
+		}
+
+		/**
+		 * Fixes for not able to remove formdata event listener when disconnected
+		 */
+		if (!this.getForm()) {
+			return;
+		}
+		// @ts-ignore
+		formData.set(this.getAttribute("name"), this.value);
+	};
+
+	/**
+	 * @returns {string[]}
+	 */
+	static get observedAttributes() {
+		return [...super.observedAttributes];
+	}
+
+	/**
+	 * @param {string} attr
+	 * @param {string} oldValue
+	 * @param {string} newValue
+	 */
+	attributeChangedCallback(attr, oldValue, newValue) {
+		super.attributeChangedCallback(attr, oldValue, newValue);
+	}
+
+	disconnectedCallback() {
+		/**
+		 * console.log(this.getForm()); // renders null when disconnected from DOM,
+		 * so the following remove event listener is not working as expected.
+		 */
+		this.getForm()?.removeEventListener("formdata", this.setFormData);
+	}
 }
 
-if (!customElements.get('breeze-text-field')) {
-  customElements.define('breeze-text-field', BreezeTextField);
+if (!customElements.get("breeze-text-field")) {
+	customElements.define("breeze-text-field", BreezeTextField);
 }

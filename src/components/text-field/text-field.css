@@ -33,6 +33,7 @@ label {
   border: 1px solid var(--border-color-normal);
   border-radius: var(--border-radius);
   display: flex;
+  align-items: center;
   position: relative;
   transition: .15s cubic-bezier(.22,1,.36,1), visibility 0s;
 }
@@ -46,4 +47,19 @@ label {
   color: var(--helper-text-color);
   font-size: 0.9em;
   margin-top: .25em;
+}
+
+::slotted([slot="suffix"]) {
+  padding-inline: 1ch;
+}
+
+:host([label-position-side]) [part="container"] {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  justify-content: space-between;
+}
+
+:host([label-position-side]) [part="input-container"] {
+  margin-top: 0;
 }
