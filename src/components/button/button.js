@@ -9,6 +9,7 @@ export default class BreezeButton extends FormElement {
 
 	connectedCallback() {
 		super.render(html, css);
+		this._connected = true;
 		this.loading = this.hasAttribute("loading");
 		this.disabled = this.hasAttribute("disabled");
 		if (this.type) {
@@ -36,7 +37,17 @@ export default class BreezeButton extends FormElement {
 
 		this.button.addEventListener("click", (event) => {
 			// FIXME: form got submitted twice
-			form.dispatchEvent(new Event(type, { cancelable: true }));
+			// form.dispatchEvent(new Event(type, { cancelable: true }));
+			// form.dispatchEvent(new SubmitEvent('submit', {
+			// 	bubbles: true,
+			// 	cancelable: true
+			// }));
+			const fakeButton = document.createElement('button');
+			fakeButton.setAttribute('type', type);
+			fakeButton.style.position = 'absolute';
+			form.appendChild(fakeButton);
+			fakeButton.click();
+			fakeButton.remove();
 		});
 	}
 
@@ -58,7 +69,11 @@ export default class BreezeButton extends FormElement {
 	}
 
 	attributeChangedCallback(attr, oldValue, newValue) {
-		if (null === oldValue) {
+		/**
+		 * BUG: from <breeze-button></breeze-button> to
+		 * <breeze-button disabled></breeze-button> oldValue is null
+		 */
+		if (null === oldValue && !this._connected) {
 			return;
 		}
 
