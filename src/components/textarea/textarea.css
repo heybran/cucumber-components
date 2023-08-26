@@ -1,0 +1,26 @@
+textarea {
+  width: 100%;
+  border-radius: var(--_border-radius-md);
+  border: 1px solid var(--_border-color-normal);
+  padding: 1em;
+  margin-top: .25rem;
+  resize: vertical;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+textarea:focus-visible {
+  outline-color: var(--_primary-color);
+  box-shadow: var(--_box-shadow);
+}
+
+textarea[disabled] {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+[part="helper-text"] {
+  color: #5c5958;
+  font-size: 80%;
+}

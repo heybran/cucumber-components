@@ -1,7 +1,7 @@
 // @ts-check
-import shared from "../shared/shared.css";
-import css from "./breeze-switch.css?inline";
-import "../icon/breeze-icon.js";
+import shared from "../../shared/shared.css";
+import css from "./switch.css?inline";
+import "../icon/icon.js";
 
 export default class BreezeSwitch extends HTMLElement {
   /** @returns {boolean} */
@@ -89,4 +89,6 @@ export default class BreezeSwitch extends HTMLElement {
   }
 }
 
-customElements.define('breeze-switch', BreezeSwitch);
+if (!customElements.get('breeze-switch')) {
+  customElements.define('breeze-switch', BreezeSwitch);
+}

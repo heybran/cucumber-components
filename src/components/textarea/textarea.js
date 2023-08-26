@@ -1,6 +1,6 @@
 // @ts-check
-import shared from "../shared/shared.css?inline";
-import css from "./breeze-textarea.css?inline";
+import shared from "../../shared/shared.css?inline";
+import css from "./textarea.css?inline";
 
 export default class BreezeTextarea extends HTMLElement {
   /** @returns {string} */
@@ -16,6 +16,11 @@ export default class BreezeTextarea extends HTMLElement {
   /** @returns {string} */
   get label() {
     return this.getAttribute('label') ?? '';
+  }
+
+  /** @returns {number} */
+  get rows() {
+    return Number(this.getAttribute('rows'));
   }
 
   /** @returns {boolean} */
@@ -66,15 +71,14 @@ export default class BreezeTextarea extends HTMLElement {
         </label>
         <textarea 
           part="textarea" 
-          name="" id="" cols="30" rows="10"
           spellcheck="true"
           aria-describedby=""
           placeholder="${this.placeholder}"
-          rows="${this.rows ? this.rows : 4}"
+          rows="${this.rows || 4}"
           name="${this.name ?? ''}"
           ${this.hasAttribute('disabled') ? 'disabled' : ''}
         ></textarea>
-        <div 
+        <div
           part="helper-text" 
           id="TODO"
           aria-hidden="${
@@ -90,4 +94,6 @@ export default class BreezeTextarea extends HTMLElement {
   }
 }
 
-customElements.define('breeze-textarea', BreezeTextarea);
+if (!customElements.get('breeze-textarea')) {
+  customElements.define('breeze-textarea', BreezeTextarea);
+}

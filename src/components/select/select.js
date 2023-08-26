@@ -1,21 +1,30 @@
 // @ts-check
-import { customElement, property, query } from "../../util/decorators.js";
-import shared from "../shared/shared.css";
-import css from "./breeze-select.css?inline";
+import shared from "../../shared/shared.css?inline";
+import css from "./select.css?inline";
+import "../icon/icon.js";
+import FormElement from "../../shared/form-element.js";
 
-@customElement('breeze-select')
-export default class BreezeSelect extends HTMLElement {
-  static get is() {
-    return `breeze-select`;
+export default class BreezeSelect extends FormElement {
+  /**
+   * @returns {string}
+   */
+  get label() {
+    return this.getAttribute('label') ?? '';
   }
-  /** @type {string} */
-  @property({ type: String }) label;
 
-  /** @type {string} */
-  @property({ type: String }) placeholder;
+  /**
+   * @returns {string}
+   */
+  get placeholder() {
+    return this.getAttribute('placeholder') ?? '';
+  }
 
-  /** @type {string} */
-  @property({ type: String }) helperText; // helper-text
+  /**
+   * @returns {string}
+   */
+  get helperText() {
+    return this.getAttribute('helper-text') ?? '';
+  }
 
   /** @type {string} */
   // @property({ type: String }) text;
@@ -70,18 +79,31 @@ export default class BreezeSelect extends HTMLElement {
 
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    // this.attachShadow({ mode: 'open' });
+  }
+
+    /**
+   * @returns {string[]}
+   */
+  static get observedAttributes() {
+    return [...super.observedAttributes];
+  }
+
+  /**
+   * @param {string} attr 
+   * @param {string} oldValue 
+   * @param {string} newValue 
+   */
+  attributeChangedCallback(attr, oldValue, newValue) {
+    super.attributeChangedCallback(attr, oldValue, newValue);
   }
 
   render() {
     // @ts-ignore
-    console.log(this.selectedOption);
-    console.log(this.selectedOption.text);
-    console.log('select', performance.now());
-
     this.shadowRoot.innerHTML = `
       <style>${shared}${css}</style>
       <div part="container">
+        <label>${this.label}</label>
         <button 
           type="button"
           aria-expanded="false"
@@ -92,7 +114,11 @@ export default class BreezeSelect extends HTMLElement {
         >
           <slot name="prefix"></slot>
           <span class="text">${this.text}</span>
-          <slot name="suffix"></slot>
+          <span part="suffix">
+            <slot name="suffix">
+              <breeze-icon icon="chevron-down"></breeze-icon>
+            </slot>
+          </span>
         </button>
         <dialog role="listbox" tabindex="-1" part="dropdown">
           <button part="close">
@@ -114,6 +140,11 @@ export default class BreezeSelect extends HTMLElement {
     this.addEventListener('breeze-option-selected', this.handleSelect.bind(this));
     this.addEventListener('keydown', this.onKeyDown);
     this.dropdown?.addEventListener('close', this.onDropdownClose.bind(this));
+
+    this.getForm()?.addEventListener('formdata', (event) => {
+      const formData = event.formData;
+      formData.set(this.name, this.value);
+    });
   }
 
   /**
@@ -277,4 +308,8 @@ export default class BreezeSelect extends HTMLElement {
   //     this.closeDropdown();
   //   }
   // }
+}
+
+if (!customElements.get('breeze-select')) {
+  customElements.define('breeze-select', BreezeSelect);
 }

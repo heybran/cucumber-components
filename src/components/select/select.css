@@ -1,5 +1,5 @@
 :host {
-  display: block;
+  display: inline-block;
 }
 
 button {
@@ -15,8 +15,9 @@ button {
   border: 1px solid var(--_border-color-normal);
   transition: .15s cubic-bezier(.22,1,.36,1), visibility 0s;
   border-radius: var(--_border-radius-md);
-  padding: .5rem .5rem .5rem 1rem;
+  padding: 1ch 1ch 1ch 1.5ch;
   width: 100%;
+  gap: .5em;
 }
 
 button:is(:focus-visible, :focus),
@@ -72,6 +73,10 @@ button[part="close"] {
   padding-block: 4px;
 }
 
+[part="suffix"], [part="prefix"] {
+  line-height: 0;
+}
+
 @keyframes scale {
   0% {
     opacity: 0;
@@ -92,6 +97,15 @@ button[part="close"] {
   pointer-events: none;
 }
 
-button[aria-expanded="true"] ::slotted([slot="suffix"]) {
+button[aria-expanded="true"] ::slotted([slot="suffix"]),
+button[aria-expanded="true"] [part="suffix"] {
   transform: rotate(180deg);
+}
+
+label {
+  font-weight: var(--label-font-weight, 600);
+}
+
+label:not(:empty) + button {
+  margin-top: .25em;
 }

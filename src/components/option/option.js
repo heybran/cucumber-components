@@ -1,19 +1,8 @@
 // @ts-check
-import { customElement, property } from "../../util/decorators";
-import shared from "../shared/shared.css";
-import css from "./breeze-option.css?inline";
+import shared from "../../shared/shared.css?inline";
+import css from "./option.css?inline";
 
-@customElement('breeze-option')
 export default class BreezeOption extends HTMLElement {
-  static get is() {
-    return `breeze-option`;
-  }
-  /** @type {string} */
-  // @property({ type: String }) text;
-
-  /** @type {string} */
-  // @property({ type: String }) value;
-
   /** @returns {string} */
   get value() {
     return this.getAttribute('value') ?? '';
@@ -27,7 +16,6 @@ export default class BreezeOption extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.root = this.shadowRoot;
   }
 
   connectedCallback() {
@@ -36,7 +24,7 @@ export default class BreezeOption extends HTMLElement {
 
   render() {
     // @ts-ignore
-    this.root.innerHTML = `
+    this.shadowRoot.innerHTML = `
       <style>${shared}${css}</style>
       <li>
         <button type="button" title="${this.text}" onclick="this.getRootNode().host.handleClick()">
@@ -44,6 +32,10 @@ export default class BreezeOption extends HTMLElement {
         </button>
       </li>
     `;
+  }
+
+  focus() {
+    this.shadowRoot.querySelector('button').focus();
   }
 
   handleClick() {
@@ -56,4 +48,8 @@ export default class BreezeOption extends HTMLElement {
       }
     }));
   }
+}
+
+if (!customElements.get('breeze-option')) {
+  customElements.define('breeze-option', BreezeOption);
 }

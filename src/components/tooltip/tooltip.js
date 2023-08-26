@@ -1,5 +1,5 @@
-import shared from "../shared/shared.css?inline";
-import css from "./breeze-tooltip.css?inline";
+import shared from "../../shared/shared.css?inline";
+import css from "./tooltip.css?inline";
 import calculatePosition from "../../util/position-calculator";
 
 export default class BreezeTooltip extends HTMLElement {
@@ -16,7 +16,7 @@ export default class BreezeTooltip extends HTMLElement {
      * If slot attribute is present, target should be the custom element that owns the slot
      */
     if (this.hasAttribute('slot')) {
-      const host = this.assignedSlot.getRootNode().host;
+      const host = this.assignedSlot?.getRootNode().host;
       return host;
     }
 
@@ -126,4 +126,6 @@ export default class BreezeTooltip extends HTMLElement {
   }
 }
 
-customElements.define('breeze-tooltip', BreezeTooltip);
+if (!customElements.get('breeze-tooltip')) {
+  customElements.define('breeze-tooltip', BreezeTooltip);
+}

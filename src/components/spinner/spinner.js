@@ -1,7 +1,9 @@
 // @ts-check
-import css from "./breeze-spinner.css?inline";
+import css from "./spinner.css?inline";
 
 export default class BreezeSpinner extends HTMLElement {
+  static is = 'breeze-spinner';
+  
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -20,4 +22,6 @@ export default class BreezeSpinner extends HTMLElement {
   }
 }
 
-customElements.define('breeze-spinner', BreezeSpinner);
+if (!customElements.get('breeze-spinner')) {
+  customElements.define('breeze-spinner', BreezeSpinner);
+}
