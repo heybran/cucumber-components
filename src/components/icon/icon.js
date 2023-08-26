@@ -7,14 +7,23 @@ export default class BreezeIcon extends BaseElement {
 	connectedCallback() {
 		super.render(html, css);
     // @ts-ignore
-    this.shadowRoot.querySelector('svg').innerHTML = icons[this.getAttribute('icon')]
+    this.shadowRoot.querySelector('svg').innerHTML = icons[this.getAttribute('icon')];
 		if (this.hasAttribute("label")) {
 			// @ts-ignore
 			this.setAttribute("aria-label", this.getAttribute("label"));
 		}
 	}
+
+	static get observedAttributes() {
+		return ['icon'];
+	}
+
+	attributeChangedCallback(attr, oldValue, newValue) {
+		if (oldValue === null) return;
+		this.shadowRoot.querySelector('svg').innerHTML = icons[this.getAttribute('icon')];
+	}
 }
 
-if (!customElements.get("breeze-icon")) {
+if (!customElements.get('breeze-icon')) {
 	customElements.define("breeze-icon", BreezeIcon);
 }
