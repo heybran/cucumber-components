@@ -1,0 +1,18 @@
+<label part="base">
+  <input 
+    class="sr-only"
+    type="checkbox" 
+    role="switch" 
+    aria-busy="false"
+    onchange="this.getRootNode().host.onInputChange(event)"
+  >
+  <span part="control">
+    <span part="thumb" aria-hidden="true">
+      <breeze-icon icon="cross"></breeze-icon>
+    </span>
+    <span part="thumb" aria-hidden="true">
+      <breeze-icon icon="check"></breeze-icon>
+    </span>
+  </span>
+  <slot part="label"></slot>
+</label>
