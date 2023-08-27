@@ -134,7 +134,7 @@ export default class BreezeTextField extends FormElement {
 	 * @returns {string[]}
 	 */
 	static get observedAttributes() {
-		return [...super.observedAttributes];
+		
 	}
 
 	/**
@@ -143,7 +143,7 @@ export default class BreezeTextField extends FormElement {
 	 * @param {string} newValue
 	 */
 	attributeChangedCallback(attr, oldValue, newValue) {
-		super.attributeChangedCallback(attr, oldValue, newValue);
+		
 	}
 
 	disconnectedCallback() {
