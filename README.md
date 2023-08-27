@@ -12,8 +12,9 @@
 - It's fun!
 
 ## Why Go With Vanilla Web Components?
-- Vanilla Web Components can take you really far if you're just building components collection to be consumed by other projects.
+- Vanilla Web Components can take you all the way if you're just building components collection to be consumed by other projects.
 - A better way to play around web components specs and trying out new ideas.
+- Minimize the bundled size of each component.
 - "The beauty of zero-dependencies!" (#UseThePlatform).
 
 ## How To Contribute
