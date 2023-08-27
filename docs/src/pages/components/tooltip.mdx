@@ -1,0 +1,89 @@
+---
+layout: ../../layouts/MainLayout.astro
+title: 'Tooltip'
+---
+import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
+
+# Tooltip 
+
+>   Copyright © 2023 W3C®. This software or document includes material copied from or derived from Tooltip Pattern (https://www.w3.org/WAI/about/using-wai-material/).
+
+A tooltip is a popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it. It typically appears after a small delay and disappears when Escape is pressed or on mouse out. 
+
+Tooltip widgets do not receive focus. A hover that contains focusable elements can be made using a non-modal dialog.
+
+## Position: top (default)
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-button>
+      <breeze-icon icon="phone"></breeze-icon>
+      <breeze-tooltip slot="tooltip" text="Go to next page"></breeze-tooltip>
+    </breeze-button>
+  '
+/>
+
+```html
+<breeze-button>
+  <breeze-icon icon="phone"></breeze-icon>
+  <breeze-tooltip slot="tooltip" text="Go to next page"></breeze-tooltip>
+</breeze-button>
+```
+
+## Position: bottom
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-button>
+      <breeze-icon icon="phone"></breeze-icon>
+      <breeze-tooltip slot="tooltip" text="Go to next page" position="bottom"></breeze-tooltip>
+    </breeze-button>
+  '
+/>
+
+```html
+<breeze-button>
+  <breeze-icon icon="phone"></breeze-icon>
+  <breeze-tooltip slot="tooltip" text="Go to next page" position="bottom"></breeze-tooltip>
+</breeze-button>
+```
+
+## Position: left
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-button>
+      <breeze-icon icon="phone"></breeze-icon>
+      <breeze-tooltip slot="tooltip" text="Go to next page" position="left"></breeze-tooltip>
+    </breeze-button>
+  '
+/>
+
+```html
+<breeze-button>
+  <breeze-icon icon="phone"></breeze-icon>
+  <breeze-tooltip slot="tooltip" text="Go to next page" position="left"></breeze-tooltip>
+</breeze-button>
+```
+
+## Position: right
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-button>
+      <breeze-icon icon="phone"></breeze-icon>
+      <breeze-tooltip slot="tooltip" text="Go to next page" position="right"></breeze-tooltip>
+    </breeze-button>
+  '
+/>
+
+```html
+<breeze-button>
+  <breeze-icon icon="phone"></breeze-icon>
+  <breeze-tooltip slot="tooltip" text="Go to next page" position="right"></breeze-tooltip>
+</breeze-button>
+```

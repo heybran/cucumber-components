@@ -1,19 +1,44 @@
-<h1>breeze-select</h1>
+---
+layout: ../../layouts/MainLayout.astro
+title: 'Select'
+---
 
-<breeze-select>
+import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
+
+# Select
+
+`breeze-select` functionality is similar to an HTML `select` element.
+
+## Accessibility
+
+- Like an HTML `select`, users can type characters to select matching options.
+- 
+
+## With label 
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-select label="Start of the week">
+      <breeze-option value="monday" text="Monday" selected></breeze-option>
+      <breeze-option value="tuesday" text="Tuesday"></breeze-option>
+      <breeze-option value="wednesday" text="Wednesday"></breeze-option>
+    </breeze-select>
+  '
+  style="min-width: 10em"
+/>
+
+```html
+ <breeze-select>
   <breeze-option value="monday" text="Monday" selected></breeze-option>
   <breeze-option value="tuesday" text="Tuesday"></breeze-option>
   <breeze-option value="wednesday" text="Wednesday"></breeze-option>
   <breeze-icon icon="chevron-down" slot="suffix"></breeze-icon>
 </breeze-select>
+```
 
-<style>
-  breeze-select {
-    width: 10em;
-  }
-</style>
+>   Copyright © 2023 W3C®. This software or document includes material copied from or derived from Select-Only Combobox Example (https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/).
 
-<a href="https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/">https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/</a>
 <table aria-labelledby="kbd_label_combobox kbd_label" class="def">
   <thead>
     <tr>

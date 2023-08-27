@@ -1,0 +1,82 @@
+---
+layout: ../../layouts/MainLayout.astro
+title: 'Spinner'
+---
+import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
+
+# Spinner
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-spinner></breeze-spinner>
+  '
+/>
+
+```html
+<breeze-spinner></breeze-spinner>
+```
+
+## Size
+
+Spinners are sized as `1em` by default. To change their size, add an inline style to increase the font size as shown below.
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-spinner style="font-size: 2rem;"></breeze-spinner>
+  '
+/>
+
+```html
+<breeze-spinner style="font-size: 2rem;"></breeze-spinner>
+<!-- or -->
+<breeze-spinner style="--size: 2em;"></breeze-spinner>
+```
+
+## Speed
+
+Speed defualts to `1s`, you can change that using `--speed` custom property.
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-spinner style="--speed: 0.5s;"></breeze-spinner>
+  '
+/>
+
+```html
+<breeze-spinner style="--speed: 0.5s;"></breeze-spinner>
+```
+
+## Track Width
+
+The width of the spinner’s track can be changed by setting the `--track-width` custom property.
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-spinner style="font-size: 2rem; --track-width: 4px;"></breeze-spinner>
+  '
+/>
+
+```html
+<breeze-spinner style="font-size: 2rem; --track-width: 4px;"></breeze-spinner>
+```
+
+## Color
+
+Color can be changed by setting `--track-color` and `--indicator-color` custom properties.
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-spinner style="font-size: 2rem; --track-color: pink; --indicator-color: deeppink;"></breeze-spinner>
+  '
+/>
+
+```html
+<breeze-spinner 
+  style="font-size: 2rem; --track-color: pink; --indicator-color: deeppink;">
+</breeze-spinner>
+```

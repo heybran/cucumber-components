@@ -1,0 +1,86 @@
+---
+import { SIDEBAR } from '../config';
+import SkipToContent from './Header/SkipToContent.astro';
+const { currentPage } = Astro.props;
+---
+<header title="Site Navigation">
+	<h2>
+		<a href="/" class="logo">
+			<img src="/breeze-components.svg" role="presentation" alt="">
+		</a>
+	</h2>
+	<nav aria-labelledby="grid-left">
+		<ul>
+			<SkipToContent />
+			{SIDEBAR.map(item => (item.header ?
+				<h2>{item.text}</h2> :
+				<li>
+					<a href={item.link}>{item.text}</a>
+				</li>))}
+		</ul>
+	</nav>
+	<a title="Github" href="https://github.com/heybran/breeze-components">
+		<img src="/github.svg" alt="github logo">
+	</a>
+</header>
+
+<style>
+	li {
+		transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+		color: rgb(100 116 139 / 1);
+	}
+	li.current {
+		color: rgb(15 23 42 / 1);
+	}
+	header {
+		height: 100vh;
+  	height: 100dvh;
+		border-right-width: 1px;
+		display: flex;
+		flex-direction: column;
+	}
+	nav {
+		margin-top: 2rem;
+	}
+	a {
+		display: block;
+		padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+		padding-left: 2rem;
+    padding-right: 2rem;
+	}
+	.logo {
+		width: 16rem;
+		padding-block: 1rem;
+		border-bottom-width: 1px;
+	}
+	a[title="Github"] {
+		margin-top: auto;
+		margin-bottom: 2rem;
+	}
+	ul h2 {
+		font-weight: 600;
+		padding: 0.5rem 2rem;
+		margin-top: 2rem;
+		font-size: 1.5rem;
+	}
+</style>
+
+<script is:inline>
+	window.addEventListener('DOMContentLoaded', (event) => {
+		let path = location.pathname;
+		if (path.endsWith('/')) {
+			path = path.replace(/\/$/, "");
+		}
+		document.querySelector(`a[href="${path}"]`).parentElement.classList.add('current');
+
+		var target = document.querySelector('[aria-current="page"]');
+		if (target && target.offsetTop > window.innerHeight - 100) {
+			document.querySelector('.nav-groups').scrollTop = target.offsetTop;
+		}
+	});
+</script>
+
+

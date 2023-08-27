@@ -1,0 +1,27 @@
+---
+import { SITE } from '../../config';
+import SkipToContent from './SkipToContent.astro';
+
+const { currentPage } = Astro.props;
+---
+
+<header class="p-3 bg-slate-100 bg-opacity-80 backdrop-blur-md border-b text-slate-900">
+	<SkipToContent />
+	<nav title="Top Navigation" class="max-w-7xl mx-auto flex justify-between items-center px-4">
+		<div>
+			<a class="text-lg font-medium" href="/">
+				<h1>
+					{SITE.title ?? "Documentation"}
+				</h1>
+			</a>
+		</div>
+		<div class="flex gap-2">
+		{
+			SITE.github &&
+			(<a title="Github" class="opacity-80 hover:opacity-100 hover:bg-slate-200 p-2 rounded-full transition-colors" href={'https://github.com/'+SITE.github}>
+				<img class="h-7" src="/github.svg" alt="github logo">
+			</a>)
+		}
+		</div>
+	</nav>
+</header>

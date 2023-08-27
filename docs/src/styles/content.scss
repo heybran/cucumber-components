@@ -1,0 +1,114 @@
+.content {
+  h1 {
+    font-size: 22pt;
+    font-weight: 700;
+  }
+  h2 {
+    font-size: 17pt;
+    font-weight: 500;
+    margin-block: 2em 0.75em;
+  }
+  h3 {
+    font-size: 15pt;
+    font-weight: 600;
+    margin-block: 2em .75em;
+  }
+  h4 {
+    font-size: 13pt;
+  }
+  blockquote {
+    padding: 1em;
+    margin-block: 1em;
+    border-width: 1px;
+    border-radius: 1ch;
+    p {
+      margin: 0;
+    }
+  }
+  p {
+    margin-top: 0.77rem;
+    color: theme("colors.slate.600");
+  }
+  a {
+    color: theme("colors.blue.600");
+    text-decoration: underline;
+  }
+
+  pre.astro-code {
+    margin: 0.5rem;
+  }
+
+  code {
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+      Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  code:not(pre code) {
+    background: #eee;
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+  }
+
+  .component-preview {
+    padding: 4rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/grid_dot.svg");
+    background-repeat: repeat;
+    background-size: 1.5rem;
+    border-radius: 0.33rem;
+    border: 1px solid theme("colors.slate.200");
+    resize: both;
+  }
+
+  .astro-code {
+    padding: 1rem;
+    border-radius: 0.44rem;
+  }
+
+  ul, ol, menu {
+		list-style: initial;
+    margin: initial;
+    padding: initial;
+    padding-inline-start: 40px;
+	}
+}
+
+table {
+  padding: 0.5em 1em;
+  background: #def;
+  margin: 1.2em 0;
+  // border-left: 0.5em solid #8ccbf2;
+  color: black;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: initial;
+  text-align: left;
+}
+
+th {
+  font-style: italic;
+  font-weight: normal;
+  padding-left: 1em;
+}
+
+th, td {
+  padding: 0.5em;
+  vertical-align: baseline;
+  border: 0;
+  border-bottom: 1px solid #bbd7e9;
+  color: black;
+  background: #def;
+}
+
+th:first-child {
+  width: 15em;
+}
+
+// @media (min-width: 400px) {
+//   :root {
+//     --cc-form-layout-columns-global: 4;
+//   }
+// }

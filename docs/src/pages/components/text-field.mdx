@@ -1,0 +1,85 @@
+---
+layout: ../../layouts/MainLayout.astro
+title: 'Tooltip'
+---
+import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
+
+# Text Field
+
+## With label
+
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-text-field label="Full name"></breeze-text-field>
+  '
+/>
+
+```html
+<breeze-text-field label="Full name"></breeze-text-field>
+```
+
+## With label, placeholder
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-text-field label="Full name" placeholder="Your full name">
+    </breeze-text-field>
+  '
+/>
+
+```html
+<breeze-text-field label="Full name" placeholder="Your full name"></breeze-text-field>
+```
+
+## With label, helper text
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-text-field label="Full name" helper-text="Your full name">
+    </breeze-text-field>
+  '
+/>
+
+```html
+<breeze-text-field label="Full name" helper-text="Your full name"></breeze-text-field>
+```
+
+## With label, helper text, error message
+
+TODO
+
+## Required
+
+TODO: add * after label
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-text-field label="Full name" required></breeze-text-field>
+  '
+/>
+
+```html
+<breeze-text-field label="Full name" required></breeze-text-field>
+```
+
+## Label Position
+
+Side-aligned labels are beneficial in reducing the overall height of a form, particularly when vertical space is constrained or dealing with longer forms. Additionally, side-aligned labels are commonly employed when comparing numerical data.
+
+TODO: make label adapt to top on narrow viewport.
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-text-field label="Full name" label-position-side></breeze-text-field>
+  '
+/>
+
+```html
+<breeze-text-field label="Full name" required></breeze-text-field>
+```

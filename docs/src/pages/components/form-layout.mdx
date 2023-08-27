@@ -1,0 +1,150 @@
+---
+layout: ../../layouts/MainLayout.astro
+title: 'Form Layout'
+---
+import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
+
+# Form Layout
+
+`cc-form-layout` using CSS Grid under the hood to make it easier for you to build responsive forms with multiple columns.
+
+By default, Form Layout has 2 columns by displaying 2 input fields per row. When the layout width is smaller, it adjusts to a single-column.
+
+<ComponentPreview
+  client:load
+  component='
+    <form action="/form-submit">
+      <cc-form-layout>
+        <breeze-text-field label="First name"></breeze-text-field>
+        <breeze-text-field label="Last name"></breeze-text-field>
+        <breeze-text-field label="Email"></breeze-text-field>
+        <breeze-text-field label="Username"></breeze-text-field>
+        <cc-password-field label="Password"></cc-password-field>
+        <cc-password-field label="Confirm password"></cc-password-field>
+        <breeze-button variant="primary" type="submit">Get Started</breeze-button>
+      </cc-form-layout>
+    </form>
+  '
+  style="display: block;"
+/>
+
+```html
+<form action="/form-submit">
+  <cc-form-layout>
+    <breeze-text-field label="First name"></breeze-text-field>
+    <breeze-text-field label="Last name"></breeze-text-field>
+    <breeze-text-field label="Email"></breeze-text-field>
+    <breeze-text-field label="Username"></breeze-text-field>
+    <cc-password-field label="Password"></cc-password-field>
+    <cc-password-field label="Confirm password"></cc-password-field>
+    <breeze-button variant="primary" type="submit">Get Started</breeze-button>
+  </cc-form-layout>
+</form>
+```
+
+## Custom Layout
+
+You can define how many columns Form Layout should use based on the screen width.
+
+You can override breakpoints by using CSS media query.
+
+```css
+/*
+  Inside your form css
+*/
+@media (min-width: 400px) {
+  cc-form-layout {
+    --cc-form-layout-columns: 2;
+  }
+}
+
+@media (min-width: 1360px) {
+  cc-form-layout {
+    --cc-form-layout-columns: 3;
+  }
+}
+```
+
+Or, setting it globally in your `app.css`.
+
+```css
+@media (min-width: 400px) {
+  :root {
+    --cc-form-layout-columns--global: 2;
+  }
+}
+
+@media (min-width: 1360px) {
+  :root {
+    --cc-form-layout-columns--global: 3;
+  }
+}
+```
+
+## Column Span
+
+You can add `colspan` to make a grid item span multiple columns.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-form-layout>
+      <breeze-text-field label="First name"></breeze-text-field>
+      <breeze-text-field label="Last name"></breeze-text-field>
+      <breeze-text-field label="Username" colspan="2"></breeze-text-field>
+      <cc-password-field label="Password"></cc-password-field>
+      <cc-password-field label="Confirm password"></cc-password-field>
+      <breeze-button variant="primary">Get Started</breeze-button>
+    </cc-form-layout>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-form-layout>
+  <breeze-text-field label="First name"></breeze-text-field>
+  <breeze-text-field label="Last name"></breeze-text-field>
+  <breeze-text-field label="Username" colspan="2"></breeze-text-field>
+  <cc-password-field label="Password"></cc-password-field>
+  <cc-password-field label="Confirm password"></cc-password-field>
+  <breeze-button variant="primary">Get Started</breeze-button>
+</cc-form-layout>
+```
+
+## Label Position
+
+Side-aligned labels are beneficial in reducing the overall height of a form, particularly when vertical space is constrained or dealing with longer forms. Additionally, side-aligned labels are commonly employed when comparing numerical data.
+
+This is actually implemented in `cc-text-field` component. You just need to add a `label-position-side` attribute.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-form-layout>
+      <breeze-text-field label="Revenue" label-position-side>
+        <span slot="suffix">EUR</span>
+      </breeze-text-field>
+      <breeze-text-field label="Expenses" label-position-side>
+        <span slot="suffix">EUR</span>
+      </breeze-text-field>
+      <breeze-text-field label="Invoices" label-position-side>
+        <span slot="suffix">EUR</span>
+      </breeze-text-field>
+    </cc-form-layout>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-form-layout>
+  <breeze-text-field label="Revenue" label-position-side>
+    <span slot="suffix">EUR</span>
+  </breeze-text-field>
+  <breeze-text-field label="Expenses" label-position-side>
+    <span slot="suffix">EUR</span>
+  </breeze-text-field>
+  <breeze-text-field label="Invoices" label-position-side>
+    <span slot="suffix">EUR</span>
+  </breeze-text-field>
+</cc-form-layout>
+```

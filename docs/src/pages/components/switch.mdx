@@ -1,0 +1,69 @@
+---
+layout: ../../layouts/MainLayout.astro
+title: 'Switch'
+---
+import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
+
+# Switch
+
+Act like native `checkbox`, switch allows you to toggle an option on and off.
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-switch>
+      Remote only
+    </breeze-switch>
+  '
+/>
+
+```html
+<breeze-switch>Remote only</breeze-switch>
+```
+
+## Examples
+
+### Checked
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-switch checked>
+      Remote only
+    </breeze-switch>
+  '
+/>
+
+```html
+<breeze-switch checked>Remote only</breeze-switch>
+```
+
+### Reverse Layout
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-switch checked layout="reverse">
+      Remote only
+    </breeze-switch>
+  '
+/>
+
+```html
+<breeze-switch checked layout="reverse">Remote only</breeze-switch>
+```
+
+### Disabled
+
+<ComponentPreview
+  client:load
+  component='
+    <breeze-switch disabled>
+      Remote only
+    </breeze-switch>
+  '
+/>
+
+```html
+<breeze-switch disabled>Remote only</breeze-switch>
+```
