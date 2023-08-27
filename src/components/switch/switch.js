@@ -1,94 +1,121 @@
-// @ts-check
-import shared from "../../shared/shared.css";
-import css from "./switch.css?inline";
+import FormElement from "../../shared/form-element.js";
 import "../icon/icon.js";
+import css from "./switch.css?inline";
+import html from "./switch.html?raw";
 
-export default class BreezeSwitch extends HTMLElement {
-  /** @returns {boolean} */
-  get checked() {
-    return this.hasAttribute('checked');
-  }
+export default class BreezeSwitch extends FormElement {
+	/**
+	 * @param {boolean} flag
+	 */
+	set checked(flag) {
+		// @ts-ignore
+		this.input.checked = flag;
+		this.input.ariaChecked = flag ? "true" : "false";
+	}
 
-  /**
-   * @param {boolean|number} flag
-   */
-  set checked(flag) {
-    this.toggleAttribute('checked', Boolean(flag));
-    // @ts-ignore
-    this.shadowRoot.querySelector('input').checked = Boolean(flag);
-  }
+	/**
+	 * @param {boolean} flag
+	 */
+	set disabled(flag) {
+		// @ts-ignore
+		this.input.disabled = flag;
+	}
 
-  /** @returns {boolean} */
-  get disabled() {
-    return this.hasAttribute('disabled');
-  }
+	/**
+	 * @param {boolean} flag
+	 */
+	set required(flag) {
+		this.input.required = flag;
+	}
 
-  /**
-   * @param {boolean|number} flag
-   */
-  set disabled(flag) {
-    this.toggleAttribute('disabled', Boolean(flag));
-    // @ts-ignore
-    this.shadowRoot.querySelector('input').toggleAttribute('disabled', Boolean(flag));
-  }
+	/**
+	 * @param {string} arg
+	 */
+	set value(arg) {
+		this.input.value = arg;
+	}
 
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-  }
+	/**
+	 * @returns {string}
+	 */
+	get value() {
+		return this.input.value;
+	}
 
-  connectedCallback() {
-    this.render();
-  }
+	/**
+	 * @param {string} arg
+	 */
+	set name(arg) {
+		this.input.name = arg;
+	}
 
-  static get observedAttributes() {
-    return ['checked', 'disabled'];
-  }
+	connectedCallback() {
+		super.render(html, css);
+		this._connected = true;
+		this.checked = this.hasAttribute("checked");
+		this.disabled = this.hasAttribute("disabled");
+		if (this.hasAttribute("value")) {
+			this.value = this.getAttribute("value");
+		}
 
-  attributeChangedCallback(attr, oldValue, newValue) {
-    if (oldValue === null) {
-      return;
-    }
-    if (attr === 'checked') {
-      this.checked = this.hasAttribute('checked');
-    } else if (attr === 'disabled') {
-      this.disabled = this.hasAttribute('disabled');
-    }
-  }
+		if (this.hasAttribute("name")) {
+			this.name = this.getAttribute("name");
+		}
+		/**
+		 * Store an initial value to be used on form resetting
+		 */
+		this._initialChecked = this.hasAttribute("checked");
 
-  render() {
-    // @ts-ignore
-    this.shadowRoot.innerHTML = `
-      <style>${shared}${css}</style>
-      <label part="base">
-        <input 
-          class="sr-only"
-          type="checkbox" 
-          role="switch" 
-          aria-checked="${this.checked ? 'true' : 'false'}" 
-          ${this.checked ? 'checked' : ''}
-          ${this.disabled ? 'disabled' : ''}
-          aria-busy="false"
-          onchange="this.getRootNode().host.onInputChange(event)"
-        >
-        <span part="control">
-          <span part="thumb" aria-hidden="true">
-            <breeze-icon icon="cross"></breeze-icon>
-          </span>
-          <span part="thumb" aria-hidden="true">
-            <breeze-icon icon="check"></breeze-icon>
-          </span>
-        </span>
-        <slot part="label"></slot>
-      </label>
-    `;
-  }
+		this.required = this.hasAttribute("required");
+		this.defer(() => {
+			const form = this.getForm();
+			if (!form) return;
+			if (!Array.isArray(form.__cucumberElements)) {
+				form.__cucumberElements = [];
+				form.__cucumberElements.push(this);
+			}
+		});
 
-  onInputChange(event) {
-    this.checked = event.target.checked;
-  }
+		this.getForm()?.addEventListener("formdata", this.setFormData);
+
+		this.getForm()?.addEventListener("reset", (event) => {
+			// @ts-ignore
+			if (this._initialChecked === this.hasAttribute("checked")) {
+				return;
+			}
+
+			if (this._initialChecked) {
+				this.setAttribute("checked", "");
+			} else {
+				this.removeAttribute("checked");
+			}
+		});
+	}
+
+	static get observedAttributes() {
+		return ["checked", "disabled"];
+	}
+
+	attributeChangedCallback(attr, oldValue, newValue) {
+		if (oldValue === null) {
+			return;
+		}
+		if (attr === "checked") {
+			this.checked = this.hasAttribute("checked");
+		} else if (attr === "disabled") {
+			this.disabled = this.hasAttribute("disabled");
+		}
+	}
+
+	/**
+	 * @returns void
+	 */
+	onInputChange() {
+		this.toggleAttribute("checked", this.input.checked);
+		this.input.ariaChecked = this.input.checked ? "true" : "false";
+	}
 }
 
-if (!customElements.get('breeze-switch')) {
-  customElements.define('breeze-switch', BreezeSwitch);
+if (!customElements.get("cc-switch")) {
+	customElements.define("cc-switch", BreezeSwitch);
 }
