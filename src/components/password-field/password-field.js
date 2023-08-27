@@ -184,10 +184,10 @@ export default class CucumberPasswordField extends FormElement {
 		// 	 * Steps to replicate:
 		// 	 * 	1. Enter a invalid password
 		// 	 * 	2. Submit the form, custom error shown, all good here
-		// 	 *  3. Enter a valid password
-		// 	 *  4. Submit the form, no custom error shown, all good so far,
+		// 	 * 	3. Enter a valid password
+		// 	 * 	4. Submit the form, no custom error shown, all good so far,
 		// 	 * 	but form is not submitted as we're checking all fields valid state
-		// 	 *  at submit button, and this input field is invalid (customError = true)
+		// 	 * 	at submit button, and this input field is invalid (customError = true)
 		// 	 */
 		// 	this.input.setCustomValidity('Please fill in this field');
 		// 	this.input.reportValidity();
