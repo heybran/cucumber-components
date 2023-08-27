@@ -3,7 +3,7 @@ import "../icon/icon.js";
 import css from "./switch.css?inline";
 import html from "./switch.html?raw";
 
-export default class BreezeSwitch extends FormElement {
+export default class CucumberSwitch extends FormElement {
 	/**
 	 * @param {boolean} flag
 	 */
@@ -117,5 +117,5 @@ export default class BreezeSwitch extends FormElement {
 }
 
 if (!customElements.get("cc-switch")) {
-	customElements.define("cc-switch", BreezeSwitch);
+	customElements.define("cc-switch", CucumberSwitch);
 }
