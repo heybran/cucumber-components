@@ -42,12 +42,23 @@ export default class BreezeButton extends FormElement {
 			// 	bubbles: true,
 			// 	cancelable: true
 			// }));
-			const fakeButton = document.createElement('button');
-			fakeButton.setAttribute('type', type);
-			fakeButton.style.position = 'absolute';
-			form.appendChild(fakeButton);
-			fakeButton.click();
-			fakeButton.remove();
+			const invalidFields = form.__cucumberElements.filter((field) => !field.isValid());
+			if (invalidFields.length > 0) {
+				invalidFields.forEach((field) => field.reportValidity());
+				/**
+				 * Reset __cucumberElements array otherwise form will never be submitted.
+				 * Updated: This will cause an even nastier bug as skipping the validation step
+				 * and submit the form immediately.
+				 */
+				// form.__cucumberElements = [];
+			} else {
+				const fakeButton = document.createElement('button');
+				fakeButton.setAttribute('type', type);
+				fakeButton.style.position = 'absolute';
+				form.appendChild(fakeButton);
+				fakeButton.click();
+				fakeButton.remove();
+			}
 		});
 	}
 
