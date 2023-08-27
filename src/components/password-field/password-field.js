@@ -56,6 +56,13 @@ export default class CucumberPasswordField extends FormElement {
 	}
 
 	/**
+	 * @param {string} arg 
+	 */
+	set pattern(arg) {
+		this.input.pattern = arg;
+	}
+
+	/**
 	 * @returns {string}
 	 */
 	get value() {
@@ -84,6 +91,15 @@ export default class CucumberPasswordField extends FormElement {
 			// @ts-ignore
 			this.shadowRoot.querySelector('[part="label"]').setAttribute("for", id);
 			this.input.id = id;
+			const form = this.getForm();
+			if (!form) return;
+			if (!Array.isArray(form.__cucumberElements)) {
+				form.__cucumberElements = [];
+				form.__cucumberElements.push(this);
+				// Object.defineProperty(form.__cucumberElements, `${this.localName}-${this.uuid()}`, {
+				// 	value: this,
+				// });
+			}
 		});
 
 		if (this.hasAttribute("value")) {
@@ -115,6 +131,19 @@ export default class CucumberPasswordField extends FormElement {
 			this.disabled = true;
 		}
 
+		if (this.hasAttribute('pattern')) {
+			// @ts-ignore
+			this.input.pattern = this.getAttribute('pattern');
+		}
+
+		if (this.hasAttribute('minlength')) {
+			this.input.setAttribute('minlength', this.getAttribute('minlength'));
+		}
+
+		if (this.hasAttribute('maxlength')) {
+			this.input.setAttribute('maxlength', this.getAttribute('maxlength'));
+		}
+
 		this.required = this.hasAttribute("required");
 
 		this.getForm()?.addEventListener("formdata", this.setFormData);
@@ -133,6 +162,55 @@ export default class CucumberPasswordField extends FormElement {
 		this.input.addEventListener("change", (event) => {
 			this.dispatchEvent(new Event("change"));
 		});
+	}
+
+	/**
+	 * This is not the correct behavior, as native input field, if invalid,
+	 * the form is not submitted.
+	 * We're adding event listener on 'submit' which does not align with native behavior.
+	 * Instead, we should listen for click event from submit button,
+	 * actually submit button should check validity from custom elements,
+	 * only fire submit event if all fields are valid.
+	 * Only doing this, we can mimic the native report validity bebavior.
+	 */
+	reportValidity() {
+		this.input.reportValidity();
+		// if (this.input.validity.valueMissing) {
+		// 	/**
+		// 	 * Native patternMismatch message.
+		// 	 * But setting a custom error message somehow set the input.validity.customError = true,
+		// 	 * which results in input is invalid, if you follow this steps, input will never be valid
+		// 	 * unless refresh page and then enter the pattern-matched password.
+		// 	 * Steps to replicate:
+		// 	 * 	1. Enter a invalid password
+		// 	 * 	2. Submit the form, custom error shown, all good here
+		// 	 *  3. Enter a valid password
+		// 	 *  4. Submit the form, no custom error shown, all good so far,
+		// 	 * 	but form is not submitted as we're checking all fields valid state
+		// 	 *  at submit button, and this input field is invalid (customError = true)
+		// 	 */
+		// 	this.input.setCustomValidity('Please fill in this field');
+		// 	this.input.reportValidity();
+		// } else if (this.input.validity.patternMismatch) {
+		// 	/**
+		// 	 * Native patternMismatch message.
+		// 	 */
+		// 	this.input.setCustomValidity('Please match the format requested.');
+		// 	this.input.reportValidity();
+		// } else if (this.input.validity.tooShort) {
+		// 	/**
+		// 	 * Native patternMismatch message.
+		// 	 */
+		// 	this.input.setCustomValidity(`
+		// 		Please lenghthen this text to ${this.getAttribute('minlength')} characters or more (you are currently using ${this.input.value?.length} character${this.input.value?.length > 1 ? 's' : ''}).
+		// 	`);
+		// 	this.input.reportValidity();
+		// }
+	}
+
+	isValid() {
+		console.log(this.input.validity);
+		return this.input.checkValidity();
 	}
 
 	/**
