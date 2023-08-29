@@ -1,0 +1,85 @@
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  --border-color: #adaba8;
+  --background-color: #e0e0e0;
+  --background-color-hover: #6d4aff;
+  --checkbox-size: 1.25em;
+  --border-radius: 0.25em;
+}
+
+:host([size="small"]) {
+  font-size: 0.875rem;
+}
+
+:host([size="large"]) {
+  font-size: 1.5rem;
+}
+
+.sr-only {
+  clip: rect(0 0 0 0);
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+label {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+:host([disabled]) label {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+:host([layout="reverse"]) [part="checkbox"] {
+  order: 2;
+}
+
+[part="checkbox"] {
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  transition: filter 0.15s ease, background-color 0.15s ease;
+  color: #fff;
+}
+
+:host(:not([checked], [disabled])) label:hover [part="checkbox"] {
+  filter: brightness(0.9);
+}
+
+[part="checkbox"] svg {
+  left: 5%;
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  transform: scale(0);
+  transition: .15s;
+}
+
+:host([checked]) [part="checkbox"] {
+  background-color: var(--background-color-hover);
+}
+
+:host([checked]) [part="checkbox"] svg {
+  transform: scale(1);
+}
+
+input:focus-visible + [part="checkbox"] {
+  outline: var(--background-color-hover) auto 1px;
+  outline-offset: 3px;
+}
