@@ -18,7 +18,8 @@
   font-size: 1.5rem;
 }
 
-.sr-only {
+.sr-only,
+:host([label-sr-only]) [part="label"] {
   clip: rect(0 0 0 0);
   border: 0;
   height: 1px;
