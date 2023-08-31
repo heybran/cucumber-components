@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  --border-color: #adaba8;
+  --background-color: #e0e0e0;
+  --background-color-hover: #6d4aff;
+  --checkbox-size: 1.25em;
+  --border-radius: 0.25em;
+  user-select: none;
+  display: inline-block;
+}
+
+:host([size="small"]) {
+  font-size: 0.875rem;
+}
+
+:host([size="large"]) {
+  font-size: 1.5rem;
+}
+
+.sr-only,
+:host([label-sr-only]) [part="label"] {
+  clip: rect(0 0 0 0);
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+:host([disabled]) {
+  opacity: .5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+:host([layout="reverse"]) [part="radio"] {
+  order: 2;
+}
+
+[part="radio"] {
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--background-color);
+  border-radius: 50%;
+  transition: transform 0.2s cubic-bezier(0.12, 0.32, 0.54, 2), background-color 0.15s;
+  will-change: transform;
+  color: #fff;
+  position: relative;
+}
+
+[part="radio"]::before {
+  display: block;
+  content: '\202F';
+  contain: paint;
+  pointer-events: none;
+  color: transparent;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background-color: inherit;
+  opacity: 0;
+  transition: transform 0.1s, opacity 0.8s;
+  will-change: transform, opacity;
+}
+
+[part="radio"]::after {
+  content: '';
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  border: 0.3em solid #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 0.25s transform;
+  will-change: transform;
+  background-clip: content-box;
+}
+
+:host([checked]) {
+  pointer-events: none;
+}
+
+:host([checked]) [part="radio"]::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+:host(:not([checked], [disabled])) label:hover [part="radio"] {
+  filter: brightness(0.9);
+}
+
+:host([checked]) [part="radio"] {
+  background-color: var(--background-color-hover);
+}
+
+input:focus-visible + [part="radio"] {
+  outline: var(--background-color-hover) auto 1px;
+  outline-offset: 3px;
+}
