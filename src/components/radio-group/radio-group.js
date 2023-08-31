@@ -34,12 +34,19 @@ export default class CucumberRadioGroup extends FormElement {
 	}
 
 	/**
-	 * @returns {string}
+	 * @returns {string|null}
 	 */
 	get value() {
-		return this.defaultSlot.assignedElements().find((radio) => {
+		const selectedRadio = this.defaultSlot.assignedElements().find((radio) => {
 			return radio.hasAttribute('checked');
-		}).value;
+		});
+
+		if (selectedRadio) {
+			// @ts-ignore
+			return selectedRadio.value;
+		}
+
+		return null;
 	}
 
   /**
@@ -57,6 +64,7 @@ export default class CucumberRadioGroup extends FormElement {
 		this.disabled = this.hasAttribute("disabled");
 
     if (this.hasAttribute('label')) {
+			// @ts-ignore
       this.label = this.getAttribute('label');
     }
 
@@ -72,6 +80,24 @@ export default class CucumberRadioGroup extends FormElement {
 			if (!Array.isArray(form.__cucumberElements)) {
 				form.__cucumberElements = [];
 				form.__cucumberElements.push(this);
+			}
+
+			/**
+			 * @todo
+			 * Below codes will not run if radio-group is not wrapped in a form
+			 */
+
+			/**
+			 * Tab + Shift: Move focus into and out of the radio group. 
+			 * When focus moves into a radio group, and a radio button is already checked, 
+			 * focus is set on the checked button. 
+			 * If none of the radio buttons are checked, 
+			 * focus is set on the first radio button in the group.
+			 * 
+			 * !this.value meaning all radio buttons are unchecked initially
+			 */
+			if (!this.value) {
+				this.defaultSlot.assignedElements()[0].input.setAttribute('tabindex', '0');
 			}
 		});
 
