@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  --border-color: #adaba8;
+  --background-color: #e0e0e0;
+  --background-color-hover: #6d4aff;
+  --checkbox-size: 1.25em;
+  --border-radius: 0.25em;
+}
+
+:host([size="small"]) {
+  font-size: 0.875rem;
+}
+
+:host([size="large"]) {
+  font-size: 1.5rem;
+}
+
+fieldset {
+  position: relative;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.sr-only,
+:host([label-sr-only]) [part="label"] {
+  clip: rect(0 0 0 0);
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+:host([disabled]) label {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+[part="group-field"] {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: .5em;
+  margin-top: .5em;
+}
+
+:host([theme~="horizontal"]) [part="group-field"] {
+  flex-direction: row;
+}
+
+:host([theme~="vertical"]) [part="group-field"] {
+  flex-direction: column;
+}

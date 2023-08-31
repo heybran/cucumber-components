@@ -1,0 +1,22 @@
+<fieldset 
+  part="fieldset" 
+  role="radiogroup"
+  aria-labelledby=""
+  aria-describedby=""
+  aria-errormessage=""
+>
+  <label part="label">
+    <slot name="label"></slot>
+    <span part="required-indicator" aria-hidden="true"></span>
+  </label>
+  <div part="group-field">
+    <slot></slot>
+  </div>
+  <div part="helper-text">
+    <slot name="helper-text"></slot>
+  </div>
+  <div part="error-message">
+    <slot name="error-message"></slot>
+  </div>
+</fieldset>
+<slot name="tooltip"></slot>
