@@ -11,6 +11,14 @@ export default class CucumberRadio extends FormElement {
 		// @ts-ignore
 		this.input.checked = flag;
 		this.input.ariaChecked = flag ? "true" : "false";
+		/**
+		 * Tab + Shift: Move focus into and out of the radio group. 
+		 * When focus moves into a radio group, and a radio button is already checked, 
+		 * focus is set on the checked button. 
+		 * If none of the radio buttons are checked, 
+		 * focus is set on the first radio button in the group.
+		 */
+		this.input.setAttribute('tabindex', flag ? '0' : '-1');
 	}
 
 	/**
@@ -127,6 +135,7 @@ export default class CucumberRadio extends FormElement {
 	onInputChange(event) {
 		this.toggleAttribute("checked", this.input.checked);
 		this.input.ariaChecked = this.input.checked ? "true" : "false";
+		this.input.setAttribute('tabindex', this.input.checked ? '0' : '-1');
 		this.dispatchEvent(new Event('change'));
 	}
 }
