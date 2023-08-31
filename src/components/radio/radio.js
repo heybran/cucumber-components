@@ -98,6 +98,61 @@ export default class CucumberRadio extends FormElement {
 			}
 		});
 
+		this.defer(() => {
+			this.addEventListener('keydown', (event) => {
+				/**
+				 * Prevent default otherwise currently-checked radio 
+				 * will be unchecked once Space key is pressed.
+				 */
+				if (event.key === ' ' && this.hasAttribute('checked')) {
+					event.preventDefault();
+				}
+
+				/**
+				 * Exit on radios that are not currently focused.
+				 */
+				if (document.activeElement !== this) {
+					return;
+				}
+
+				/**
+				 * Right Arrow and Down Arrow:
+				 * Move focus to and checks the next radio button in the group, 
+				 * unchecking the previously focused radio button. 
+				 * If focus is on the last radio button, focus moves to the first radio button.
+				 * 
+				 * @todo
+				 * FIXME: Pressing down arrow scroll the document...
+				 */
+				if (['ArrowRight', 'ArrowDown'].includes(event.key)) {
+					let nextRadio = this.nextElementSibling;
+					if (!nextRadio) {
+						nextRadio = Array.from(this.parentElement.children).find(elem => elem.localName === this.localName);
+					}
+					nextRadio.input.focus();
+					nextRadio.input.click();
+				}
+
+				/**
+				 * Left Arrow and Up Arrow:
+				 * Move focus to and checks the previous radio button in the group, 
+				 * unchecking the previously focused radio button. 
+				 * If focus is on the first radio button, focus moves to the last radio button.
+				 * 
+				 * @todo
+				 * FIXME: Pressing up arrow scroll the document...
+				 */
+				if (['ArrowLeft', 'ArrowUp'].includes(event.key)) {
+					let prevRadio = this.previousElementSibling;
+					if (!prevRadio) {
+						prevRadio = Array.from(this.parentElement.children).findLast(elem => elem.localName === this.localName);
+					}
+					prevRadio.input.click();
+					prevRadio.input.focus();
+				}
+			});
+		});
+
 		// this.getForm()?.addEventListener("formdata", this.setFormData);
 
 		// this.getForm()?.addEventListener("reset", (event) => {
