@@ -8,6 +8,7 @@
   --background-color-hover: #6d4aff;
   --checkbox-size: 1.25em;
   --border-radius: 0.25em;
+  display: inline-block;
 }
 
 :host([size="small"]) {
