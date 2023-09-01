@@ -16,6 +16,9 @@
         'tooltip',
         'form-layout',
         'password-field',
+        'checkbox',
+        'radio',
+        'radio-group',
       ];
       components.forEach(name => {
         import(`../../../../dist/components/${name}/${name}.js`);

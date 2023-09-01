@@ -23,6 +23,8 @@ export const SIDEBAR = [
 
   { text: "Alert", link: "/components/alert" },
   { text: "Button", link: "/components/button" },
+  { text: "Checkbox", link: "/components/checkbox" },
+  { text: "Radio", link: "/components/radio" },
   { text: "Tooltip", link: "/components/tooltip" },
   { text: "Text Field", link: "/components/text-field" },
   { text: "Select", link: "/components/select" },

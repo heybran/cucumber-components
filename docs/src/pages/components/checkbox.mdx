@@ -1,0 +1,152 @@
+---
+layout: ../../layouts/MainLayout.astro
+title: 'Checkbox'
+---
+import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
+
+# Checkbox
+
+`cc-checkbox` allows you to select single values for submission in a form (or not). It's a wrapper around native HTML `checkbox` element.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-checkbox label="I accept the terms and conditions."></cc-checkbox>
+  '
+/>
+
+```html
+<cc-checkbox label="I accept the terms and conditions."></cc-checkbox>
+```
+
+## Examples
+
+### Checked
+
+Add a `checked` attribute to indicate this checkbox is checked by default (when the page loads). If the checkbox's state is changed, this `checked` attribute will reflect the change.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-checkbox label="I accept the terms and conditions." checked></cc-checkbox>
+  '
+/>
+
+```html
+<cc-checkbox label="I accept the terms and conditions." checked></cc-checkbox>
+```
+
+### Reverse Layout
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-checkbox label="I accept the terms and conditions." layout="reverse" checked></cc-checkbox>
+  '
+/>
+
+```html
+<cc-checkbox label="I accept the terms and conditions." layout="reverse" checked></cc-checkbox>
+```
+
+### Value
+
+When a form is submitted, only checkboxes (`cc-checkbox` in this case) which are currently checked are submitted to the server, and the reported value is the value of the value attribute. If the value is not otherwise specified, it is the string `on`` by default. 
+
+<ComponentPreview
+  client:load
+  component='
+    <form id="cc-checkbox-form">
+      <cc-checkbox value="1" name="notify-user" label="Notify user"></cc-checkbox>
+      <br />
+      <breeze-button type="submit">Submit</breeze-button>
+    </form>
+  '
+  js="
+    document.querySelector('#cc-checkbox-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      alert(new FormData(this).get('notify-user'));
+    });
+  "
+/>
+
+```html
+<form id="cc-checkbox-form">
+  <cc-checkbox value="1" name="notify-user" label="Notify user"></cc-checkbox>
+  <br />
+  <breeze-button type="submit">Submit</breeze-button>
+</form>
+<script>
+  document.querySelector('#cc-checkbox-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    alert(new FormData(this).get('notify-user'));
+  });
+</script>
+```
+
+### Sizes
+
+Use the size attribute to change a `cc-checkbox`'s size.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-checkbox size="small" label="Nofity user"></cc-checkbox>
+    <cc-checkbox size="medium" label="Nofity user"></cc-checkbox>
+    <cc-checkbox size="large" label="Nofity user"></cc-checkbox>
+  '
+/>
+
+```html
+<cc-checkbox size="small" label="Nofity user"></cc-checkbox>
+<!-- default to medium -->
+<cc-checkbox size="medium" label="Nofity user"></cc-checkbox>
+<cc-checkbox size="large" label="Nofity user"></cc-checkbox>
+```
+
+## Custom Size
+
+Change font size to get a custom size.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-checkbox style="font-size: 2rem;" label="Nofity user"></cc-checkbox>
+  '
+/>
+
+```html
+<cc-checkbox style="font-size: 2rem;" label="Nofity user"></cc-checkbox>
+```
+
+## Tooltip
+
+Use `tooltip` slot to add a tooltip when there's no screen space for label text. Keep in mind to also add a `label-sr-only` attribute to make it accessible to screen reader.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-checkbox label="Select all messsages" label-sr-only>
+      <breeze-tooltip slot="tooltip" text="Select all messages"></breeze-tooltip>
+    </cc-checkbox>
+  '
+/>
+
+```html
+<cc-checkbox label="Select all messsages" label-sr-only>
+  <breeze-tooltip slot="tooltip" text="Select all messages"></breeze-tooltip>
+</cc-checkbox>
+```
+
+### Disabled
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-checkbox label="Nofity user" disabled></cc-checkbox>
+  '
+/>
+
+```html
+<cc-checkbox label="Nofity user" disabled></cc-checkbox>
+```

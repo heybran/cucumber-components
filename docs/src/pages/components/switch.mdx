@@ -11,31 +11,33 @@ Act like native `checkbox`, switch allows you to toggle an option on and off.
 <ComponentPreview
   client:load
   component='
-    <breeze-switch>
+    <cc-switch>
       Remote only
-    </breeze-switch>
+    </cc-switch>
   '
 />
 
 ```html
-<breeze-switch>Remote only</breeze-switch>
+<cc-switch>Remote only</cc-switch>
 ```
 
 ## Examples
 
 ### Checked
 
+Add a `checked` attribute to indicate this switch is checked by default (when the page loads). If the switch's state is changed, this `checked` attribute will reflect the change.
+
 <ComponentPreview
   client:load
   component='
-    <breeze-switch checked>
+    <cc-switch checked>
       Remote only
-    </breeze-switch>
+    </cc-switch>
   '
 />
 
 ```html
-<breeze-switch checked>Remote only</breeze-switch>
+<cc-switch checked>Remote only</cc-switch>
 ```
 
 ### Reverse Layout
@@ -43,14 +45,86 @@ Act like native `checkbox`, switch allows you to toggle an option on and off.
 <ComponentPreview
   client:load
   component='
-    <breeze-switch checked layout="reverse">
+    <cc-switch checked layout="reverse">
       Remote only
-    </breeze-switch>
+    </cc-switch>
   '
 />
 
 ```html
-<breeze-switch checked layout="reverse">Remote only</breeze-switch>
+<cc-switch checked layout="reverse">Remote only</cc-switch>
+```
+
+### Value
+
+When a form is submitted, only checkboxes (`cc-switch` in this case) which are currently checked are submitted to the server, and the reported value is the value of the value attribute. If the value is not otherwise specified, it is the string `on`` by default. 
+
+<ComponentPreview
+  client:load
+  component='
+    <form id="cc-switch-form">
+      <cc-switch value="remote-only" name="position-type">
+        Remote only
+      </cc-switch>
+      <breeze-button type="submit">Submit</breeze-button>
+    </form>
+  '
+  js="
+    document.querySelector('#cc-switch-form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      alert(new FormData(this).get('position-type'));
+    });
+  "
+/>
+
+```html
+<form id="cc-switch-form">
+  <cc-switch value="remote-only" name="position-type">
+    Remote only
+  </cc-switch>
+  <breeze-button type="submit">Submit</breeze-button>
+</form>
+<script>
+  document.querySelector('#cc-switch-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    alert(new FormData(this).get('position-type'));
+  });
+</script>
+```
+
+### Sizes
+
+Use the size attribute to change a `cc-switch`'s size.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-switch size="small">Remote only</cc-switch>
+    <cc-switch size="medium">Remote only</cc-switch>
+    <cc-switch size="large">Remote only</cc-switch>
+  '
+/>
+
+```html
+<cc-switch size="small">Remote only</cc-switch>
+<!-- default to medium -->
+<cc-switch size="medium">Remote only</cc-switch>
+<cc-switch size="large">Remote only</cc-switch>
+```
+
+## Custom Size
+
+Change font size to get a custom size.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-switch style="font-size: 2rem;">Remote only</cc-switch>
+  '
+/>
+
+```html
+<cc-switch style="font-size: 2rem;">Remote only</cc-switch>
 ```
 
 ### Disabled
@@ -58,12 +132,12 @@ Act like native `checkbox`, switch allows you to toggle an option on and off.
 <ComponentPreview
   client:load
   component='
-    <breeze-switch disabled>
+    <cc-switch disabled>
       Remote only
-    </breeze-switch>
+    </cc-switch>
   '
 />
 
 ```html
-<breeze-switch disabled>Remote only</breeze-switch>
+<cc-switch disabled>Remote only</cc-switch>
 ```
