@@ -10,6 +10,9 @@ import BreezeAlert from "./src/components/alert/alert.js";
 import CucumberFormLayout from "./src/components/form-layout/form-layout.js";
 import CucumberPasswordField from "./src/components/password-field/password-field.js";
 import CucumberSwitch from "./src/components/switch/switch.js";
+import CucumberCheckbox from "./src/components/checkbox/checkbox.js";
+import CucumberRadio from "./src/components/radio/radio.js";
+import CucumberRadioGroup from "./src/components/radio-group/radio-group.js";
 
 export {
   BreezeButton,
@@ -24,4 +27,7 @@ export {
   CucumberFormLayout,
   CucumberPasswordField,
   CucumberSwitch,
+  CucumberCheckbox,
+  CucumberRadio,
+  CucumberRadioGroup,
 };
