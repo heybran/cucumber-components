@@ -86,7 +86,7 @@ export default class BreezeSelect extends FormElement {
    * @returns {string[]}
    */
   static get observedAttributes() {
-    return [...super.observedAttributes];
+
   }
 
   /**
@@ -95,7 +95,7 @@ export default class BreezeSelect extends FormElement {
    * @param {string} newValue 
    */
   attributeChangedCallback(attr, oldValue, newValue) {
-    super.attributeChangedCallback(attr, oldValue, newValue);
+
   }
 
   render() {
@@ -141,10 +141,37 @@ export default class BreezeSelect extends FormElement {
     this.addEventListener('keydown', this.onKeyDown);
     this.dropdown?.addEventListener('close', this.onDropdownClose.bind(this));
 
-    this.getForm()?.addEventListener('formdata', (event) => {
-      const formData = event.formData;
-      formData.set(this.name, this.value);
+    this.defer(() => {
+			const form = this.getForm();
+			if (!form) return;
+			if (!Array.isArray(form.__cucumberElements)) {
+				form.__cucumberElements = [];
+			}
+      form.__cucumberElements.push(this);
+		});
+
+    this.defer(() => {
+      this.getForm()?.addEventListener("formdata", this.setFormData);
     });
+  }
+
+  /**
+   * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attributes
+   * required: A Boolean attribute indicating that an option with a 
+   * non-empty string value must be selected.
+   * 
+   * @returns boolean
+   */
+  isValid() {
+    if (!this.hasAttribute('required')) {
+      return true;
+    }
+
+    if (this.selectedOption.value !== '') {
+      return true;
+    }
+
+    return false;
   }
 
   /**
