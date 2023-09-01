@@ -42,8 +42,8 @@ export default class BreezeButton extends FormElement {
 			// 	bubbles: true,
 			// 	cancelable: true
 			// }));
-			const invalidFields = form.__cucumberElements.filter((field) => !field.isValid());
-			if (invalidFields.length > 0) {
+			const invalidFields = form.__cucumberElements?.filter((field) => !field.isValid());
+			if (invalidFields?.length > 0) {
 				invalidFields.forEach((field) => field.reportValidity());
 				/**
 				 * Reset __cucumberElements array otherwise form will never be submitted.
