@@ -29,9 +29,9 @@ export default class CucumberRadioGroup extends FormElement {
 	/**
 	 * @param {boolean} flag
 	 */
-	set required(flag) {
-		this.input.required = flag;
-	}
+	// set required(flag) {
+	// 	this.input.required = flag;
+	// }
 
 	/**
 	 * @returns {string|null}
@@ -73,7 +73,6 @@ export default class CucumberRadioGroup extends FormElement {
 		 */
 		this._initialChecked = this.defaultSlot.assignedElements().find((radio) => radio.hasAttribute('selected'));
 
-		// this.required = this.hasAttribute("required");
 		this.defer(() => {
 			const form = this.getForm();
 			if (!form) return;
@@ -124,6 +123,28 @@ export default class CucumberRadioGroup extends FormElement {
 				this.removeAttribute("checked");
 			}
 		});
+	}
+
+	/**
+	 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio#additional_attributes
+	 * The required attribute is one which most <input>s share. 
+	 * If any radio button in a same-named group of radio buttons has the required attribute, 
+	 * a radio button in that group must be checked, 
+	 * although it doesn't have to be the one with the attribute applied.
+	 * 
+	 * @override
+	 * @returns boolean
+	 */
+	isValid() {
+		if (!this.hasAttribute('required')) {
+			return true;
+		}
+
+		if (this.value) {
+			return true;
+		}
+
+		return false;
 	}
 
 	static get observedAttributes() {
