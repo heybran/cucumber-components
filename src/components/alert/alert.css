@@ -23,6 +23,10 @@
   transition: transform .2s ease-in, opacity .2s;
 }
 
+:host([variant="danger"]) [part="container"] {
+  background-color: #dc3251;
+}
+
 :host([open]) [part="container"] {
   pointer-events: initial;
   opacity: 1;
