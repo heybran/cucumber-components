@@ -125,6 +125,7 @@ export default class CucumberRadio extends FormElement {
 				 * FIXME: Pressing down arrow scroll the document...
 				 */
 				if (['ArrowRight', 'ArrowDown'].includes(event.key)) {
+					event.preventDefault();
 					let nextRadio = this.nextElementSibling;
 					if (!nextRadio) {
 						nextRadio = Array.from(this.parentElement.children).find(elem => elem.localName === this.localName);
@@ -143,12 +144,13 @@ export default class CucumberRadio extends FormElement {
 				 * FIXME: Pressing up arrow scroll the document...
 				 */
 				if (['ArrowLeft', 'ArrowUp'].includes(event.key)) {
+					event.preventDefault();
 					let prevRadio = this.previousElementSibling;
 					if (!prevRadio) {
 						prevRadio = Array.from(this.parentElement.children).findLast(elem => elem.localName === this.localName);
 					}
-					prevRadio.input.click();
 					prevRadio.input.focus();
+					prevRadio.input.click();
 				}
 			});
 		});
