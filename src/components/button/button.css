@@ -19,7 +19,36 @@
   --box-shadow: var(--box-shadow-shadow) var(--box-shadow-color-focus);
 
   --primary-color:  #6d4aff;
+
+  --button-background-color: hsl(var(--background-h), var(--background-s), var(--background-l));
 }
+
+:host([variant="primary"]) {
+  --background-h: 252;
+  --background-s: 100%;
+  --background-l: 65%;
+  --button-text-color: #fff;
+}
+
+:host([variant="success"]) {
+  --background-h: 145;
+  --background-s: 72%;
+  --background-l: 30%;
+  --button-text-color: #fff;
+}
+
+:host([variant="default"]) button,
+:host([variant="primary"]) button,
+:host([variant="success"]) button,
+:host([variant="warning"]) button,
+:host([variant="danger"]) button {
+  border-color: transparent;
+}
+
+:host([variant="primary"]) button:hover,
+:host([variant="success"]) button:hover {
+  --button-background-color: hsl(var(--background-h), var(--background-s), calc(var(--background-l) - 5%));
+} 
 
 button {
   background-color: var(--button-background-color, transparent);
@@ -38,14 +67,18 @@ button {
   transition: .15s cubic-bezier(.22,1,.36,1);
 }
 
-button:hover {
-  /* TODO */
-  background-color: rgba(194, 193, 192, 0.2);
+button:focus-visible {
+  outline: var(--outline-color-focus) auto 1px;
+  box-shadow: var(--box-shadow);
 }
 
-button:focus-visible {
-  outline: 1px auto var(--outline-color-focus);
-  box-shadow: var(--box-shadow);
+:host([variant="default"]) button:focus-visible,
+:host([variant="primary"]) button:focus-visible,
+:host([variant="success"]) button:focus-visible,
+:host([variant="warning"]) button:focus-visible,
+:host([variant="danger"]) button:focus-visible {
+  outline: var(--button-background-color) auto 1px;
+  --box-shadow-color-focus: hsl(var(--background-h) var(--background-s) var(--background-l) / 0.2);
 }
 
 [part="prefix"], [part="suffix"], [part="label"] {
@@ -56,6 +89,14 @@ button:focus-visible {
 :host([theme~="icon"]) button {
   gap: 0;
   padding: 0.25ch;
+}
+
+:host([theme~="borderless"]) button {
+  border: none;
+}
+
+:host([theme~="icon"]) {
+  line-height: 1;
 }
 
 :host([no-border]) button {
