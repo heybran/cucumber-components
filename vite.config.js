@@ -36,14 +36,14 @@ export default defineConfig({
       output: {
         dir: path.resolve(__dirname, 'dist/components/'),
         entryFileNames: "[name]/[name].js",
-        format: 'es',
+        format: 'esm',
       },
-      plugins: [,
+      plugins: [
         terser()
       ],
     }
   },
-  plugins: [,
+  plugins: [
     terser()
   ],
   // plugins: [
