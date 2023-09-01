@@ -35,4 +35,13 @@ export default class BaseElement extends HTMLElement {
     // @ts-ignore
     return this.shadowRoot.querySelector('[part="container"]');
   }
+
+  /**
+   * Query for the default slot element.
+   * @returns {HTMLSlotElement}
+   */
+  get defaultSlot() {
+    // @ts-ignore
+    return this.shadowRoot.querySelector('slot:not([name])');
+  }
 }
