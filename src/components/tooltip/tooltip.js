@@ -1,13 +1,9 @@
 import shared from "../../shared/shared.css?inline";
 import css from "./tooltip.css?inline";
 import calculatePosition from "../../util/position-calculator";
+import BaseElement from "../../shared/base-element.js";
 
-export default class BreezeTooltip extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
-  }
-
+export default class BreezeTooltip extends BaseElement {
   /**
    * @returns {HTMLElement}
    */
@@ -40,14 +36,14 @@ export default class BreezeTooltip extends HTMLElement {
         ${this.getAttribute('text') ?? this.innerHTML}
       </div>
     `;
-    
-    if (this.target) {
-      this.target?.addEventListener('focusin', this.openTooltip);
-      this.target?.addEventListener('focusout', this.closeTooltip);
-      this.target?.addEventListener('mouseenter', this.openTooltip);
-      this.target?.addEventListener('mouseleave', this.closeTooltip);
-      
-    }
+    this.defer(() => {
+      if (this.target) {
+        this.target?.addEventListener('focusin', this.openTooltip);
+        this.target?.addEventListener('focusout', this.closeTooltip);
+        this.target?.addEventListener('mouseenter', this.openTooltip);
+        this.target?.addEventListener('mouseleave', this.closeTooltip);
+      }
+    });
   }
 
   /**
