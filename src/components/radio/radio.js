@@ -89,14 +89,18 @@ export default class CucumberRadio extends FormElement {
 		this._initialChecked = this.hasAttribute("checked");
 
 		this.required = this.hasAttribute("required");
-		this.defer(() => {
-			const form = this.getForm();
-			if (!form) return;
-			if (!Array.isArray(form.__cucumberElements)) {
-				form.__cucumberElements = [];
-				form.__cucumberElements.push(this);
-			}
-		});
+
+		/**
+		 * A radio element alone should not connect to formdata event.
+		 */
+		// this.defer(() => {
+		// 	const form = this.getForm();
+		// 	if (!form) return;
+		// 	if (!Array.isArray(form.__cucumberElements)) {
+		// 		form.__cucumberElements = [];
+		// 	}
+		// 	form.__cucumberElements.push(this);
+		// });
 
 		this.defer(() => {
 			this.addEventListener('keydown', (event) => {
@@ -193,7 +197,9 @@ export default class CucumberRadio extends FormElement {
 		this.toggleAttribute("checked", this.input.checked);
 		this.input.ariaChecked = this.input.checked ? "true" : "false";
 		this.input.setAttribute('tabindex', this.input.checked ? '0' : '-1');
-		this.dispatchEvent(new Event('change'));
+		this.dispatchEvent(new Event('change', {
+			bubbles: true,
+		}));
 	}
 }
 
