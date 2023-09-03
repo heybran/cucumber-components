@@ -78,8 +78,8 @@ export default class CucumberRadioGroup extends FormElement {
 			if (!form) return;
 			if (!Array.isArray(form.__cucumberElements)) {
 				form.__cucumberElements = [];
-				form.__cucumberElements.push(this);
 			}
+			form.__cucumberElements.push(this);
 
 			/**
 			 * @todo
@@ -132,7 +132,6 @@ export default class CucumberRadioGroup extends FormElement {
 	 * a radio button in that group must be checked, 
 	 * although it doesn't have to be the one with the attribute applied.
 	 * 
-	 * @override
 	 * @returns boolean
 	 */
 	isValid() {
