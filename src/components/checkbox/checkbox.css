@@ -37,6 +37,11 @@ label {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
+  /*
+    Without relative position on label, click checkbox will scroll page to top,
+    as input is absolutely positioned to top: 0 relative to viewport.
+  */
+  position: relative;
 }
 
 :host([disabled]) label {
