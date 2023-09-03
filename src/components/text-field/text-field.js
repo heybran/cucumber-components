@@ -1,9 +1,8 @@
 import FormElement from "../../shared/form-element.js";
 import css from "./text-field.css?inline";
-// @ts-check
 import html from "./text-field.html?raw";
 
-export default class BreezeTextField extends FormElement {
+export default class CucumberTextField extends FormElement {
 	/**
 	 * @returns {HTMLInputElement}
 	 */
@@ -112,39 +111,23 @@ export default class BreezeTextField extends FormElement {
 	 * @param {FormDataEvent} event
 	 * @returns void
 	 */
-	setFormData = (event) => {
-		const formData = event.formData;
-		if (!this.hasAttribute("name")) {
-			return console.warn(
-				`No 'name' attribute found on ${this.localName}, so this form field will not particiate on form submit.`,
-			);
-		}
+	// setFormData = (event) => {
+	// 	const formData = event.formData;
+	// 	if (!this.hasAttribute("name")) {
+	// 		return console.warn(
+	// 			`No 'name' attribute found on ${this.localName}, so this form field will not particiate on form submit.`,
+	// 		);
+	// 	}
 
-		/**
-		 * Fixes for not able to remove formdata event listener when disconnected
-		 */
-		if (!this.getForm()) {
-			return;
-		}
-		// @ts-ignore
-		formData.set(this.getAttribute("name"), this.value);
-	};
-
-	/**
-	 * @returns {string[]}
-	 */
-	static get observedAttributes() {
-		
-	}
-
-	/**
-	 * @param {string} attr
-	 * @param {string} oldValue
-	 * @param {string} newValue
-	 */
-	attributeChangedCallback(attr, oldValue, newValue) {
-		
-	}
+	// 	/**
+	// 	 * Fixes for not able to remove formdata event listener when disconnected
+	// 	 */
+	// 	if (!this.getForm()) {
+	// 		return;
+	// 	}
+	// 	// @ts-ignore
+	// 	formData.set(this.getAttribute("name"), this.value);
+	// };
 
 	disconnectedCallback() {
 		/**
@@ -155,6 +138,6 @@ export default class BreezeTextField extends FormElement {
 	}
 }
 
-if (!customElements.get("breeze-text-field")) {
-	customElements.define("breeze-text-field", BreezeTextField);
+if (!customElements.get("cc-text-field")) {
+	customElements.define("cc-text-field", CucumberTextField);
 }

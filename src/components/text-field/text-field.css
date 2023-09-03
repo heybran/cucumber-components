@@ -26,10 +26,14 @@ input {
 
 label {
   font-weight: var(--label-font-weight);
+  /* move spacing from input-container to label */
+  padding-block: 0.25em 0.5em;
+  display: inline-block;
 }
 
 [part="input-container"] {
-  margin-top: .25em;
+  /* margin is not a good choice here as clicking margin area will not activate input */
+  /* margin-top: .5em; */
   border: 1px solid var(--border-color-normal);
   border-radius: var(--border-radius);
   display: flex;
@@ -49,7 +53,8 @@ label {
   margin-top: .25em;
 }
 
-::slotted([slot="suffix"]) {
+::slotted([slot="suffix"]),
+::slotted([slot="prefix"]) {
   padding-inline: 1ch;
 }
 
