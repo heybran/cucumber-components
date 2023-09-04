@@ -4,7 +4,7 @@
 <ul align="center" style="display: flex;"><span role="listitem">🚹 Accessibility  </span role="listitem"><span>🏗 Easy to use  </span role="listitem"><span>🎨 Easy to style</span></ul>
 <p align="center">Inspired by <a href="https://github.com/thepassle/generic-components" target="_blank">https://github.com/thepassle/generic-components</a></p>
 
-> This project started out as `Breeze Components`, then it was renamed to `Cucumber Components` on Sep 4, 2023. Logo was designed based on icons I found on https://www.flaticon.com/free-icons/cucumber, logo font is `Input Mono`. Reason for renaming components is writing `cc-button` is a bit easier than `breeze-button`.
+> This project started out as `Breeze Components`, then it was renamed to `Cucumber Components` on Sep 4, 2023. Logo was designed by me with `Inkscape` based on cucumber icons ideas from https://www.flaticon.com/free-icons/cucumber, logo font is `Input Mono`. Reason for renaming is writing `cc-button` is a bit easier than `breeze-button`.
 
 
 ## Why Build A Web Components Collection When There Are Many Battle-tested Web Components Collections Already?
