@@ -1,25 +1,29 @@
 <script>
   import { onMount, afterUpdate } from "svelte";
   if (!import.meta.env.SSR) {
+    const components = [
+      'alert',
+      'button',
+      'icon',
+      'option',
+      'select',
+      'spinner',
+      'switch',
+      'text-field',
+      'textarea',
+      'tooltip',
+      'form-layout',
+      'password-field',
+      'checkbox',
+      'radio',
+      'radio-group',
+    ];
+
     if (import.meta.env.MODE === 'development') {
-      import("../../../node_modules/breeze-components/index");
+      components.forEach(name => {
+        import(`../../../../src/components/${name}/${name}.js`);
+      })
     } else if (import.meta.env.MODE === 'production') {
-      const components = [
-        'button',
-        'icon',
-        'option',
-        'select',
-        'spinner',
-        'switch',
-        'text-field',
-        'textarea',
-        'tooltip',
-        'form-layout',
-        'password-field',
-        'checkbox',
-        'radio',
-        'radio-group',
-      ];
       components.forEach(name => {
         import(`../../../../dist/components/${name}/${name}.js`);
       })

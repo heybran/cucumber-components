@@ -81,7 +81,7 @@ When a form is submitted, only radio groups which currently have checked radio b
         <cc-radio label="Mail" value="mail"></cc-radio>
       </cc-radio-group>
       <br />
-      <breeze-button type="submit">Submit</breeze-button>
+      <cc-button type="submit">Submit</cc-button>
     </form>
     <output></output>
   '
@@ -102,7 +102,7 @@ When a form is submitted, only radio groups which currently have checked radio b
     <cc-radio label="Mail" value="mail"></cc-radio>
   </cc-radio-group>
   <br />
-  <breeze-button type="submit">Submit</breeze-button>
+  <cc-button type="submit">Submit</cc-button>
 </form>
 <output></output>
 <script>
@@ -198,6 +198,36 @@ Change font size to get a custom size.
 ```html
 <cc-radio-group label="Preferred contact method" theme="vertical" name="contact" disabled>
   <cc-radio label="Email" value="email"></cc-radio>
+  <cc-radio label="Phone" value="phone"></cc-radio>
+  <cc-radio label="Mail" value="mail"></cc-radio>
+</cc-radio-group>
+```
+
+## Events
+
+### Change
+
+The `change` event is fired When a `cc-radio` element is checked (but not when unchecked).
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-radio-group label="Preferred contact method" theme="vertical" name="contact" onchange="alert(this.value)">
+      <cc-radio label="Email" value="email" checked></cc-radio>
+      <cc-radio label="Phone" value="phone"></cc-radio>
+      <cc-radio label="Mail" value="mail"></cc-radio>
+    </cc-radio-group>
+  '
+/>
+
+```html
+<cc-radio-group 
+  label="Preferred contact method" 
+  theme="vertical" 
+  name="contact" 
+  onchange="alert(this.value)"
+>
+  <cc-radio label="Email" value="email" checked></cc-radio>
   <cc-radio label="Phone" value="phone"></cc-radio>
   <cc-radio label="Mail" value="mail"></cc-radio>
 </cc-radio-group>

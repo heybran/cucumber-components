@@ -9,12 +9,12 @@ import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
 <ComponentPreview
   client:load
   component='
-    <breeze-spinner></breeze-spinner>
+    <cc-spinner></cc-spinner>
   '
 />
 
 ```html
-<breeze-spinner></breeze-spinner>
+<cc-spinner></cc-spinner>
 ```
 
 ## Size
@@ -24,14 +24,14 @@ Spinners are sized as `1em` by default. To change their size, add an inline styl
 <ComponentPreview
   client:load
   component='
-    <breeze-spinner style="font-size: 2rem;"></breeze-spinner>
+    <cc-spinner style="font-size: 2rem;"></cc-spinner>
   '
 />
 
 ```html
-<breeze-spinner style="font-size: 2rem;"></breeze-spinner>
+<cc-spinner style="font-size: 2rem;"></cc-spinner>
 <!-- or -->
-<breeze-spinner style="--size: 2em;"></breeze-spinner>
+<cc-spinner style="--size: 2em;"></cc-spinner>
 ```
 
 ## Speed
@@ -41,12 +41,12 @@ Speed defualts to `1s`, you can change that using `--speed` custom property.
 <ComponentPreview
   client:load
   component='
-    <breeze-spinner style="--speed: 0.5s;"></breeze-spinner>
+    <cc-spinner style="--speed: 0.5s;"></cc-spinner>
   '
 />
 
 ```html
-<breeze-spinner style="--speed: 0.5s;"></breeze-spinner>
+<cc-spinner style="--speed: 0.5s;"></cc-spinner>
 ```
 
 ## Track Width
@@ -56,12 +56,12 @@ The width of the spinner’s track can be changed by setting the `--track-width`
 <ComponentPreview
   client:load
   component='
-    <breeze-spinner style="font-size: 2rem; --track-width: 4px;"></breeze-spinner>
+    <cc-spinner style="font-size: 2rem; --track-width: 4px;"></cc-spinner>
   '
 />
 
 ```html
-<breeze-spinner style="font-size: 2rem; --track-width: 4px;"></breeze-spinner>
+<cc-spinner style="font-size: 2rem; --track-width: 4px;"></cc-spinner>
 ```
 
 ## Color
@@ -71,12 +71,12 @@ Color can be changed by setting `--track-color` and `--indicator-color` custom p
 <ComponentPreview
   client:load
   component='
-    <breeze-spinner style="font-size: 2rem; --track-color: pink; --indicator-color: deeppink;"></breeze-spinner>
+    <cc-spinner style="font-size: 2rem; --track-color: pink; --indicator-color: deeppink;"></cc-spinner>
   '
 />
 
 ```html
-<breeze-spinner 
+<cc-spinner 
   style="font-size: 2rem; --track-color: pink; --indicator-color: deeppink;">
-</breeze-spinner>
+</cc-spinner>
 ```

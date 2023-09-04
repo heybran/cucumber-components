@@ -9,14 +9,14 @@ import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
 <ComponentPreview
   client:load
   component='
-    <breeze-textarea label="Message">
-    </breeze-textarea>
+    <cc-textarea label="Message">
+    </cc-textarea>
   '
   style="display: block;"
 />
 
 ```html
-<breeze-textarea label="Message"></breeze-textarea>
+<cc-textarea label="Message"></cc-textarea>
 ```
 
 ## Examples
@@ -25,14 +25,14 @@ import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
 <ComponentPreview
   client:load
   component='
-    <breeze-textarea label="Message" helper-text="Please leave your message">
-    </breeze-textarea>
+    <cc-textarea label="Message" helper-text="Please leave your message">
+    </cc-textarea>
   '
   style="display: block;"
 />
 
 ```html
-<breeze-textarea label="Message" helper-text="Please leave your message"></breeze-textarea>
+<cc-textarea label="Message" helper-text="Please leave your message"></cc-textarea>
 ```
 
 Or, using `slot` to add label and helper text if you need them to be HTML.
@@ -40,19 +40,19 @@ Or, using `slot` to add label and helper text if you need them to be HTML.
 <ComponentPreview
   client:load
   component='
-    <breeze-textarea>
+    <cc-textarea>
       <p slot="label">Message</p>
       <p slot="helper-text">Please leave your message</p>
-    </breeze-textarea>
+    </cc-textarea>
   '
   style="display: block;"
 />
 
 ```html
-<breeze-textarea>
+<cc-textarea>
   <p slot="label">Message</p>
   <p slot="helper-text">Please leave your message</p>
-</breeze-textarea>
+</cc-textarea>
 ```
 
 
@@ -61,14 +61,14 @@ Or, using `slot` to add label and helper text if you need them to be HTML.
 <ComponentPreview
   client:load
   component='
-    <breeze-textarea label="Message" placeholder="Message">
-    </breeze-textarea>
+    <cc-textarea label="Message" placeholder="Message">
+    </cc-textarea>
   '
   style="display: block;"
 />
 
 ```html
-<breeze-textarea label="Message" placeholder="Message"></breeze-textarea>
+<cc-textarea label="Message" placeholder="Message"></cc-textarea>
 ```
 
 ### Rows
@@ -76,27 +76,27 @@ Or, using `slot` to add label and helper text if you need them to be HTML.
 <ComponentPreview
   client:load
   component='
-    <breeze-textarea label="Message" rows="2">
-    </breeze-textarea>
+    <cc-textarea label="Message" rows="2">
+    </cc-textarea>
   '
   style="display: block;"
 />
 
 ```html
-<breeze-textarea label="Message" rows="2"></breeze-textarea>
+<cc-textarea label="Message" rows="2"></cc-textarea>
 ```
 
 ### Disabled
 <ComponentPreview
   client:load
   component='
-    <breeze-textarea label="Message" disabled>
-    </breeze-textarea>
+    <cc-textarea label="Message" disabled>
+    </cc-textarea>
   '
   style="display: block;"
 />
 
 ```html
-<breeze-textarea label="Message" disabled></breeze-textarea>
+<cc-textarea label="Message" disabled></cc-textarea>
 ```
 

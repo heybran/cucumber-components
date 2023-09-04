@@ -59,7 +59,7 @@ When a form is submitted, only checkboxes (`cc-checkbox` in this case) which are
     <form id="cc-checkbox-form">
       <cc-checkbox value="1" name="notify-user" label="Notify user"></cc-checkbox>
       <br />
-      <breeze-button type="submit">Submit</breeze-button>
+      <cc-button type="submit">Submit</cc-button>
     </form>
   '
   js="
@@ -74,7 +74,7 @@ When a form is submitted, only checkboxes (`cc-checkbox` in this case) which are
 <form id="cc-checkbox-form">
   <cc-checkbox value="1" name="notify-user" label="Notify user"></cc-checkbox>
   <br />
-  <breeze-button type="submit">Submit</breeze-button>
+  <cc-button type="submit">Submit</cc-button>
 </form>
 <script>
   document.querySelector('#cc-checkbox-form').addEventListener('submit', function (event) {
@@ -127,14 +127,14 @@ Use `tooltip` slot to add a tooltip when there's no screen space for label text.
   client:load
   component='
     <cc-checkbox label="Select all messsages" label-sr-only>
-      <breeze-tooltip slot="tooltip" text="Select all messages"></breeze-tooltip>
+      <cc-tooltip slot="tooltip" text="Select all messages"></cc-tooltip>
     </cc-checkbox>
   '
 />
 
 ```html
 <cc-checkbox label="Select all messsages" label-sr-only>
-  <breeze-tooltip slot="tooltip" text="Select all messages"></breeze-tooltip>
+  <cc-tooltip slot="tooltip" text="Select all messages"></cc-tooltip>
 </cc-checkbox>
 ```
 

@@ -6,17 +6,17 @@ import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
 
 # Button
 
-`breeze-button` wraps native `<button>` HTML element. 
+`cc-button` wraps native `<button>` HTML element. 
 
 <ComponentPreview
   client:load
   component='
-    <breeze-button>Button</breeze-button>
+    <cc-button>Button</cc-button>
   '
 />
 
 ```html
-<breeze-button>Button</breeze-button>
+<cc-button>Button</cc-button>
 ```
 
 ## Variants
@@ -24,13 +24,14 @@ import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
 <ComponentPreview
   client:load
   component='
-    <breeze-button variant="primary">Button</breeze-button>
-    <breeze-button variant="success">Button</breeze-button>
+    <cc-button variant="primary">Button</cc-button>
+    <cc-button variant="success">Button</cc-button>
   '
 />
 
 ```html
-<breeze-button variant="text">Button</breeze-button>
+<cc-button variant="primary">Button</cc-button>
+<cc-button variant="success">Button</cc-button>
 ```
 
 ## Sizes
@@ -39,16 +40,16 @@ import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
 <ComponentPreview
   client:load
   component='
-    <breeze-button size="small">Button</breeze-button>
-    <breeze-button size="medium">Button</breeze-button>
-    <breeze-button size="large">Button</breeze-button>
+    <cc-button size="small">Button</cc-button>
+    <cc-button size="medium">Button</cc-button>
+    <cc-button size="large">Button</cc-button>
   '
 />
 
 ```html
-<breeze-button size="small">Button</breeze-button>
-<breeze-button size="medium">Button</breeze-button>
-<breeze-button size="large">Button</breeze-button>
+<cc-button size="small">Button</cc-button>
+<cc-button size="medium">Button</cc-button>
+<cc-button size="large">Button</cc-button>
 ```
 
 ## Text Buttons
@@ -56,50 +57,50 @@ import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
 <ComponentPreview
   client:load
   component='
-    <breeze-button variant="text" size="small">Button</breeze-button>
-    <breeze-button variant="text">Button</breeze-button>
-    <breeze-button variant="text" size="large">Button</breeze-button>
+    <cc-button variant="text" size="small">Button</cc-button>
+    <cc-button variant="text">Button</cc-button>
+    <cc-button variant="text" size="large">Button</cc-button>
   '
 />
 
 ```html
-<breeze-button variant="text" size="small">Button</breeze-button>
+<cc-button variant="text" size="small">Button</cc-button>
 <!-- default to medium size -->
-<breeze-button variant="text" size="medium">Button</breeze-button>
-<breeze-button variant="text" size="large">Button</breeze-button>
+<cc-button variant="text" size="medium">Button</cc-button>
+<cc-button variant="text" size="large">Button</cc-button>
 ```
 
 ## Icon Buttons
 
 Buttons that only show an icon to represent do not have an accessible name. Accessible names provide information for assistive technology, such as screen readers, to access when they parse the document and generate an accessibility tree. Assistive technology then uses the accessibility tree to navigate and manipulate page content.
 
-To give an icon button an accessible name, put a `label` attribute on `breeze-icon` that concisely describes the button's functionality.
+To give an icon button an accessible name, put a `label` attribute on `cc-icon` that concisely describes the button's functionality.
 
 <ComponentPreview
   client:load
   component='
-    <breeze-button size="small">
-      <breeze-icon icon="chevron-right" label="Go to next page"></breeze-icon>
-    </breeze-button>
-    <breeze-button size="medium">
-      <breeze-icon icon="chevron-right" label="Go to next page"></breeze-icon>
-    </breeze-button>
-    <breeze-button size="large">
-      <breeze-icon icon="chevron-right" label="Go to next page"></breeze-icon>
-    </breeze-button>
+    <cc-button size="small">
+      <cc-icon icon="chevron-right" label="Go to next page"></cc-icon>
+    </cc-button>
+    <cc-button size="medium">
+      <cc-icon icon="chevron-right" label="Go to next page"></cc-icon>
+    </cc-button>
+    <cc-button size="large">
+      <cc-icon icon="chevron-right" label="Go to next page"></cc-icon>
+    </cc-button>
   '
 />
 
 ```html
-<breeze-button size="small">
-  <breeze-icon icon="chevron-right" label="Go to next page"></breeze-icon>
-</breeze-button>
-<breeze-button size="medium">
-  <breeze-icon icon="chevron-right" label="Go to next page"></breeze-icon>
-</breeze-button>
-<breeze-button size="large">
-  <breeze-icon icon="chevron-right" label="Go to next page"></breeze-icon>
-</breeze-button>
+<cc-button size="small">
+  <cc-icon icon="chevron-right" label="Go to next page"></cc-icon>
+</cc-button>
+<cc-button size="medium">
+  <cc-icon icon="chevron-right" label="Go to next page"></cc-icon>
+</cc-button>
+<cc-button size="large">
+  <cc-icon icon="chevron-right" label="Go to next page"></cc-icon>
+</cc-button>
 ```
 
 However, it is worth noting that for the button to have text visually apparent can aid people who may not be familiar with the icon's meaning or understand the button's purpose. This is especially relevant for people who are not technologically sophisticated, or who may have different cultural interpretations for the icon the button uses. So, it would be best to add a tooltip that also describe the meaning of the button when button is hovered or focused.
@@ -107,126 +108,126 @@ However, it is worth noting that for the button to have text visually apparent c
 <ComponentPreview
   client:load
   component='
-    <breeze-button size="small">
-      <breeze-icon icon="chevron-right" label="Go to next page"></breeze-icon>
-      <breeze-tooltip slot="tooltip" text="Go to next page"></breeze-tooltip>
-    </breeze-button>
-    <breeze-button size="medium">
-      <breeze-icon icon="chevron-right" label="Go to next page"></breeze-icon>
-      <breeze-tooltip slot="tooltip" text="Go to next page"></breeze-tooltip>
-    </breeze-button>
-    <breeze-button size="large">
-      <breeze-icon icon="chevron-right" label="Go to next page"></breeze-icon>
-      <breeze-tooltip slot="tooltip" text="Go to next page"></breeze-tooltip>
-    </breeze-button>
+    <cc-button size="small">
+      <cc-icon icon="chevron-right" label="Go to next page"></cc-icon>
+      <cc-tooltip slot="tooltip" text="Go to next page"></cc-tooltip>
+    </cc-button>
+    <cc-button size="medium">
+      <cc-icon icon="chevron-right" label="Go to next page"></cc-icon>
+      <cc-tooltip slot="tooltip" text="Go to next page"></cc-tooltip>
+    </cc-button>
+    <cc-button size="large">
+      <cc-icon icon="chevron-right" label="Go to next page"></cc-icon>
+      <cc-tooltip slot="tooltip" text="Go to next page"></cc-tooltip>
+    </cc-button>
   '
 />
 
 ```html
-<breeze-button size="small">
-  <breeze-icon icon="chevron-right" label="Go to next page"></breeze-icon>
-  <breeze-tooltip slot="tooltip" text="Go to next page"></breeze-tooltip>
-</breeze-button>
-<breeze-button size="medium">
-  <breeze-icon icon="chevron-right" label="Go to next page"></breeze-icon>
-  <breeze-tooltip slot="tooltip" text="Go to next page"></breeze-tooltip>
-</breeze-button>
-<breeze-button size="large">
-  <breeze-icon icon="chevron-right" label="Go to next page"></breeze-icon>
-  <breeze-tooltip slot="tooltip" text="Go to next page"></breeze-tooltip>
-</breeze-button>
+<cc-button size="small">
+  <cc-icon icon="chevron-right" label="Go to next page"></cc-icon>
+  <cc-tooltip slot="tooltip" text="Go to next page"></cc-tooltip>
+</cc-button>
+<cc-button size="medium">
+  <cc-icon icon="chevron-right" label="Go to next page"></cc-icon>
+  <cc-tooltip slot="tooltip" text="Go to next page"></cc-tooltip>
+</cc-button>
+<cc-button size="large">
+  <cc-icon icon="chevron-right" label="Go to next page"></cc-icon>
+  <cc-tooltip slot="tooltip" text="Go to next page"></cc-tooltip>
+</cc-button>
 ```
 
 
 ## Icon/Text Buttons
 
-Add a `breeze-icon` with slot set to `prefix`.
+Add a `cc-icon` with slot set to `prefix`.
 
 <ComponentPreview
   client:load
   component='
-    <breeze-button size="small">
-      <breeze-icon icon="chevron-right" slot="prefix"></breeze-icon>
+    <cc-button size="small">
+      <cc-icon icon="chevron-right" slot="prefix"></cc-icon>
       Go to next page
-    </breeze-button>
-    <breeze-button size="medium">
-      <breeze-icon icon="chevron-right" slot="prefix"></breeze-icon>
+    </cc-button>
+    <cc-button size="medium">
+      <cc-icon icon="chevron-right" slot="prefix"></cc-icon>
       Go to next page
-    </breeze-button>
-    <breeze-button size="large">
-      <breeze-icon icon="chevron-right" slot="prefix"></breeze-icon>
+    </cc-button>
+    <cc-button size="large">
+      <cc-icon icon="chevron-right" slot="prefix"></cc-icon>
       Go to next page
-    </breeze-button>
+    </cc-button>
   '
 />
 
 ```html
-<breeze-button size="small">
-  <breeze-icon icon="chevron-right" slot="prefix"></breeze-icon>
+<cc-button size="small">
+  <cc-icon icon="chevron-right" slot="prefix"></cc-icon>
   Go to next page
-</breeze-button>
-<breeze-button size="medium">
-  <breeze-icon icon="chevron-right" slot="prefix"></breeze-icon>
+</cc-button>
+<cc-button size="medium">
+  <cc-icon icon="chevron-right" slot="prefix"></cc-icon>
   Go to next page
-</breeze-button>
-<breeze-button size="large">
-  <breeze-icon icon="chevron-right" slot="prefix"></breeze-icon>
+</cc-button>
+<cc-button size="large">
+  <cc-icon icon="chevron-right" slot="prefix"></cc-icon>
   Go to next page
-</breeze-button>
+</cc-button>
 ```
 
-Add a `breeze-icon` with slot set to `suffix`.
+Add a `cc-icon` with slot set to `suffix`.
 
 <ComponentPreview
   client:load
   component='
-    <breeze-button size="small">
-      <breeze-icon icon="chevron-right" slot="suffix"></breeze-icon>
+    <cc-button size="small">
+      <cc-icon icon="chevron-right" slot="suffix"></cc-icon>
       Go to next page
-    </breeze-button>
-    <breeze-button size="medium">
-      <breeze-icon icon="chevron-right" slot="suffix"></breeze-icon>
+    </cc-button>
+    <cc-button size="medium">
+      <cc-icon icon="chevron-right" slot="suffix"></cc-icon>
       Go to next page
-    </breeze-button>
-    <breeze-button size="large">
-      <breeze-icon icon="chevron-right" slot="suffix"></breeze-icon>
+    </cc-button>
+    <cc-button size="large">
+      <cc-icon icon="chevron-right" slot="suffix"></cc-icon>
       Go to next page
-    </breeze-button>
+    </cc-button>
   '
 />
 
 ```html
-<breeze-button size="small">
-  <breeze-icon icon="chevron-right" slot="suffix"></breeze-icon>
+<cc-button size="small">
+  <cc-icon icon="chevron-right" slot="suffix"></cc-icon>
   Go to next page
-</breeze-button>
-<breeze-button size="medium">
-  <breeze-icon icon="chevron-right" slot="suffix"></breeze-icon>
+</cc-button>
+<cc-button size="medium">
+  <cc-icon icon="chevron-right" slot="suffix"></cc-icon>
   Go to next page
-</breeze-button>
-<breeze-button size="large">
-  <breeze-icon icon="chevron-right" slot="suffix"></breeze-icon>
+</cc-button>
+<cc-button size="large">
+  <cc-icon icon="chevron-right" slot="suffix"></cc-icon>
   Go to next page
-</breeze-button>
+</cc-button>
 ```
 
 ## Loading
 
-`breeze-spinner` will be imported and appended to button when `loading` attribute is added. Elements except spinner are visually set to hidden where spinner is absolute positioned. 
+`cc-spinner` will be imported and appended to button when `loading` attribute is added. Elements except spinner are visually set to hidden where spinner is absolute positioned. 
 
 > Accessibility: When button is loading, it will have `aria-busy="true"`.
 
 <ComponentPreview
   client:load
   component='
-    <breeze-button loading size="small">Submit</breeze-button>
-    <breeze-button loading size="medium">Submit</breeze-button>
-    <breeze-button loading size="large">Submit</breeze-button>
+    <cc-button loading size="small">Submit</cc-button>
+    <cc-button loading size="medium">Submit</cc-button>
+    <cc-button loading size="large">Submit</cc-button>
   '
 />
 
 ```html
-<breeze-button loading>Submit</breeze-button>
+<cc-button loading>Submit</cc-button>
 ```
 
 ## Disabled
@@ -236,12 +237,12 @@ This `disabled` attribute prevents the user from interacting with the button: it
 <ComponentPreview
   client:load
   component='
-    <breeze-button disabled>Submit</breeze-button>
+    <cc-button disabled>Submit</cc-button>
   '
 />
 
 ```html
-<breeze-button disabled>Submit</breeze-button>
+<cc-button disabled>Submit</cc-button>
 ```
 
 ## Type
@@ -251,13 +252,13 @@ This `disabled` attribute prevents the user from interacting with the button: it
 <ComponentPreview
   client:load
   component='
-    <breeze-button>Get Started</breeze-button>
+    <cc-button>Get Started</cc-button>
   '
 />
 
 ```html
 <!-- Will default to type="button", you don't need to set a type="button" -->
-<breeze-button>Get Started</breeze-button>
+<cc-button>Get Started</cc-button>
 ```
 
 2. `submit`: The button submits the form data to the server. This is the default if the attribute is not specified for buttons associated with a `<form>`, or if the attribute is an empty or invalid value.
@@ -266,8 +267,8 @@ This `disabled` attribute prevents the user from interacting with the button: it
   client:load
   component='
     <form name="contact-form" style="display: flex; align-items: flex-end; gap: .5em;">
-      <breeze-text-field name="country" label="Country"></breeze-text-field>
-      <breeze-button type="submit">Submit</breeze-button>
+      <cc-text-field name="country" label="Country"></cc-text-field>
+      <cc-button type="submit">Submit</cc-button>
     </form>
   '
   js='
@@ -279,8 +280,8 @@ This `disabled` attribute prevents the user from interacting with the button: it
 
 ```html
 <form name="contact-form" style="display: flex; align-items: flex-end; gap: .5em;">
-  <breeze-text-field name="country" label="Country"></breeze-text-field>
-  <breeze-button type="submit">Submit</breeze-button>
+  <cc-text-field name="country" label="Country"></cc-text-field>
+  <cc-button type="submit">Submit</cc-button>
 </form>
 <script>
   document.querySelector("[name=contact-form]").addEventListener("submit", function(event) {
@@ -291,29 +292,31 @@ This `disabled` attribute prevents the user from interacting with the button: it
 
 3. `reset`: The button resets all the controls to their initial values, like `<input type="reset">`. (This behavior tends to annoy users.)
 
+From a UX point of view, this is considered bad practice, so you should avoid using this type of button unless you really have a good reason to include one.
+
 <ComponentPreview
   client:load
   component='
     <form name="contact-form-reset" style="display: flex; align-items: flex-end; gap: .5em;">
-      <breeze-text-field 
+      <cc-text-field 
         name="country" 
         label="Country" 
         placeholder="country"
         helper-text="Your country"
-      ></breeze-text-field>
-      <breeze-button type="reset">Reset</breeze-button>
+      ></cc-text-field>
+      <cc-button type="reset">Reset</cc-button>
     </form>
   '
 />
 
 ```html
 <form name="contact-form-reset" style="display: flex; align-items: flex-end; gap: .5em;">
-  <breeze-text-field 
+  <cc-text-field 
     name="country" 
     label="Country" 
     placeholder="country"
     helper-text="Your country"
-  ></breeze-text-field>
-  <breeze-button type="reset">Reset</breeze-button>
+  ></cc-text-field>
+  <cc-button type="reset">Reset</cc-button>
 </form>
 ```
