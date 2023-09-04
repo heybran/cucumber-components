@@ -1,7 +1,6 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
-import { minify } from "html-minifier";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,13 +14,13 @@ componentsNames.forEach((component, index) => {
     return;
   }
 
-  const htmlContent = fs.readFileSync(htmlFilePath, "utf-8");
-  const minifiedHtml = minify(htmlContent, {
-    collapseWhitespace: true,
-    removeComments: true,
-  });
-  const outputFilePath = path.resolve(componentsDir, `${component}/${component}.html`);
-  fs.writeFileSync(outputFilePath, minifiedHtml, "utf-8");
+  /**
+   * Before minifying HTML codes, make a copy of this HTML file
+   */
+  // Get the directory path of the source file we need to copy
+  const htmlFileDir = path.dirname(htmlFilePath);
+  // Copy HTML file
+  fs.copyFileSync(htmlFilePath, path.join(htmlFileDir, `${component}-copy.html`));
 });
 
 
