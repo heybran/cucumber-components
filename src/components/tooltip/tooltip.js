@@ -3,7 +3,7 @@ import css from "./tooltip.css?inline";
 import calculatePosition from "../../util/position-calculator";
 import BaseElement from "../../shared/base-element.js";
 
-export default class BreezeTooltip extends BaseElement {
+export default class CucumberTooltip extends BaseElement {
   /**
    * @returns {HTMLElement}
    */
@@ -18,7 +18,7 @@ export default class BreezeTooltip extends BaseElement {
 
     /**
      * <h2 id="heading">Heading with tooltip</h2>
-     * <breeze-tooltip for="heading" text="This is a tooltip" position="top-center"></-tooltip>
+     * <cc-tooltip for="heading" text="This is a tooltip" position="top-center"></-tooltip>
      * - look for sibling elements or ancestor elements
      */
     if (this.hasAttribute('for')) {
@@ -122,6 +122,6 @@ export default class BreezeTooltip extends BaseElement {
   }
 }
 
-if (!customElements.get('breeze-tooltip')) {
-  customElements.define('breeze-tooltip', BreezeTooltip);
+if (!customElements.get('cc-tooltip')) {
+  customElements.define('cc-tooltip', CucumberTooltip);
 }

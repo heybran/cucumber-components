@@ -2,7 +2,7 @@
 import shared from "../../shared/shared.css?inline";
 import css from "./textarea.css?inline";
 
-export default class BreezeTextarea extends HTMLElement {
+export default class CucumberTextarea extends HTMLElement {
   /** @returns {string} */
   get helperText() {
     return this.getAttribute('helper-text') ?? '';
@@ -94,6 +94,6 @@ export default class BreezeTextarea extends HTMLElement {
   }
 }
 
-if (!customElements.get('breeze-textarea')) {
-  customElements.define('breeze-textarea', BreezeTextarea);
+if (!customElements.get('cc-textarea')) {
+  customElements.define('cc-textarea', CucumberTextarea);
 }

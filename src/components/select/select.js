@@ -4,7 +4,7 @@ import css from "./select.css?inline";
 import "../icon/icon.js";
 import FormElement from "../../shared/form-element.js";
 
-export default class BreezeSelect extends FormElement {
+export default class CucumberSelect extends FormElement {
   /**
    * @returns {string}
    */
@@ -44,20 +44,20 @@ export default class BreezeSelect extends FormElement {
 
   /** 
    * @returns {HTMLElement} 
-   * @throws {Error} - No breeze-option element error
+   * @throws {Error} - No cc-option element error
    */
   get selectedOption() {
-    const option = this.querySelector('breeze-option');
+    const option = this.querySelector('cc-option');
     if (!option) {
-      throw new Error(`Missing 'breeze-option' inside 'breeze-select'`);
+      throw new Error(`Missing 'cc-option' inside 'cc-select'`);
     }
 
-    const selectedOption = this.querySelector('breeze-option[selected]');
+    const selectedOption = this.querySelector('cc-option[selected]');
 
     if (!selectedOption) {
       console.info(`
-        No 'selected' attribute found on 'breeze-option',
-        default to first 'breeze-option'.
+        No 'selected' attribute found on 'cc-option',
+        default to first 'cc-option'.
       `);
       return option;
     }
@@ -67,7 +67,7 @@ export default class BreezeSelect extends FormElement {
 
   /** @returns {HTMLElement[]} */
   get options() {
-    return this.querySelectorAll('breeze-option');
+    return this.querySelectorAll('cc-option');
   }
 
   /**
@@ -116,7 +116,7 @@ export default class BreezeSelect extends FormElement {
           <span class="text">${this.text}</span>
           <span part="suffix">
             <slot name="suffix">
-              <breeze-icon icon="chevron-down"></breeze-icon>
+              <cc-icon icon="chevron-down"></cc-icon>
             </slot>
           </span>
         </button>
@@ -137,7 +137,7 @@ export default class BreezeSelect extends FormElement {
     this.render();
     document.addEventListener('click', this.closeDropdownWhenClickOutside.bind(this));
     window.addEventListener('scroll', this.updatePosition.bind(this));
-    this.addEventListener('breeze-option-selected', this.handleSelect.bind(this));
+    this.addEventListener('cc-option-selected', this.handleSelect.bind(this));
     this.addEventListener('keydown', this.onKeyDown);
     this.dropdown?.addEventListener('close', this.onDropdownClose.bind(this));
 
@@ -337,6 +337,6 @@ export default class BreezeSelect extends FormElement {
   // }
 }
 
-if (!customElements.get('breeze-select')) {
-  customElements.define('breeze-select', BreezeSelect);
+if (!customElements.get('cc-select')) {
+  customElements.define('cc-select', CucumberSelect);
 }

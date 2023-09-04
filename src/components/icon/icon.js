@@ -3,7 +3,7 @@ import BaseElement from "../../shared/base-element.js";
 import html from "./icon.html?raw";
 import css from "./icon.css?inline";
 
-export default class BreezeIcon extends BaseElement {
+export default class CucumberIcon extends BaseElement {
 	connectedCallback() {
 		super.render(html, css);
     // @ts-ignore
@@ -24,6 +24,6 @@ export default class BreezeIcon extends BaseElement {
 	}
 }
 
-if (!customElements.get('breeze-icon')) {
-	customElements.define("breeze-icon", BreezeIcon);
+if (!customElements.get('cc-icon')) {
+	customElements.define("cc-icon", CucumberIcon);
 }

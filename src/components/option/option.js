@@ -2,7 +2,7 @@
 import shared from "../../shared/shared.css?inline";
 import css from "./option.css?inline";
 
-export default class BreezeOption extends HTMLElement {
+export default class CucumberOption extends HTMLElement {
   /** @returns {string} */
   get value() {
     return this.getAttribute('value') ?? '';
@@ -39,7 +39,7 @@ export default class BreezeOption extends HTMLElement {
   }
 
   handleClick() {
-    this.dispatchEvent(new CustomEvent('breeze-option-selected', {
+    this.dispatchEvent(new CustomEvent('cc-option-selected', {
       bubbles: true, 
       composed: true, 
       cancelable: true,
@@ -50,6 +50,6 @@ export default class BreezeOption extends HTMLElement {
   }
 }
 
-if (!customElements.get('breeze-option')) {
-  customElements.define('breeze-option', BreezeOption);
+if (!customElements.get('cc-option')) {
+  customElements.define('cc-option', CucumberOption);
 }

@@ -2,7 +2,7 @@ import FormElement from "../../shared/form-element.js";
 import css from "./button.css?inline";
 import html from "./button.html?raw";
 
-export default class BreezeButton extends FormElement {
+export default class CucumberButton extends FormElement {
 	get type() {
 		return this.getAttribute("type");
 	}
@@ -31,7 +31,7 @@ export default class BreezeButton extends FormElement {
 
 		if (!form) {
 			return console.warn(
-				`breeze-button has type ${type} but no associated form is found`,
+				`cc-button has type ${type} but no associated form is found`,
 			);
 		}
 
@@ -81,8 +81,8 @@ export default class BreezeButton extends FormElement {
 
 	attributeChangedCallback(attr, oldValue, newValue) {
 		/**
-		 * BUG: from <breeze-button></breeze-button> to
-		 * <breeze-button disabled></breeze-button> oldValue is null
+		 * BUG: from <cc-button></cc-button> to
+		 * <cc-button disabled></cc-button> oldValue is null
 		 */
 		if (null === oldValue && !this._connected) {
 			return;
@@ -106,8 +106,8 @@ export default class BreezeButton extends FormElement {
 
 	set loading(flag) {
 		if (flag) {
-			import("../spinner/spinner.js").then(({ default: BreezeSpinner }) => {
-				const spinner = document.createElement(BreezeSpinner.is);
+			import("../spinner/spinner.js").then(({ default: CucumberSpinner }) => {
+				const spinner = document.createElement(CucumberSpinner.is);
 				spinner.setAttribute("part", "spinner");
 				this.button.append(spinner);
 				this.button.setAttribute("aria-busy", "true");
@@ -136,6 +136,6 @@ export default class BreezeButton extends FormElement {
 	}
 }
 
-if (!customElements.get("breeze-button")) {
-	customElements.define("breeze-button", BreezeButton);
+if (!customElements.get("cc-button")) {
+	customElements.define("cc-button", CucumberButton);
 }

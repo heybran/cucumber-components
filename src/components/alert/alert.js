@@ -3,7 +3,7 @@ import css from "./alert.css?inline";
 import html from "./alert.html?raw";
 import BaseElement from "../../shared/base-element.js";
 
-export default class BreezeAlert extends BaseElement {
+export default class CucumberAlert extends BaseElement {
   constructor() {
     super();
     this.alertsShown = [];
@@ -32,4 +32,4 @@ export default class BreezeAlert extends BaseElement {
   }
 }
 
-customElements.define('breeze-alert', BreezeAlert);
+customElements.define('cc-alert', CucumberAlert);
