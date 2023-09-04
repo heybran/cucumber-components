@@ -107,7 +107,7 @@ export default class CucumberButton extends FormElement {
 	set loading(flag) {
 		if (flag) {
 			import("../spinner/spinner.js").then(({ default: CucumberSpinner }) => {
-				const spinner = document.createElement(CucumberSpinner.is);
+				const spinner = document.createElement('cc-spinner');
 				spinner.setAttribute("part", "spinner");
 				this.button.append(spinner);
 				this.button.setAttribute("aria-busy", "true");
