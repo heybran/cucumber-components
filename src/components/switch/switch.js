@@ -108,6 +108,29 @@ export default class CucumberSwitch extends FormElement {
 	}
 
 	/**
+	 * @returns boolean
+	 */
+	isValid() {
+		/**
+		 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#validation
+		 * Although can't think of any cases where required on a checkbox makes sense!
+		 */
+		if (this.hasAttribute('required')) {
+			return this.checkValidity();
+		}
+
+		return true;
+	}
+
+	/**
+	 * 
+	 * @returns boolean
+	 */
+	checkValidity() {
+		return this.input.checkValidity();
+	}
+
+	/**
 	 * @returns void
 	 */
 	onInputChange() {
