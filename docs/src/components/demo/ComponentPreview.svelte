@@ -76,6 +76,7 @@
     border: 1px solid #e2e8f0;
     resize: both;
     margin-top: 1rem;
+    box-shadow: 7px 7px #e2e8f0;
   }
 </style>
 

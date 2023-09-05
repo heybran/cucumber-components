@@ -112,3 +112,7 @@ th:first-child {
 //     --cc-form-layout-columns-global: 4;
 //   }
 // }
+
+pre[class*="language-"] {
+  margin-top: 1em;
+}
