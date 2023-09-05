@@ -7,6 +7,8 @@
   --background-color: #adaba8;
   --primary-color: #6d4aff;
   --size: 1.5em;
+  --gap: 0.5em;
+  --helper-text-color: #667085;
 }
 
 :host([size="small"]) {
@@ -33,7 +35,7 @@ label {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.5em;
+  gap: var(--gap);
 }
 
 :host([disabled]) label {
@@ -43,6 +45,17 @@ label {
 
 :host([layout="reverse"]) [part="control"] {
   order: 2;
+}
+
+[part="helper-text"] {
+  margin-left: calc(var(--size) * 2 + var(--gap));
+  color: var(--helper-text-color);
+  line-height: 1.2;
+  margin-top: -2px;
+}
+
+slot[name="helper-text"] {
+  font-size: .8em;
 }
 
 [part="control"] {

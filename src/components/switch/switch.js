@@ -61,6 +61,11 @@ export default class CucumberSwitch extends FormElement {
 		if (this.hasAttribute("name")) {
 			this.name = this.getAttribute("name");
 		}
+
+		if (this.hasAttribute('helper-text')) {
+			this.shadowRoot.querySelector('slot[name="helper-text"]')
+				.textContent = this.getAttribute('helper-text');
+		}
 		/**
 		 * Store an initial value to be used on form resetting
 		 */
