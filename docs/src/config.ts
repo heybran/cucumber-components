@@ -37,4 +37,6 @@ export const SIDEBAR = [
 
   { text: "Layout", header: true },
   { text: "Form Layout", link: "/components/form-layout" },
+  { text: "Horizontal Layout", link: "/components/horizontal-layout" },
+  { text: "Vertical Layout", link: "/components/vertical-layout" },
 ];

@@ -1,0 +1,186 @@
+---
+layout: ../../layouts/MainLayout.astro
+title: 'Horizontal Layout'
+---
+import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
+
+# Horizontal Layout
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-horizontal-layout>
+      <cc-button>Cancel</cc-button>
+      <cc-button variant="primary">Save</cc-button>
+    </cc-horizontal-layout>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-horizontal-layout>
+  <cc-button>Cancel</cc-button>
+  <cc-button variant="primary">Save</cc-button>
+</cc-horizontal-layout>
+```
+
+## Spacing
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-horizontal-layout spacing="small">
+      <cc-button>Cancel</cc-button>
+      <cc-button variant="primary">Save</cc-button>
+    </cc-horizontal-layout>
+    <br />
+    <cc-horizontal-layout spacing="medium">
+      <cc-button>Cancel</cc-button>
+      <cc-button variant="primary">Save</cc-button>
+    </cc-horizontal-layout>
+    <br />
+    <cc-horizontal-layout>
+      <cc-button>Cancel</cc-button>
+      <cc-button variant="primary">Save</cc-button>
+    </cc-horizontal-layout>
+    <br />
+    <cc-horizontal-layout spacing="large">
+      <cc-button>Cancel</cc-button>
+      <cc-button variant="primary">Save</cc-button>
+    </cc-horizontal-layout>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-horizontal-layout spacing="small">
+  <cc-button>Cancel</cc-button>
+  <cc-button variant="primary">Save</cc-button>
+</cc-horizontal-layout>
+<br />
+<cc-horizontal-layout spacing="medium">
+  <cc-button>Cancel</cc-button>
+  <cc-button variant="primary">Save</cc-button>
+</cc-horizontal-layout>
+<br />
+<!-- default to standard -->
+<cc-horizontal-layout spacing="standard">
+  <cc-button>Cancel</cc-button>
+  <cc-button variant="primary">Save</cc-button>
+</cc-horizontal-layout>
+<br />
+<cc-horizontal-layout spacing="large">
+  <cc-button>Cancel</cc-button>
+  <cc-button variant="primary">Save</cc-button>
+</cc-horizontal-layout>
+```
+
+## Custom Spacing
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-horizontal-layout style="--gap: 3rem;">
+      <cc-button>Cancel</cc-button>
+      <cc-button variant="primary">Save</cc-button>
+    </cc-horizontal-layout>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-horizontal-layout style="--gap: 3rem;">
+  <cc-button>Cancel</cc-button>
+  <cc-button variant="primary">Save</cc-button>
+</cc-horizontal-layout>
+```
+
+## Items Expanding
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-horizontal-layout>
+      <cc-button>Cancel</cc-button>
+      <cc-button>Reset</cc-button>
+      <cc-button variant="primary" style="flex-grow: 1;">Save</cc-button>
+    </cc-horizontal-layout>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-horizontal-layout>
+  <cc-button>Cancel</cc-button>
+  <cc-button>Reset</cc-button>
+  <cc-button variant="primary" style="flex-grow: 1;">Save</cc-button>
+</cc-horizontal-layout>
+```
+
+## Padding
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-horizontal-layout theme="padding" style="border: 1px solid #76B23B;">
+      <cc-button>Cancel</cc-button>
+      <cc-button variant="primary">Save</cc-button>
+    </cc-horizontal-layout>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-horizontal-layout theme="padding" style="border: 1px solid #76B23B;">
+  <cc-button>Cancel</cc-button>
+  <cc-button variant="primary">Save</cc-button>
+</cc-horizontal-layout>
+```
+
+## Margin
+
+<ComponentPreview
+  client:load
+  component='
+    <div style="border: 1px solid #333; border-radius: 8px;">
+      <cc-horizontal-layout theme="margin">
+        <cc-button>Cancel</cc-button>
+        <cc-button variant="primary">Save</cc-button>
+      </cc-horizontal-layout>
+    </div>
+  '
+  style="display: block;"
+/>
+
+```html
+<div style="border: 1px solid #333; border-radius: 8px;">
+  <cc-horizontal-layout theme="margin">
+    <cc-button>Cancel</cc-button>
+    <cc-button variant="primary">Save</cc-button>
+  </cc-horizontal-layout>
+</div>
+```
+
+## Margin && Padding
+
+<ComponentPreview
+  client:load
+  component='
+    <div style="border: 1px solid #333; border-radius: 8px;">
+      <cc-horizontal-layout theme="margin padding" style="border: 1px solid #76B23B;">
+        <cc-button>Cancel</cc-button>
+        <cc-button variant="primary">Save</cc-button>
+      </cc-horizontal-layout>
+    </div>
+  '
+  style="display: block;"
+/>
+
+```html
+<div style="border: 1px solid #333; border-radius: 8px;">
+  <cc-horizontal-layout theme="margin padding" style="border: 1px solid #76B23B;">
+    <cc-button>Cancel</cc-button>
+    <cc-button variant="primary">Save</cc-button>
+  </cc-horizontal-layout>
+</div>
+```

@@ -17,6 +17,8 @@
       'checkbox',
       'radio',
       'radio-group',
+      'horizontal-layout',
+      'vertical-layout',
     ];
 
     if (import.meta.env.MODE === 'development') {

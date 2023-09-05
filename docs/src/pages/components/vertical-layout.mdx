@@ -1,0 +1,234 @@
+---
+layout: ../../layouts/MainLayout.astro
+title: 'Vertical Layout'
+---
+import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
+
+# Vertical Layout
+
+Vertical layout places components from top to bottom. By default, its flex children is set to `align-items: stretch;`.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-vertical-layout>
+      <cc-button>Cancel</cc-button>
+      <cc-button variant="primary">Save</cc-button>
+    </cc-vertical-layout>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-vertical-layout>
+  <cc-button>Cancel</cc-button>
+  <cc-button variant="primary">Save</cc-button>
+</cc-vertical-layout>
+```
+
+## Spacing
+
+<ComponentPreview
+  client:load
+  component='
+    <p>Small</p>
+    <cc-vertical-layout spacing="small">
+      <cc-button>Cancel</cc-button>
+      <cc-button variant="primary">Save</cc-button>
+    </cc-vertical-layout>
+    <br />
+    <p>medium</p>
+    <cc-vertical-layout spacing="medium">
+      <cc-button>Cancel</cc-button>
+      <cc-button variant="primary">Save</cc-button>
+    </cc-vertical-layout>
+    <br />
+    <p>Defulat or Standard</p>
+    <cc-vertical-layout>
+      <cc-button>Cancel</cc-button>
+      <cc-button variant="primary">Save</cc-button>
+    </cc-vertical-layout>
+    <br />
+    <p>Large</p>
+    <cc-vertical-layout spacing="large">
+      <cc-button>Cancel</cc-button>
+      <cc-button variant="primary">Save</cc-button>
+    </cc-vertical-layout>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-vertical-layout spacing="small">
+  <cc-button>Cancel</cc-button>
+  <cc-button variant="primary">Save</cc-button>
+</cc-vertical-layout>
+<br />
+<cc-vertical-layout spacing="medium">
+  <cc-button>Cancel</cc-button>
+  <cc-button variant="primary">Save</cc-button>
+</cc-vertical-layout>
+<br />
+<!-- default to standard -->
+<cc-vertical-layout spacing="standard">
+  <cc-button>Cancel</cc-button>
+  <cc-button variant="primary">Save</cc-button>
+</cc-vertical-layout>
+<br />
+<cc-vertical-layout spacing="large">
+  <cc-button>Cancel</cc-button>
+  <cc-button variant="primary">Save</cc-button>
+</cc-vertical-layout>
+```
+
+## Custom Spacing
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-vertical-layout style="--gap: 3rem;">
+      <cc-button>Cancel</cc-button>
+      <cc-button variant="primary">Save</cc-button>
+    </cc-vertical-layout>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-vertical-layout style="--gap: 3rem;">
+  <cc-button>Cancel</cc-button>
+  <cc-button variant="primary">Save</cc-button>
+</cc-vertical-layout>
+```
+
+## Padding
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-vertical-layout theme="padding" style="border: 1px solid #76B23B;">
+      <cc-button>Cancel</cc-button>
+      <cc-button variant="primary">Save</cc-button>
+    </cc-vertical-layout>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-vertical-layout theme="padding" style="border: 1px solid #76B23B;">
+  <cc-button>Cancel</cc-button>
+  <cc-button variant="primary">Save</cc-button>
+</cc-vertical-layout>
+```
+
+## Margin
+
+<ComponentPreview
+  client:load
+  component='
+    <div style="border: 1px solid #333; border-radius: 8px;">
+      <cc-vertical-layout theme="margin">
+        <cc-button>Cancel</cc-button>
+        <cc-button variant="primary">Save</cc-button>
+      </cc-vertical-layout>
+    </div>
+  '
+  style="display: block;"
+/>
+
+```html
+<div style="border: 1px solid #333; border-radius: 8px;">
+  <cc-vertical-layout theme="margin">
+    <cc-button>Cancel</cc-button>
+    <cc-button variant="primary">Save</cc-button>
+  </cc-vertical-layout>
+</div>
+```
+
+## Margin && Padding
+
+<ComponentPreview
+  client:load
+  component='
+    <div style="border: 1px solid #333; border-radius: 8px;">
+      <cc-vertical-layout theme="margin padding" style="border: 1px solid #76B23B;">
+        <cc-button>Cancel</cc-button>
+        <cc-button variant="primary">Save</cc-button>
+      </cc-vertical-layout>
+    </div>
+  '
+  style="display: block;"
+/>
+
+```html
+<div style="border: 1px solid #333; border-radius: 8px;">
+  <cc-vertical-layout theme="margin padding" style="border: 1px solid #76B23B;">
+    <cc-button>Cancel</cc-button>
+    <cc-button variant="primary">Save</cc-button>
+  </cc-vertical-layout>
+</div>
+```
+
+## Horizontal Alignment
+
+This is not coming from component, just adding inline style.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-vertical-layout style="align-items: flex-start;">
+      <cc-button>Cancel</cc-button>
+      <cc-button>Reset</cc-button>
+      <cc-button variant="primary" style="flex-grow: 1;">Save</cc-button>
+    </cc-vertical-layout>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-vertical-layout style="align-items: start;">
+  <cc-button>Cancel</cc-button>
+  <cc-button>Reset</cc-button>
+  <cc-button variant="primary" style="flex-grow: 1;">Save</cc-button>
+</cc-vertical-layout>
+```
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-vertical-layout style="align-items: center;">
+      <cc-button>Cancel</cc-button>
+      <cc-button>Reset</cc-button>
+      <cc-button variant="primary" style="flex-grow: 1;">Save</cc-button>
+    </cc-vertical-layout>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-vertical-layout style="align-items: center;">
+  <cc-button>Cancel</cc-button>
+  <cc-button>Reset</cc-button>
+  <cc-button variant="primary" style="flex-grow: 1;">Save</cc-button>
+</cc-vertical-layout>
+```
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-vertical-layout style="align-items: flex-end;">
+      <cc-button>Cancel</cc-button>
+      <cc-button>Reset</cc-button>
+      <cc-button variant="primary" style="flex-grow: 1;">Save</cc-button>
+    </cc-vertical-layout>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-vertical-layout style="align-items: flex-end;">
+  <cc-button>Cancel</cc-button>
+  <cc-button>Reset</cc-button>
+  <cc-button variant="primary" style="flex-grow: 1;">Save</cc-button>
+</cc-vertical-layout>
+```
