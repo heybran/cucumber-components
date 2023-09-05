@@ -55,6 +55,38 @@ Add a `checked` attribute to indicate this switch is checked by default (when th
 <cc-switch checked layout="reverse">Remote only</cc-switch>
 ```
 
+### Helper Text
+
+Helper text can be added via `helper-text` attribute, or by using slot `helper-text`.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-switch helper-text="Hierarchical post types can have descendants (like pages).">
+      Hierarchical
+    </cc-switch>
+    <cc-switch>
+      Public
+      <span slot="helper-text">
+        Visible on the frontend and in the admin dashboard.
+      </span>
+    </cc-switch>
+  '
+  style="display: block;"
+/>
+
+```html
+<cc-switch helper-text="Hierarchical post types can have descendants (like pages).">
+  Hierarchical
+</cc-switch>
+<cc-switch>
+  Public
+  <span slot="helper-text">
+    Visible on the frontend and in the admin dashboard.
+  </span>
+</cc-switch>
+```
+
 ### Value
 
 When a form is submitted, only checkboxes (`cc-switch` in this case) which are currently checked are submitted to the server, and the reported value is the value of the value attribute. If the value is not otherwise specified, it is the string `on`` by default. 

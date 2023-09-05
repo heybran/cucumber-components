@@ -9,6 +9,7 @@
   --size: 1.5em;
   --gap: 0.5em;
   --helper-text-color: #667085;
+  display: block;
 }
 
 :host([size="small"]) {
