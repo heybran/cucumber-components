@@ -2,7 +2,6 @@
   display: flex;
   gap: var(--gap);
   box-sizing: border-box;
-  align-items: center;
   max-width: 100%;
   /* border radius */
   --border-radius-base: 8px;
@@ -10,6 +9,8 @@
   --border-radius-medum: calc(var(--border-radius-base) * 1);
   --border-radius-large: calc(var(--border-radius-base) * 1.5);
   --border-radius-xl: calc(var(--border-radius-base) * 2);
+  flex-direction: column;
+  align-items: stretch;
 }
 
 :host([spacing~="small"]) {

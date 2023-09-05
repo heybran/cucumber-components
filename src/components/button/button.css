@@ -65,6 +65,10 @@ button {
   flex-wrap: nowrap;
   gap: var(--button-gap, .2em);
   transition: .15s cubic-bezier(.22,1,.36,1);
+  /*
+    Adding 100% otherwise flex-grow: 1 on host will not work.
+  */
+  width: 100%;
 }
 
 button:focus-visible {
