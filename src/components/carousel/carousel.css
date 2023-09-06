@@ -5,11 +5,19 @@
 :host {
   --aspect-ratio: 16 / 9;
   --scroll-hint: 0px;
-  --grid-columns: 3;
+  --items-per-view: 3;
   --spacing: 10px;
   --pagination-size: 1rem;
   /* TODO: naming? */
   --focus-ring-color: #6d4aff;
+  display: none;
+}
+
+/*
+  FIXME: slide image freshes before component is connected to DOM
+*/
+:host(:defined) {
+  display: block;
 }
 
 [part="container"] {
@@ -34,15 +42,21 @@
 }
 
 [part="carousel-container"] {
-  --gap-numbers: calc(var(--grid-columns) - 1);
+  --gap-numbers: calc(var(--items-per-view) - 1);
   display: grid;
   gap: var(--spacing);
-  grid-auto-columns: calc((100% - var(--gap-numbers) * var(--spacing)) / var(--grid-columns));
+  grid-auto-columns: calc((100% - var(--gap-numbers) * var(--spacing)) / var(--items-per-view));
   overflow-y: hidden;
   overflow-x: auto;
   scroll-behavior: smooth;
   grid-auto-flow: column;
   grid-area: slides;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+[part="carousel-container"]::-webkit-scrollbar {
+  display: none;
 }
 
 [part="navigation"] {
@@ -110,4 +124,9 @@ button:focus-visible {
 
 button[aria-selected="true"] {
   filter: brightness(0.5);
+}
+
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
