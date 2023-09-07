@@ -7,7 +7,10 @@ export default class CucumberCarouselItem extends BaseElement {
     super.render('<slot></slot>', css);
     this.setAttribute('role', 'group');
     this.setAttribute('aria-hidden', 'true');
-    this.setAttribute('aria-label', '');
+    const index = Array.from(this.parentElement.querySelectorAll(this.localName))
+      .findIndex(item => item === this);
+    this.setAttribute('aria-label', `Slide ${index + 1}`);
+    this.setAttribute('data-index', `${index + 1}`);
   }
 }
 

@@ -161,11 +161,11 @@ export default class CucumberCarousel extends BaseElement {
   }
 
   disablePreviousButton() {
-    this.enableCurrentDisabledButton().disableNavigationButton('previous');
+    this.disableNavigationButton('previous');
   }
 
   disableNextButton() {
-    this.enableCurrentDisabledButton().disableNavigationButton('next');
+    this.disableNavigationButton('next');
   }
 
   /**
@@ -188,6 +188,7 @@ export default class CucumberCarousel extends BaseElement {
    * @returns this
    */
   disableNavigationButton(type) {
+    this.enableCurrentDisabledButton()
     const index = type === 'previous' ? 1 : 2;
     // @ts-ignore
     const button = this.shadowRoot.querySelector(`[part="navigation-button"]:nth-child(${index})`);
