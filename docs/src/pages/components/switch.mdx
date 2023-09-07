@@ -87,6 +87,37 @@ Helper text can be added via `helper-text` attribute, or by using slot `helper-t
 </cc-switch>
 ```
 
+### Label Position Top
+
+TODO: a 3-column grid layout `cc-grid` should be better for this case? As I need to have these 3 div equal width.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-horizontal-layout>
+      <div style="border: 1px solid #eee; padding: 1rem 2rem;">
+        <cc-switch value="remote-only" name="position-type" theme="label-top">
+          Necessaries
+        </cc-switch>
+      </div>
+      <div style="border: 1px solid #eee; padding: 1rem 2rem;">
+        <cc-switch value="remote-only" name="position-type" theme="label-top">
+          Statics
+        </cc-switch>
+      </div>
+      <div style="border: 1px solid #eee; padding: 1rem 2rem;">
+        <cc-switch value="remote-only" name="position-type" theme="label-top">
+          Marketing
+        </cc-switch>
+      </div>
+    </cc-horizontal-layout>
+  '
+/>
+
+```html
+
+```
+
 ### Value
 
 When a form is submitted, only checkboxes (`cc-switch` in this case) which are currently checked are submitted to the server, and the reported value is the value of the value attribute. If the value is not otherwise specified, it is the string `on`` by default. 

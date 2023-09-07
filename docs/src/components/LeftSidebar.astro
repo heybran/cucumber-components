@@ -8,6 +8,7 @@ const { currentPage } = Astro.props;
 		<a href="/" class="logo">
 			<img src="/cucumber-components.png" role="presentation" alt="">
 		</a>
+		<button id="toggle-mobile-menu">Menu</button>
 	</h2>
 	<nav aria-labelledby="grid-left">
 		<ul>
@@ -18,10 +19,10 @@ const { currentPage } = Astro.props;
 					<a href={item.link}>{item.text}</a>
 				</li>))}
 		</ul>
+		<a title="Github" href="https://github.com/heybran/breeze-components">
+			<img src="/github.svg" alt="github logo">
+		</a>
 	</nav>
-	<a title="Github" href="https://github.com/heybran/breeze-components">
-		<img src="/github.svg" alt="github logo">
-	</a>
 </header>
 
 <style>
@@ -33,6 +34,7 @@ const { currentPage } = Astro.props;
 	}
 	li.current {
 		color: rgb(15 23 42 / 1);
+		font-weight: 500;
 	}
 	header {
 		height: 100vh;
@@ -40,16 +42,24 @@ const { currentPage } = Astro.props;
 		border-right-width: 1px;
 		display: flex;
 		flex-direction: column;
+		border: 1px solid #e5e7eb;
 	}
-	nav {
-		margin-top: 2rem;
+	header > h2 {
+		margin: 0;
+		border-bottom: 1px solid #e5e7eb;
+	}
+	#toggle-mobile-menu {
+		display: none;
+		font-size: 1.2rem;
 	}
 	a {
 		display: block;
-		padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
+		padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
 		padding-left: 2rem;
     padding-right: 2rem;
+		text-decoration: none;
+		color: inherit;
 	}
 	.logo {
 		width: 16rem;
@@ -57,14 +67,54 @@ const { currentPage } = Astro.props;
 		border-bottom-width: 1px;
 	}
 	a[title="Github"] {
-		margin-top: auto;
-		margin-bottom: 2rem;
+		margin-block: 2rem;
+		display: block;
+	}
+	ul {
+		list-style: none;
+    margin: 0;
+    padding: 0;
+		padding-top: 2rem;
 	}
 	ul h2 {
 		font-weight: 600;
 		padding: 0.5rem 2rem;
 		margin-top: 2rem;
 		font-size: 1.5rem;
+	}
+	@media screen and (any-pointer: coarse) {
+		header {
+			position: fixed;
+			width: 100%;
+			border: none;
+			z-index: 9;
+		}
+		header.expanded {
+			background-color: white;
+		}
+		header > h2 {
+			background-color: white;
+			display: flex;
+    	justify-content: space-between;
+		}
+		header #toggle-mobile-menu {
+			display: block;
+			background: none;
+			border: none;
+			padding-inline: 2rem;
+		}
+		nav {
+			transform: translateY(10%);
+			opacity: 0;
+			background-color: white;
+			pointer-events: none;
+		}
+		header.expanded nav {
+			transform: translateY(0);
+			opacity: 1;
+			transition: 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+			pointer-events: initial;
+		}
 	}
 </style>
 
@@ -73,13 +123,19 @@ const { currentPage } = Astro.props;
 		let path = location.pathname;
 		if (path.endsWith('/')) {
 			path = path.replace(/\/$/, "");
+		} else {
+			document.querySelector(`a[href="${path}"]`).parentElement.classList.add('current');
 		}
-		document.querySelector(`a[href="${path}"]`).parentElement.classList.add('current');
 
 		var target = document.querySelector('[aria-current="page"]');
 		if (target && target.offsetTop > window.innerHeight - 100) {
 			document.querySelector('.nav-groups').scrollTop = target.offsetTop;
 		}
+
+		const headerButton = document.querySelector('#toggle-mobile-menu');
+		headerButton?.addEventListener('click', () => {
+			headerButton.closest('header').classList.toggle('expanded');
+		});
 	});
 </script>
 

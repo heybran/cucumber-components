@@ -24,6 +24,8 @@ export const SIDEBAR = [
   { text: "Alert", link: "/components/alert" },
   { text: "Button", link: "/components/button" },
   { text: "Checkbox", link: "/components/checkbox" },
+  { text: "Carousel", link: "/components/carousel" },
+  { text: "Carousel Item", link: "/components/carousel-item" },
   { text: "Radio", link: "/components/radio" },
   { text: "Tooltip", link: "/components/tooltip" },
   { text: "Text Field", link: "/components/text-field" },

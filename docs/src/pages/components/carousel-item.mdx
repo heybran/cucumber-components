@@ -1,0 +1,59 @@
+---
+layout: ../../layouts/MainLayout.astro
+title: 'Carousel Item'
+---
+import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
+
+# Carousel Item
+
+`cc-carousel-item` should be used along with [`cc-carousel`](/components/carousel) component.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-carousel pagination navigation>
+      <cc-carousel-item>
+        <img src="/carousel/01.jpg" alt="carousel demo image 1">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/02.jpg" alt="carousel demo image 2">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/03.jpg" alt="carousel demo image 3">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/04.jpg" alt="carousel demo image 4">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/05.jpg" alt="carousel demo image 5">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/06.jpg" alt="carousel demo image 6">
+      </cc-carousel-item>
+    </cc-carousel>
+  '
+  style="padding: 1rem;"
+/>
+
+```html
+<cc-carousel pagination navigation>
+  <cc-carousel-item>
+    <img src="/carousel/01.jpg" alt="carousel demo image 1">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/02.jpg" alt="carousel demo image 2">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/03.jpg" alt="carousel demo image 3">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/04.jpg" alt="carousel demo image 4">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/05.jpg" alt="carousel demo image 5">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/06.jpg" alt="carousel demo image 6">
+  </cc-carousel-item>
+</cc-carousel>
+```

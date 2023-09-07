@@ -19,6 +19,8 @@
       'radio-group',
       'horizontal-layout',
       'vertical-layout',
+      'carousel',
+      'carousel-item',
     ];
 
     if (import.meta.env.MODE === 'development') {

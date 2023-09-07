@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 import image from "@astrojs/image";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
@@ -8,7 +7,6 @@ import codeTitle from "remark-code-title";
 import fs from "node:fs";
 import type { Plugin } from "vite";
 import svelte from "@astrojs/svelte";
-import react from "@astrojs/react";
 import netlify from "@astrojs/netlify/functions";
 import builtins from "rollup-plugin-node-builtins";
 import globals from "rollup-plugin-node-globals";
@@ -20,7 +18,7 @@ const layoutOptions = {
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), sitemap(), image(), mdx(), svelte(), react()],
+  integrations: [sitemap(), image(), mdx(), svelte()],
   site: "https://breeze-components.netlify.app",
   markdown: {
     remarkPlugins: [[astroLayouts, layoutOptions], codeTitle],

@@ -1,0 +1,342 @@
+---
+layout: ../../layouts/MainLayout.astro
+title: 'Carousel'
+---
+import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
+
+# Carousel
+
+`cc-carousel` component by default displays 3 items per view.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-carousel pagination navigation>
+      <cc-carousel-item>
+        <img src="/carousel/01.jpg" alt="carousel demo image 1">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/02.jpg" alt="carousel demo image 2">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/03.jpg" alt="carousel demo image 3">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/04.jpg" alt="carousel demo image 4">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/05.jpg" alt="carousel demo image 5">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/06.jpg" alt="carousel demo image 6">
+      </cc-carousel-item>
+    </cc-carousel>
+  '
+  style="padding: 1rem;"
+/>
+
+```html
+<cc-carousel pagination navigation>
+  <cc-carousel-item>
+    <img src="/carousel/01.jpg" alt="carousel demo image 1">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/02.jpg" alt="carousel demo image 2">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/03.jpg" alt="carousel demo image 3">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/04.jpg" alt="carousel demo image 4">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/05.jpg" alt="carousel demo image 5">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/06.jpg" alt="carousel demo image 6">
+  </cc-carousel-item>
+</cc-carousel>
+```
+
+
+## Items Per View
+
+Items per view can be controllbed by setting `items-per-view` attribute.
+
+### `items-per-view="2"`
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-carousel pagination navigation items-per-view="2">
+      <cc-carousel-item>
+        <img src="/carousel/01.jpg" alt="carousel demo image 1">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/02.jpg" alt="carousel demo image 2">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/03.jpg" alt="carousel demo image 3">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/04.jpg" alt="carousel demo image 4">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/05.jpg" alt="carousel demo image 5">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/06.jpg" alt="carousel demo image 6">
+      </cc-carousel-item>
+    </cc-carousel>
+  '
+  style="padding: 1rem;"
+/>
+
+```html
+<cc-carousel pagination navigation items-per-view="2">
+  <cc-carousel-item>
+    <img src="/carousel/01.jpg" alt="carousel demo image 1">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/02.jpg" alt="carousel demo image 2">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/03.jpg" alt="carousel demo image 3">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/04.jpg" alt="carousel demo image 4">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/05.jpg" alt="carousel demo image 5">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/06.jpg" alt="carousel demo image 6">
+  </cc-carousel-item>
+</cc-carousel>
+```
+
+### `items-per-view="1"`
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-carousel pagination navigation items-per-view="1">
+      <cc-carousel-item>
+        <img src="/carousel/01.jpg" alt="carousel demo image 1">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/02.jpg" alt="carousel demo image 2">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/03.jpg" alt="carousel demo image 3">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/04.jpg" alt="carousel demo image 4">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/05.jpg" alt="carousel demo image 5">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/06.jpg" alt="carousel demo image 6">
+      </cc-carousel-item>
+    </cc-carousel>
+  '
+  style="padding: 1rem;"
+/>
+
+```html
+<cc-carousel pagination navigation items-per-view="1">
+  <cc-carousel-item>
+    <img src="/carousel/01.jpg" alt="carousel demo image 1">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/02.jpg" alt="carousel demo image 2">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/03.jpg" alt="carousel demo image 3">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/04.jpg" alt="carousel demo image 4">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/05.jpg" alt="carousel demo image 5">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/06.jpg" alt="carousel demo image 6">
+  </cc-carousel-item>
+</cc-carousel>
+```
+
+
+## Pagination
+
+Add `pagination` attribute to show pagination buttons.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-carousel pagination>
+      <cc-carousel-item>
+        <img src="/carousel/01.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/02.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/03.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/04.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/05.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/06.jpg">
+      </cc-carousel-item>
+    </cc-carousel>
+  '
+  style="padding: 1rem;"
+/>
+
+```html
+<cc-carousel pagination>
+  <cc-carousel-item>
+    <img src="/carousel/01.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/02.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/03.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/04.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/05.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/06.jpg">
+  </cc-carousel-item>
+</cc-carousel>
+```
+
+## Previous & Next Buttons
+
+Add `navigation` attribute to show previous & next navigation buttons.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-carousel navigation>
+      <cc-carousel-item>
+        <img src="/carousel/01.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/02.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/03.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/04.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/05.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/06.jpg">
+      </cc-carousel-item>
+    </cc-carousel>
+  '
+  style="padding: 1rem;"
+/>
+
+```html
+<cc-carousel navigation>
+  <cc-carousel-item>
+    <img src="/carousel/01.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/02.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/03.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/04.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/05.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/06.jpg">
+  </cc-carousel-item>
+</cc-carousel>
+```
+
+
+## Aspect Ratio
+
+Update component's `--aspect-ratio` custom property to customize the image aspect ratio.
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-carousel navigation pagination style="--aspect-ratio: 3/2;">
+      <cc-carousel-item>
+        <img src="/carousel/01.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/02.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/03.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/04.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/05.jpg">
+      </cc-carousel-item>
+      <cc-carousel-item>
+        <img src="/carousel/06.jpg">
+      </cc-carousel-item>
+    </cc-carousel>
+  '
+  style="padding: 1rem;"
+/>
+
+```html
+<cc-carousel navigation pagination style="--aspect-ratio: 3/2;">
+  <cc-carousel-item>
+    <img src="/carousel/01.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/02.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/03.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/04.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/05.jpg">
+  </cc-carousel-item>
+  <cc-carousel-item>
+    <img src="/carousel/06.jpg">
+  </cc-carousel-item>
+</cc-carousel>
+```
+
+## TODO
+
+1. Vertical Scrolling
+
+2. Looping
+
+3. Autoplay
+
+4. Scroll Hint
