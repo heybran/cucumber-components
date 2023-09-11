@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 :host {
   position: relative;
   display: inline-block;
@@ -23,34 +27,41 @@
   --button-background-color: hsl(var(--background-h), var(--background-s), var(--background-l));
 }
 
-:host([variant="primary"]) {
+:host([theme="primary"]) {
   --background-h: 252;
   --background-s: 100%;
   --background-l: 65%;
   --button-text-color: #fff;
 }
 
-:host([variant="success"]) {
+:host([theme="success"]) {
   --background-h: 145;
   --background-s: 72%;
   --background-l: 30%;
   --button-text-color: #fff;
 }
 
-:host([variant="default"]) button,
-:host([variant="primary"]) button,
-:host([variant="success"]) button,
-:host([variant="warning"]) button,
-:host([variant="danger"]) button {
+:host([theme~="danger"]) {
+  --background-h: 6;
+  --background-s: 95%;
+  --background-l: 47%;
+  --button-text-color: #fff;
+}
+
+:host([theme="default"]) [part="button"],
+:host([theme="primary"]) [part="button"],
+:host([theme="success"]) [part="button"],
+:host([theme="warning"]) [part="button"],
+:host([theme="danger"]) [part="button"] {
   border-color: transparent;
 }
 
-:host([variant="primary"]) button:hover,
-:host([variant="success"]) button:hover {
+:host([theme="primary"]) [part="button"]:hover,
+:host([theme="success"]) [part="button"]:hover {
   --button-background-color: hsl(var(--background-h), var(--background-s), calc(var(--background-l) - 5%));
 } 
 
-button {
+[part="button"] {
   background-color: var(--button-background-color, transparent);
   border: 1px solid var(--button-border-color, #dedbd9);
   color: var(--button-text-color, inherit);
@@ -71,16 +82,16 @@ button {
   width: 100%;
 }
 
-button:focus-visible {
+[part="button"]:focus-visible {
   outline: var(--outline-color-focus) auto 1px;
   box-shadow: var(--box-shadow);
 }
 
-:host([variant="default"]) button:focus-visible,
-:host([variant="primary"]) button:focus-visible,
-:host([variant="success"]) button:focus-visible,
-:host([variant="warning"]) button:focus-visible,
-:host([variant="danger"]) button:focus-visible {
+:host([theme="default"]) [part="button"]:focus-visible,
+:host([theme="primary"]) [part="button"]:focus-visible,
+:host([theme="success"]) [part="button"]:focus-visible,
+:host([theme="warning"]) [part="button"]:focus-visible,
+:host([theme="danger"]) [part="button"]:focus-visible {
   outline: var(--button-background-color) auto 1px;
   --box-shadow-color-focus: hsl(var(--background-h) var(--background-s) var(--background-l) / 0.2);
 }
@@ -90,12 +101,12 @@ button:focus-visible {
   align-items: center;
 }
 
-:host([theme~="icon"]) button {
+:host([theme~="icon"]) [part="button"] {
   gap: 0;
   padding: 0.25ch;
 }
 
-:host([theme~="borderless"]) button {
+:host([theme~="borderless"]) [part="button"] {
   border: none;
 }
 
@@ -103,15 +114,15 @@ button:focus-visible {
   line-height: 1;
 }
 
-:host([no-border]) button {
+:host([no-border]) [part="button"] {
   border-color: transparent;
 }
 
-:host([loading]) button {
+:host([loading]) [part="button"] {
   cursor: wait;
 }
 
-:host([loading]) button :not([part="spinner"]) {
+:host([loading]) [part="button"] :not([part="spinner"]) {
   visibility: hidden;
 }
 
@@ -122,18 +133,18 @@ button:focus-visible {
   transform: translate(-50%, -50%);
 }
 
-button[disabled] {
+[part="button"][disabled] {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-:host([variant~="text"]:not([disabled])) button {
+:host([theme~="text"]:not([disabled])) [part="button"] {
   background-color: transparent;
   border-color: transparent;
   color: var(--primary-color);
 }
 
-:host([variant~="text"]:not([disabled])) button:hover {
+:host([theme~="text"]:not([disabled])) [part="button"]:hover {
   filter: brightness(0.8);
 }
 

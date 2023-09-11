@@ -15,6 +15,18 @@ export default class CucumberButton extends FormElement {
 		if (this.type) {
 			this.button.setAttribute("type", this.type);
 			this.handleButtonClick(this.type);
+		} else if (this.hasAttribute('href')) {
+			this.anchor = document.createElement('a');
+			this.anchor.setAttribute('href', this.getAttribute('href'));
+			this.anchor.setAttribute('part', 'button');
+			if (this.hasAttribute('target')) {
+				this.anchor.setAttribute('target', this.getAttribute('target'));
+				this.anchor.setAttribute('rel', 'noreferrer noopener');
+			} else if (this.hasAttribute('download')) {
+				this.anchor.setAttribute('download', this.getAttribute('download'));
+			}
+			this.anchor.append(...this.button.children);
+			this.button.replaceWith(this.anchor);
 		}
 	}
 

@@ -19,19 +19,21 @@ import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
 <cc-button>Button</cc-button>
 ```
 
-## Variants
+## Theme
 
 <ComponentPreview
   client:load
   component='
-    <cc-button variant="primary">Button</cc-button>
-    <cc-button variant="success">Button</cc-button>
+    <cc-button theme="primary">Button</cc-button>
+    <cc-button theme="success">Button</cc-button>
+    <cc-button theme="danger">Button</cc-button>
   '
 />
 
 ```html
-<cc-button variant="primary">Button</cc-button>
-<cc-button variant="success">Button</cc-button>
+<cc-button theme="primary">Button</cc-button>
+<cc-button theme="success">Button</cc-button>
+<cc-button theme="danger">Button</cc-button>
 ```
 
 ## Sizes
@@ -57,17 +59,34 @@ import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
 <ComponentPreview
   client:load
   component='
-    <cc-button variant="text" size="small">Button</cc-button>
-    <cc-button variant="text">Button</cc-button>
-    <cc-button variant="text" size="large">Button</cc-button>
+    <cc-button theme="text" size="small">Button</cc-button>
+    <cc-button theme="text">Button</cc-button>
+    <cc-button theme="text" size="large">Button</cc-button>
   '
 />
 
 ```html
-<cc-button variant="text" size="small">Button</cc-button>
+<cc-button theme="text" size="small">Button</cc-button>
 <!-- default to medium size -->
-<cc-button variant="text" size="medium">Button</cc-button>
-<cc-button variant="text" size="large">Button</cc-button>
+<cc-button theme="text" size="medium">Button</cc-button>
+<cc-button theme="text" size="large">Button</cc-button>
+```
+
+## Link Buttons
+
+<ComponentPreview
+  client:load
+  component='
+    <cc-button href="https://example.com">Link</cc-button>
+    <cc-button href="https://example.com" target="_blank">New Window</cc-button>
+    <cc-button href="/github.svg" download="github.svg">Download</cc-button>
+  '
+/>
+
+```html
+<cc-button href="https://example.com">Link</cc-button>
+<cc-button href="https://example.com" target="_blank">New Window</cc-button>
+<cc-button href="/github.svg" download="github.svg">Download</cc-button>
 ```
 
 ## Icon Buttons
