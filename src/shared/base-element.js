@@ -5,9 +5,9 @@ export default class BaseElement extends HTMLElement {
     this.attachShadow({ mode: 'open' });
   }
 
-  render(html, css) {
+  render(html, css, sharedCss) {
     const template = document.createElement('template');
-    template.innerHTML = `<style>${css}</style>` + html;
+    template.innerHTML = `<style>${sharedCss ?? ''}${css}</style>` + html;
     // @ts-ignore
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }

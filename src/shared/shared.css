@@ -1,4 +1,18 @@
 :host {
+  /* https://yeun.github.io/open-color/ */
+  /* Gray */
+  --cc-gray-0: #f8f9fa;
+  --cc-gray-1: #f1f3f5;
+  --cc-gray-2: #e9ecef;
+  --cc-gray-3: #dee2e6;
+  --cc-gray-4: #ced4da;
+  --cc-gray-5: #adb5bd;
+  --cc-gray-6: #868e96;
+  --cc-gray-7: #495057;
+  --cc-gray-8: #343a40;
+  --cc-gray-9: #212529;
+
+  
   --_outline-color-focus: var(--breeze-outline-color-focus, hsl(252, 100%, 65%));
   --_box-shadow-color-focus: var(--breeze-box-shadow-color-focus, rgba(109, 74, 255, 0.2));
   --_primary-color: var(--breeze-primary-color, #6d4aff);
