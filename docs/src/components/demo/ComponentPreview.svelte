@@ -21,6 +21,7 @@
       'vertical-layout',
       'carousel',
       'carousel-item',
+      'divider',
     ];
 
     if (import.meta.env.MODE === 'development') {

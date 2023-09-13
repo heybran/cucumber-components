@@ -1,0 +1,189 @@
+---
+layout: ../../layouts/MainLayout.astro
+title: 'Divider'
+---
+import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
+
+# Divider
+
+Divider works similarly with native `<hr>` element with extra features.
+
+<ComponentPreview
+  client:load
+  component='
+    <div>Content above</div>
+    <cc-divider></cc-divider>
+    <div>Content below</div>
+  '
+  style="display: block; text-align: center;"
+/>
+
+```html
+<div>Content above</div>
+<cc-divider></cc-divider>
+<div>Content below</div>
+```
+
+## Color
+
+Set a `--color` custom property to change the color of the divider.
+
+<ComponentPreview
+  client:load
+  component='
+    <div>Content above</div>
+    <cc-divider style="--color: orange"></cc-divider>
+    <div>Content below</div>
+  '
+  style="display: block; text-align: center;"
+/>
+
+```html
+<div>Content above</div>
+<cc-divider style="--color: orange"></cc-divider>
+<div>Content below</div>
+```
+
+## Spacing
+
+Utilize the `--spacing` custom property to effortlessly adjust the spacing between the divider and its adjacent elements.
+
+<ComponentPreview
+  client:load
+  component='
+    <div>Content above</div>
+    <cc-divider style="--spacing: 2rem;"></cc-divider>
+    <div>Content below</div>
+  '
+  style="display: block; text-align: center;"
+/>
+
+```html
+<div>Content above</div>
+<cc-divider style="--spacing: 2rem;"></cc-divider>
+<div>Content below</div>
+```
+
+## Text
+
+Add a `text` attribute to add a text on the divider.
+
+<ComponentPreview
+  client:load
+  component='
+    <div>Content above</div>
+    <cc-divider text="OR"></cc-divider>
+    <div>Content below</div>
+  '
+  style="display: block; text-align: center;"
+/>
+
+```html
+<div>Content above</div>
+<cc-divider text="OR"></cc-divider>
+<div>Content below</div>
+```
+
+## Thickness
+
+Use the `--thickness` custom property to change the thickness of the divider.
+
+<ComponentPreview
+  client:load
+  component='
+    <div>Content above</div>
+    <cc-divider style="--thickness: 3px;"></cc-divider>
+    <div>Content below</div>
+  '
+  style="display: block; text-align: center;"
+/>
+
+```html
+<div>Content above</div>
+<cc-divider style="--thickness: 3px;"></cc-divider>
+<div>Content below</div>
+```
+
+## Width
+
+Use the `--width` custom property to change the width of the divider, default to `100%`.
+
+<ComponentPreview
+  client:load
+  component='
+    <div>Content above</div>
+    <cc-divider style="--thickness: 3px; --width: 75%;"></cc-divider>
+    <div>Content below</div>
+  '
+  style="display: block; text-align: center;"
+/>
+
+```html
+<div>Content above</div>
+<cc-divider style="--thickness: 3px; --width: 75%;"></cc-divider>
+<div>Content below</div>
+```
+
+## Vertical
+
+Add the `theme=vertical` to make it a vertical divider.
+
+<ComponentPreview
+  client:load
+  component='
+    <div>
+      <h2>Left Column</h2>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta ad aperiam harum voluptatum iure quae repellat voluptatibus saepe necessitatibus recusandae, modi explicabo totam facilis suscipit consequuntur? Obcaecati, tenetur. Reiciendis, ipsam?</p>
+    </div>
+    <cc-divider theme="vertical"></cc-divider>
+    <div>
+      <h2>Left Column</h2>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta ad aperiam harum voluptatum iure quae repellat voluptatibus saepe necessitatibus recusandae, modi explicabo totam facilis suscipit consequuntur? Obcaecati, tenetur. Reiciendis, ipsam?</p>
+    </div>
+  '
+  style="display: grid; grid-auto-flow: column;"
+/>
+
+```html
+<div>
+  <h2>Left Column</h2>
+  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta ad aperiam harum voluptatum iure quae repellat voluptatibus saepe necessitatibus recusandae, modi explicabo totam facilis suscipit consequuntur? Obcaecati, tenetur. Reiciendis, ipsam?</p>
+</div>
+<cc-divider theme="vertical"></cc-divider>
+<div>
+  <h2>Left Column</h2>
+  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta ad aperiam harum voluptatum iure quae repellat voluptatibus saepe necessitatibus recusandae, modi explicabo totam facilis suscipit consequuntur? Obcaecati, tenetur. Reiciendis, ipsam?</p>
+</div>
+```
+
+## Vertical With Text
+
+Add the `theme=vertical` and `text` attribute to achieve this layout.
+
+<ComponentPreview
+  client:load
+  component='
+    <div>
+      <h2>Left Column</h2>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta ad aperiam harum voluptatum iure quae repellat voluptatibus saepe necessitatibus recusandae, modi explicabo totam facilis suscipit consequuntur? Obcaecati, tenetur. Reiciendis, ipsam?</p>
+    </div>
+    <cc-divider theme="vertical" text="OR"></cc-divider>
+    <div>
+      <h2>Left Column</h2>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta ad aperiam harum voluptatum iure quae repellat voluptatibus saepe necessitatibus recusandae, modi explicabo totam facilis suscipit consequuntur? Obcaecati, tenetur. Reiciendis, ipsam?</p>
+    </div>
+  '
+  style="display: grid; grid-auto-flow: column;"
+/>
+
+```html
+<div>
+  <h2>Left Column</h2>
+  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta ad aperiam harum voluptatum iure quae repellat voluptatibus saepe necessitatibus recusandae, modi explicabo totam facilis suscipit consequuntur? Obcaecati, tenetur. Reiciendis, ipsam?</p>
+</div>
+<cc-divider theme="vertical" text="OR"></cc-divider>
+<div>
+  <h2>Left Column</h2>
+  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta ad aperiam harum voluptatum iure quae repellat voluptatibus saepe necessitatibus recusandae, modi explicabo totam facilis suscipit consequuntur? Obcaecati, tenetur. Reiciendis, ipsam?</p>
+</div>
+```
