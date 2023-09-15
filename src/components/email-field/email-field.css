@@ -1,0 +1,75 @@
+:host {
+  --border-radius: 8px;
+  --border-color-normal: #adaba8;
+  --border-color-focus: hsl(252, 100%, 65%);
+  /* TODO: how to connect to hsl? */
+  --box-shadow-color: rgba(109, 74, 255, 0.2);
+  --helper-text-color: #5c5958;
+  --label-font-weight: 600;
+  /*
+    Adding display block otherwise components user setting margin
+    on this component will not work as expected.
+  */
+  display: block;
+}
+
+input {
+  width: 100%;
+  height: auto;
+  background: none;
+  border-radius: var(--border-radius);
+  min-height: 0;
+  min-width: 0;
+  color: inherit;
+  outline: none;
+  padding: 1ch 1.5ch;
+  -webkit-appearance: none;
+  font: inherit;
+  margin: 0;
+  border: 0;
+}
+
+label {
+  font-weight: var(--label-font-weight);
+  /* move spacing from input-container to label */
+  padding-block: 0.25em 0.5em;
+  display: inline-block;
+}
+
+[part="input-container"] {
+  /* margin is not a good choice here as clicking margin area will not activate input */
+  /* margin-top: .5em; */
+  border: 1px solid var(--border-color-normal);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: .15s cubic-bezier(.22,1,.36,1), visibility 0s;
+}
+
+[part=input-container]:focus-within {
+  border-color: var(--border-color-focus);
+  box-shadow: 0 0 0 0.1875rem var(--box-shadow-color);
+}
+
+[part="helper-text"]:not(:empty) {
+  color: var(--helper-text-color);
+  font-size: 0.9em;
+  margin-top: .25em;
+}
+
+::slotted([slot="suffix"]),
+::slotted([slot="prefix"]) {
+  padding-inline: 1ch;
+}
+
+:host([label-position-side]) [part="container"] {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  justify-content: space-between;
+}
+
+:host([label-position-side]) [part="input-container"] {
+  margin-top: 0;
+}

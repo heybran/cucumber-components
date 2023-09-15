@@ -1,0 +1,10 @@
+<div part="container">
+  <label part="label"><span></span></label>
+  <div part="input-container">
+    <slot name="prefix"></slot>
+    <input part="input" type="email" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-invalid="false" aria-describedby="">
+    <slot name="suffix"></slot>
+  </div>
+  <div part="helper-text"></div>
+  <div part="error-message"></div>
+</div>
