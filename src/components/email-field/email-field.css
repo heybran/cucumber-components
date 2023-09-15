@@ -73,3 +73,7 @@ label {
 :host([label-position-side]) [part="input-container"] {
   margin-top: 0;
 }
+
+:host(:not([required])) [part="required-indicator"] {
+  display: none;
+}

@@ -1,71 +1,41 @@
 import FormElement from "../../shared/form-element.js";
 import css from "./email-field.css?inline";
 import html from "./email-field.html?raw";
-import formFieldProperties from "../../shared/form-field-properties.js";
-
-console.log({ formFieldProperties})
+import { EMAIL_FIELD } from "../../shared/form-field-properties.js";
 
 export default class CucumberEmailField extends FormElement {
+	constructor() {
+		super().render(html, css);
+	}
+
 	/** @type {string} */
 	static __localName = 'cc-email-field';
 
 	/**
-	 * @returns {HTMLInputElement}
+	 * Update label text.
+	 * @param {string} text
 	 */
-	get input() {
-		// @ts-ignore
-		return this.shadowRoot.querySelector("input");
+	onLabelChange(text) {
+		this.shadowRoot.querySelector('slot[name="label"]').textContent = text;
 	}
 
 	/**
-	 * @param {string} arg
+	 * Update helper text.
+	 * @param {string} text 
 	 */
-	// set label(arg) {
-	// 	// @ts-ignore
-	// 	this.shadowRoot.querySelector('[part="label"] span').textContent = arg;
-	// }
-
-	/**
-	 * @param {string} arg
-	 */
-	set placeholder(arg) {
-		// @ts-ignore
-		this.input.placeholder = arg;
-	}
-
-	/**
-	 * @param {string} arg
-	 */
-	set helperText(arg) {
-		// @ts-ignore
-		this.shadowRoot.querySelector('[part="helper-text"]').textContent = arg;
-	}
-
-	/**
-	 * @returns {string}
-	 */
-	get value() {
-		return this.input.value;
-	}
-
-	/**
-	 * @param {string} arg
-	 */
-	set value(arg) {
-		this.input.value = arg;
-	}
-
-	/**
-	 * @param {boolean} flag
-	 */
-	set required(flag) {
-		this.input.required = flag;
+	onHelperTextChange(text) {
+		this.shadowRoot.querySelector('slot[name="helper-text"]').textContent = text;
 	}
 
 	connectedCallback() {
-		super.render(html, css);
-
-		requestAnimationFrame(() => {
+		/**
+		 * In your case, since the task of setting attributes and updating the form elements 
+		 * does not require immediate attention and is not related to visual updates or animations, 
+		 * using `requestIdleCallback()` would be more appropriate. 
+		 * It ensures that the task is performed during idle periods, 
+		 * reducing the impact on critical rendering and user interactions.
+		 */
+		requestIdleCallback(() => {
 			const id = `input-${this.uuid()}`;
 			// @ts-ignore
 			this.shadowRoot.querySelector('[part="label"]').setAttribute("for", id);
@@ -78,46 +48,16 @@ export default class CucumberEmailField extends FormElement {
 			form.__cucumberElements.push(this);
 		});
 
-		// requestIdleCallback(() => {
-		// 	const id = `input-${this.uuid()}`;
-		// 	// @ts-ignore
-		// 	this.shadowRoot.querySelector('[part="label"]').setAttribute("for", id);
-		// 	this.input.id = id;
-		// 	const form = this.getForm();
-		// 	if (!form) return;
-		// 	if (!Array.isArray(form.__cucumberElements)) {
-		// 		form.__cucumberElements = [];
-		// 	}
-		// 	form.__cucumberElements.push(this);
-		// });
-
-		if (this.hasAttribute("value")) {
-			this.value = this.getAttribute("value") ?? "";
-		}
-
 		/**
 		 * Store an initial value to be used on form resetting
 		 */
 		this._initialValue = this.value;
 
-		// if (this.hasAttribute("label")) {
-		// 	this.label = this.getAttribute("label") ?? "";
-		// }
-
-		if (this.hasAttribute("placeholder")) {
-			this.placeholder = this.getAttribute("placeholder") ?? "";
-		}
-
-		if (this.hasAttribute("helper-text")) {
-			this.helperText = this.getAttribute("helper-text") ?? "";
-		}
-
-		this.required = this.hasAttribute("required");
-
 		this.getForm()?.addEventListener("formdata", this.setFormData);
 
 		this.getForm()?.addEventListener("reset", (event) => {
 			// @ts-ignore
+			// @todo 
 			this.value = this._initialValue;
 		});
 
@@ -140,28 +80,6 @@ export default class CucumberEmailField extends FormElement {
 		this.input.reportValidity();
 	}
 
-	/**
-	 * @param {FormDataEvent} event
-	 * @returns void
-	 */
-	// setFormData = (event) => {
-	// 	const formData = event.formData;
-	// 	if (!this.hasAttribute("name")) {
-	// 		return console.warn(
-	// 			`No 'name' attribute found on ${this.localName}, so this form field will not particiate on form submit.`,
-	// 		);
-	// 	}
-
-	// 	/**
-	// 	 * Fixes for not able to remove formdata event listener when disconnected
-	// 	 */
-	// 	if (!this.getForm()) {
-	// 		return;
-	// 	}
-	// 	// @ts-ignore
-	// 	formData.set(this.getAttribute("name"), this.value);
-	// };
-
 	disconnectedCallback() {
 		/**
 		 * console.log(this.getForm()); // renders null when disconnected from DOM,
@@ -171,7 +89,7 @@ export default class CucumberEmailField extends FormElement {
 	}
 
 	static get observedAttributes() {
-		return [...Object.keys(formFieldProperties[this.__localName])];
+		return [...Object.keys(EMAIL_FIELD)];
 	}
 
 	/**
@@ -181,28 +99,7 @@ export default class CucumberEmailField extends FormElement {
 	 * @param {string|null} newValue 
 	 */
 	attributeChangedCallback(attr, oldValue, newValue) {
-		const attrSource = formFieldProperties[this.localName][attr];
-		if (!this.attributesDefined.includes(attr)) {
-			Object.defineProperty(this, attr, {
-				get() {
-					if (attrSource.type === Boolean) {
-						return this.hasAttribute(attr);
-					} else if (attrSource.type === String) {
-						console.log('getter called');
-						return this.getAttribute(attr) ?? '';
-					}
-				},
-				set(arg) {
-					if (attrSource.type === Boolean) {
-						this.toggleAttribute(attr, Boolean(arg));
-					} else if (attrSource.type === String) {
-						this.setAttribute(attr, arg);
-					}
-				}
-			});
-
-			this.attributesDefined.push(attr);
-		}
+		super.attributeChangedCallback(attr, oldValue, newValue, EMAIL_FIELD);
 	}
 }
 
