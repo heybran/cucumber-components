@@ -6,6 +6,11 @@
   --box-shadow-color: rgba(109, 74, 255, 0.2);
   --helper-text-color: #5c5958;
   --label-font-weight: 600;
+  /*
+    Adding display block otherwise components user setting margin
+    on this component will not work as expected.
+  */
+  display: block;
 }
 
 input {
