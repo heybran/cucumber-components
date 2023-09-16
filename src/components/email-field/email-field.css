@@ -36,6 +36,14 @@ label {
   display: inline-block;
 }
 
+/*
+  When label aligns with input vertially, make top/bottom padding same,
+  as we're center-aligning vertically.
+*/
+:host([label-position-side]) label {
+  padding-block: 0.25em;
+}
+
 [part="input-container"] {
   /* margin is not a good choice here as clicking margin area will not activate input */
   /* margin-top: .5em; */
@@ -76,4 +84,20 @@ label {
 
 :host(:not([required])) [part="required-indicator"] {
   display: none;
+}
+
+:host([readonly]) [part="input-container"] {
+  border-style: dashed;
+}
+
+:host([readonly]) slot[name="suffix"] > * {
+  opacity: .5;
+}
+
+:host([disabled]) slot[name="suffix"] > * {
+  pointer-events: none;
+}
+
+:host([disabled]) {
+  opacity: 0.5;
 }
