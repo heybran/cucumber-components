@@ -22,6 +22,39 @@ const autocomplete = {
   reflect: true,
 }
 
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly
+ * If the readonly attribute is specified on an input element, 
+ * because the user can not edit the input, 
+ * the element does not participate in constraint validation.
+ * 
+ * When an input has the readonly attribute, 
+ * the :read-only pseudo-class also applies to it. 
+ * Conversely, inputs that support the readonly attribute 
+ * but don't have the attribute set match the :read-write pseudo-class.
+ * 
+ * The difference between disabled and readonly is that read-only controls 
+ * can still function and are still focusable, 
+ * whereas disabled controls can not receive focus and 
+ * are not submitted with the form and generally do not function 
+ * as controls until they are enabled.
+ * 
+ * Because a read-only field cannot have its value changed by a user interaction, 
+ * required does not have any effect on inputs with the readonly attribute also specified.
+ */
+const readonly = {
+  type: Boolean,
+  reflect: true,
+}
+
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled
+ */
+const disabled = {
+  type: Boolean,
+  reflect: true,
+}
+
 const label = {
   type: String,
   reflect: false,
@@ -57,6 +90,8 @@ export const EMAIL_FIELD = {
   label,
   'helper-text': helperText,
   required,
+  readonly,
+  disabled,
   placeholder,
   value,
   'error-message': errorMessage,
