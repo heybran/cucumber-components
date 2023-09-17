@@ -1,11 +1,12 @@
 import FormElement from "../../shared/form-element.js";
 import css from "./email-field.css?inline";
+import sharedCss from "../../shared/shared.css?inline";
 import html from "./email-field.html?raw";
 import { EMAIL_FIELD } from "../../shared/form-field-properties.js";
 
 export default class CucumberEmailField extends FormElement {
 	constructor() {
-		super().render(html, css);
+		super().render(html, css, sharedCss);
 	}
 
 	/** @type {string} */
@@ -68,6 +69,11 @@ export default class CucumberEmailField extends FormElement {
 
 		// @ts-ignore
 		this.input.addEventListener("change", (event) => {
+			/**
+			 * Reset validity to empty string otherwise this field
+			 * will stay invalid forever.
+			 */
+			this.input.setCustomValidity('');
 			this.dispatchEvent(new Event("change"));
 		});
 	}

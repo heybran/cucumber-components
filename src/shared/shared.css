@@ -12,6 +12,18 @@
   --cc-gray-8: #343a40;
   --cc-gray-9: #212529;
 
+  /* Red  */
+  --cc-red-0: #fff5f5;
+  --cc-red-1: #ffe3e3;
+  --cc-red-2: #ffc9c9;
+  --cc-red-3: #ffa8a8;
+  --cc-red-4: #ff8787;
+  --cc-red-5: #ff6b6b;
+  --cc-red-6: #fa5252;
+  --cc-red-7: #f03e3e;
+  --cc-red-8: #e03131;
+  --cc-red-9: #c92a2a;
+
   
   --_outline-color-focus: var(--breeze-outline-color-focus, hsl(252, 100%, 65%));
   --_box-shadow-color-focus: var(--breeze-box-shadow-color-focus, rgba(109, 74, 255, 0.2));

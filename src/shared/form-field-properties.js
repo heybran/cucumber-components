@@ -75,6 +75,11 @@ const required = {
   reflect: true,
 }
 
+const multiple = {
+  type: Boolean,
+  reflect: true,
+}
+
 const helperText = {
   type: String,
   reflect: false,
@@ -90,6 +95,7 @@ export const EMAIL_FIELD = {
   label,
   'helper-text': helperText,
   required,
+  multiple,
   readonly,
   disabled,
   placeholder,
