@@ -45,6 +45,30 @@ Email Field is a wrapper around `<input type="email">` element which accepts onl
 <cc-email-field label="Email" name="email" helper-text="Please enter your email address."></cc-email-field>
 ```
 
+Add a `helper-text-position-top` to move helper text above the email input field.
+
+<div class="preview">
+<cc-email-field 
+  style="max-width: 20em;"
+  label="Email" 
+  name="email" 
+  pattern=".+@beststartupever\.com"
+  helper-text="Please provide only a Best Startup Ever corporate email address."
+  helper-text-position-top
+></cc-email-field>
+</div>
+
+```html
+<cc-email-field 
+  style="max-width: 20em;"
+  label="Email" 
+  name="email" 
+  pattern=".+@beststartupever\.com"
+  helper-text="Please provide only a Best Startup Ever corporate email address."
+  helper-text-position-top
+></cc-email-field>
+```
+
 ## Required
 
 <div class="preview">
@@ -144,6 +168,34 @@ When `multiple` is set on the email field, the user can include zero (if not als
     alert((new FormData(event.target)).get('emails'));
   }
 </script>
+```
+
+## Pattern Validation
+
+If you need the entered email address to be restricted further than just "any string that looks like an email address," you can use the pattern `attribute` to specify a regular expression the value must match for it to be valid. If the `multiple` attribute is specified, each individual item in the comma-delineated list of values must match the regular expression.
+
+<div class="preview">
+<form method="post" onsubmit="handlePatternEmailSubmit(event);">
+  <cc-email-field 
+    style="max-width: 20em;"
+    label="Email" 
+    name="email" 
+    required
+    pattern=".+@beststartupever\.com"
+    helper-text="Please provide only a Best Startup Ever corporate email address."
+  ></cc-email-field>
+  <cc-button type="submit">Submit</cc-button>
+</form>
+<script>
+  function handlePatternEmailSubmit(event) {
+    event.preventDefault();
+    alert('Email is valid.');
+  }
+</script>
+</div>
+
+```html
+<cc-email-field label="Email" label-position-side></cc-email-field>
 ```
 
 ## Label Position
