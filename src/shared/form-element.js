@@ -34,6 +34,18 @@ export default class FormElement extends BaseElement {
     return this.input;
   }
 
+	/**
+	 * 
+	 * @param {string} message 
+	 */
+	setCustomValidity(message) {
+		this.reflectTarget.setCustomValidity(message);
+	}
+
+	reportValidity() {
+		this.reflectTarget.reportValidity();
+	}
+
   /**
    * @returns {string}
    */
