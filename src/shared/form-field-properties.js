@@ -80,6 +80,11 @@ const multiple = {
   reflect: true,
 }
 
+const pattern = {
+  type: String,
+  reflect: true,
+}
+
 const helperText = {
   type: String,
   reflect: false,
@@ -96,6 +101,7 @@ export const EMAIL_FIELD = {
   'helper-text': helperText,
   required,
   multiple,
+  pattern,
   readonly,
   disabled,
   placeholder,

@@ -66,7 +66,7 @@ label {
 
 [part="helper-text"]:not(:empty) {
   color: var(--helper-text-color);
-  font-size: 0.9em;
+  font-size: var(--cc-helper-text-font-size, 0.8em);
   margin-top: .25em;
 }
 
@@ -104,4 +104,26 @@ label {
 
 :host([disabled]) {
   opacity: 0.5;
+}
+
+/*
+  These CSS below can be shared across multiple components though.
+*/
+:host([helper-text-position-top]) [part="container"] {
+  display: flex;
+  flex-direction: column;
+}
+
+:host([helper-text-position-top]) [part="label"] {
+  padding-block: 0.25em;
+}
+
+:host([helper-text-position-top]) [part="input-container"] {
+  order: 1;
+  margin-top: 0.25em;
+}
+
+:host([helper-text-position-top]) [part="helper-text"]:not(:empty) {
+  order: 0;
+  margin-top: 0;
 }
