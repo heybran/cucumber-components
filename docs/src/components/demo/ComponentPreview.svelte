@@ -22,6 +22,7 @@
       'carousel',
       'carousel-item',
       'divider',
+      'email-field',
     ];
 
     if (import.meta.env.MODE === 'development') {

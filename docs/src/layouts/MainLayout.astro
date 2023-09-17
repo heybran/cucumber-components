@@ -6,6 +6,7 @@ import LeftSidebar from '../components/LeftSidebar.astro';
 import RightSidebar from '../components/RightSidebar.astro';
 import * as CONFIG from '../config';
 import '../styles/main.css';
+import HydrateComponents from "../components/HydrateComponents.svelte";
 
 const { content = {} } = Astro.props;
 const path = new URL(Astro.request.url).pathname;
@@ -25,6 +26,7 @@ const currentPage = path.split('/').at(-1);
 			<div class="main-wrapper">
 				<PageContent content={content}>
 					<slot />
+					<HydrateComponents client:load />
 				</PageContent>
 			</div>
 		</main>
