@@ -76,6 +76,15 @@ export default class CucumberEmailField extends FormElement {
 			this.input.setCustomValidity('');
 			this.dispatchEvent(new Event("change"));
 		});
+
+		/** @type {HTMLSlotElement} */
+		this.prefixSlot = this.shadowRoot?.querySelector('slot[name="prefix"]');
+		if (this.prefixSlot.assignedElements().length) {
+			this.setAttribute('has-prefix-slot', '');
+			this.prefixSlot.addEventListener('click', () => {
+				this.input.focus();
+			});
+		}
 	}
 
 	isValid() {

@@ -29,6 +29,11 @@ input {
   border: 0;
 }
 
+:host([has-prefix-slot]) input {
+  /* matching prefix slot left margin */
+  padding-inline: 1ch;
+}
+
 label {
   font-weight: var(--label-font-weight);
   /* move spacing from input-container to label */
@@ -70,9 +75,28 @@ label {
   margin-top: .25em;
 }
 
-::slotted([slot="suffix"]),
 ::slotted([slot="prefix"]) {
-  padding-inline: 1ch;
+  /* padding-inline: 1ch; */
+  margin-inline-start: 1ch;
+  --size: 1.5em;
+  color: var(--cc-gray-7);
+  /* as we want to click icon to activate input. */
+  /* position: absolute;
+  pointer-events: none; */
+}
+
+::slotted([slot="suffix"]) {
+  /* padding-inline: 1ch; */
+  margin-inline-end: 1ch;
+  --size: 1.5em;
+  color: var(--cc-gray-7);
+  /* as we want to click icon to activate input. */
+  /* position: absolute;
+  pointer-events: none; */
+}
+
+::slotted(cc-button[slot="suffix"]) {
+  margin-inline-end: 0;
 }
 
 :host([label-position-side]) [part="container"] {
