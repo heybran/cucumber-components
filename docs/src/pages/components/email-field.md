@@ -195,7 +195,23 @@ If you need the entered email address to be restricted further than just "any st
 </div>
 
 ```html
-<cc-email-field label="Email" label-position-side></cc-email-field>
+<form method="post" onsubmit="handlePatternEmailSubmit(event);">
+  <cc-email-field 
+    style="max-width: 20em;"
+    label="Email" 
+    name="email" 
+    required
+    pattern=".+@beststartupever\.com"
+    helper-text="Please provide only a Best Startup Ever corporate email address."
+  ></cc-email-field>
+  <cc-button type="submit">Submit</cc-button>
+</form>
+<script>
+  function handlePatternEmailSubmit(event) {
+    event.preventDefault();
+    alert('Email is valid.');
+  }
+</script>
 ```
 
 ## Label Position
@@ -208,4 +224,34 @@ Side-aligned labels are beneficial in reducing the overall height of a form, par
 
 ```html
 <cc-email-field label="Email" label-position-side></cc-email-field>
+```
+
+## Prefix & Suffix
+
+<div class="preview">
+  <cc-email-field label="Email">
+    <cc-icon slot="prefix" icon="email"></cc-icon>
+  </cc-email-field>
+</div>
+
+```html
+<cc-email-field label="Email">
+  <cc-icon slot="prefix" icon="email"></cc-icon>
+</cc-email-field>
+```
+
+<div class="preview">
+  <cc-email-field label="Email" readonly value="hello@example.com">
+    <cc-button slot="suffix" theme="square borderless">
+      <cc-icon label="Copy email address" icon="copy"></cc-icon>
+    </cc-button>
+  </cc-email-field>
+</div>
+
+```html
+<cc-email-field label="Email" readonly value="hello@example.com">
+  <cc-button slot="suffix" theme="square borderless">
+    <cc-icon label="Copy email address" icon="copy"></cc-icon>
+  </cc-button>
+</cc-email-field>
 ```
