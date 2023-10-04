@@ -23,6 +23,7 @@
       'carousel-item',
       'divider',
       'email-field',
+      'country-select',
     ];
 
     if (import.meta.env.MODE === 'development') {

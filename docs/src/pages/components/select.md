@@ -3,30 +3,22 @@ layout: ../../layouts/MainLayout.astro
 title: 'Select'
 ---
 
-import ComponentPreview from "../../components/demo/ComponentPreview.svelte";
-
 # Select
 
-`cc-select` functionality is similar to an HTML `select` element.
+`cc-select` functionality is similar to an HTML `select` element. But it is select-only as it's not made with an `input` element. However, like an HTML `select` element, users can type characters to select matching options.
 
-## Accessibility
-
-- Like an HTML `select`, users can type characters to select matching options.
-- 
-
-## With label 
-
-<ComponentPreview
-  client:load
-  component='
-    <cc-select label="Start of the week">
-      <cc-option value="monday" text="Monday" selected></cc-option>
-      <cc-option value="tuesday" text="Tuesday"></cc-option>
-      <cc-option value="wednesday" text="Wednesday"></cc-option>
-    </cc-select>
-  '
-  style="min-width: 10em"
-/>
+For `cc-option`, you need to add a `aria-selected="true"` to indicate that option is selected initially.
+<div class="preview">
+  <cc-select label="Start of the week" style="width: 10em;">
+    <cc-option value="monday" text="Monday" aria-selected="true"></cc-option>
+    <cc-option value="tuesday" text="Tuesday"></cc-option>
+    <cc-option value="wednesday" text="Wednesday"></cc-option>
+    <cc-option value="thursday" text="Thursday"></cc-option>
+    <cc-option value="friday" text="Friday"></cc-option>
+    <cc-option value="saturday" text="Saturday"></cc-option>
+    <cc-option value="sunday" text="Sunday"></cc-option>
+  </cc-select>
+</div>
 
 ```html
  <cc-select>

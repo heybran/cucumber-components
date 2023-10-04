@@ -3,6 +3,10 @@ body {
   line-height: inherit;
 }
 
+:not(:defined) {
+  opacity: 0;
+}
+
 * {
   box-sizing: border-box;
 }

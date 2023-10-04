@@ -240,9 +240,15 @@ Side-aligned labels are beneficial in reducing the overall height of a form, par
 </cc-email-field>
 ```
 
+A `cc-button` can be added as `suffix` slot to act as copy email button.
+
 <div class="preview">
   <cc-email-field label="Email" readonly value="hello@example.com">
-    <cc-button slot="suffix" theme="square borderless">
+    <cc-button 
+      slot="suffix" 
+      theme="square borderless"
+      onclick="navigator.clipboard.writeText(this.parentElement.value);"
+    >
       <cc-icon label="Copy email address" icon="copy"></cc-icon>
     </cc-button>
   </cc-email-field>
@@ -250,7 +256,11 @@ Side-aligned labels are beneficial in reducing the overall height of a form, par
 
 ```html
 <cc-email-field label="Email" readonly value="hello@example.com">
-  <cc-button slot="suffix" theme="square borderless">
+  <cc-button 
+    slot="suffix" 
+    theme="square borderless"
+    onclick="navigator.clipboard.writeText(this.parentElement.value);"
+  >
     <cc-icon label="Copy email address" icon="copy"></cc-icon>
   </cc-button>
 </cc-email-field>
