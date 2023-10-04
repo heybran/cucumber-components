@@ -111,6 +111,7 @@ export default class CucumberSelect extends FormElement {
           aria-live="assertive"
           role="combobox"
           onclick="this.getRootNode().host.toggleDropdown(event);"
+          onfocusout="this.getRootNode().host.onFocusOut();"
         >
           <slot name="prefix"></slot>
           <span class="text">${this.text}</span>
@@ -135,7 +136,6 @@ export default class CucumberSelect extends FormElement {
   async connectedCallback() {
     await customElements.whenDefined(this.selectedOption.localName);
     this.render();
-    window.addEventListener('scroll', this.updatePosition.bind(this));
     this.addEventListener('cc-option-selected', this.handleSelect.bind(this));
     this.addEventListener('keydown', this.onKeyDown);
     this.dropdown?.addEventListener('close', this.onDropdownClose.bind(this));
@@ -145,6 +145,8 @@ export default class CucumberSelect extends FormElement {
       this.shadowRoot.querySelector('label').id = 'combo-label-' + id;
       this.trigger.setAttribute('aria-labelledby', 'combo-label-' + id);
       this.dropdown.setAttribute('aria-labelledby', 'combo-label-' + id);
+      this.dropdown?.setAttribute('id', 'listbox-' + id);
+      this.trigger?.setAttribute('aria-controls', 'listbox-' + id);
 
       /**
        * Get current selected option, set an id and update 'aria-activedescendant' aria attribute
@@ -245,19 +247,20 @@ export default class CucumberSelect extends FormElement {
         event.preventDefault();
         this.openDropdown();
       }
-    }
-
-    if (this.isListboxOpen) {
+    } else {
       if (event.key === 'Escape') {
         this.closeDropdown();
       }
 
       if (event.key === 'Enter' || event.key === ' ') {
-        if (!this.currentOption || this.currentOption === this.selectOption) {
+        const currentOption = this.querySelector('.current');
+        if (!currentOption || currentOption === this.selectedOption) {
           return;
         }
-
-        this.selectOption(this.currentOption);
+        this.selectOption(currentOption);
+        // Below line is not needed as Pressing Enter key will automatically close the listbox
+        // this.closeDropdown();
+        return;
       }
 
       if (!['ArrowDown', 'ArrowUp'].includes(event.key)) {
@@ -267,21 +270,22 @@ export default class CucumberSelect extends FormElement {
       event.preventDefault();
   
       const options = Array.from(this.options);
-      this.currentOption = this.querySelector('.current');
-      if (!this.currentOption) {
-        this.currentOption = this.selectedOption;
+      this.previousOption = this.querySelector('.current');
+      if (!this.previousOption) {
+        this.previousOption = this.selectedOption;
       }
-      let index = options.indexOf(this.currentOption);
+      
+      let index = options.indexOf(this.previousOption);
       let nextIndex = (index + 1 === options.length) ? 0 : (index + 1);
       let previousIndex = index === 0 ? options.length - 1 : index - 1;
       
       // this.selectedOption.setAttribute('aria-selected', 'false');
       if (event.key === 'ArrowDown') {
-        this.currentOption.classList.remove('current');
+        this.previousOption.classList.remove('current');
         options[nextIndex]?.classList.add('current');
         // options[nextIndex]?.setAttribute('aria-selected', 'true');
       } else if (event.key === 'ArrowUp') {
-        this.currentOption.classList.remove('current');
+        this.previousOption.classList.remove('current');
         options[previousIndex]?.classList.add('current'); 
         // options[previousIndex]?.setAttribute('aria-selected', 'true');
       }
@@ -296,7 +300,6 @@ export default class CucumberSelect extends FormElement {
     this.selectedOption.setAttribute('aria-selected', 'false');
     option.setAttribute('aria-selected', 'true');
     this.shadowRoot.querySelector('.text').textContent = option.text;
-    this.closeDropdown();
   }
 
   handleSelect(event) {
@@ -365,9 +368,20 @@ export default class CucumberSelect extends FormElement {
     this.currentOption = null;
   }
 
+  onFocusOut() {
+    if (this.isListboxOpen) {
+      this.closeDropdown();
+    }
+  }
+
   toggleDropdown(event) {
     if (this.isListboxOpen) {
-      return this.closeDropdown();
+      /**
+       * Pressing Enter key close the listbox is because when listbox
+       * is open, the cc-select button is still being focused, 
+       * hence clicking Enter key acts as click event on the button element.
+       */
+      return this.closeDropdown(event);
     }
     this.openDropdown(event);
   }
@@ -383,7 +397,7 @@ export default class CucumberSelect extends FormElement {
     // this.dropdown?.addEventListener('animationend', () => {
     //   this.trigger.setAttribute('aria-expanded', 'true');
     // });
-    this.dropdown?.addEventListener('keydown', this.selectOptionWhenTyping);
+    this.dropdown.addEventListener('keydown', this.selectOptionWhenTyping);
     /**
      * This immediately close the dropdown after it's been open,
      * how to fix this?
@@ -395,15 +409,21 @@ export default class CucumberSelect extends FormElement {
    * https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
    * Like an HTML <select>, users can type characters to select matching options.
    * @param {KeyboardEvent} event 
+   * 
+   * @todo 
    */
   selectOptionWhenTyping = (event) => {
     console.log(this);
     var textTyped = event.key.toLowerCase();
-    Array.from(this.options).forEach(option => {
-      if (option.text.toLowerCase().startsWith(textTyped)) {
-        option.focus();
-      }
+    const option = Array.from(this.options).find(option => {
+      return option.text.toLowerCase().startsWith(textTyped);
     });
+
+    if (!option) {
+      return;
+    }
+
+    this.selectOption(option);
   }
 
   get dropdown() {
