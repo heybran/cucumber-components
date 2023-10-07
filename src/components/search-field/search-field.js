@@ -1,28 +1,21 @@
 import FormElement from "../../shared/form-element.js";
-import css from "./email-field.css?inline";
+import css from "./search-field.css?inline";
 import sharedCss from "../../shared/shared.css?inline";
-import html from "./email-field.html?raw";
-import { EMAIL_FIELD } from "../../shared/form-field-properties.js";
+import html from "./search-field.html?raw";
+import { SEARCH_FIELD } from "../../shared/form-field-properties.js";
 
-export default class CucumberEmailField extends FormElement {
+export default class CucumberSearchField extends FormElement {
 	constructor() {
 		super().render(html, css, sharedCss);
 	}
 
 	/** @type {string} */
-	static __localName = 'cc-email-field';
-
-	/**
-	 * Update label text.
-	 * @param {string} text
-	 */
-	onLabelChange(text) {
-		this.shadowRoot.querySelector('slot[name="label"]').textContent = text;
-	}
+	static __localName = 'cc-search-field';
 
 	/**
 	 * Update helper text.
 	 * @param {string} text 
+	 * @todo - do we really need to support helper text change?
 	 */
 	onHelperTextChange(text) {
 		this.shadowRoot.querySelector('slot[name="helper-text"]').textContent = text;
@@ -85,16 +78,6 @@ export default class CucumberEmailField extends FormElement {
 				this.input.focus();
 			});
 		}
-
-		/**
-		 * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#list
-		 * If we just simply add datalist with slot="datalist", 
-		 * it's not working as datalist is located outside of shadowroot,
-		 * so we need to append that datalist into shadowroot for it to be working.
-		 */
-		if (this.querySelector('[slot="datalist"]')) {
-			this.shadowRoot.append(this.querySelector('[slot="datalist"]'));
-		}
 	}
 
 	isValid() {
@@ -114,7 +97,7 @@ export default class CucumberEmailField extends FormElement {
 	}
 
 	static get observedAttributes() {
-		return [...Object.keys(EMAIL_FIELD)];
+		return [...Object.keys(SEARCH_FIELD)];
 	}
 
 	/**
@@ -124,10 +107,10 @@ export default class CucumberEmailField extends FormElement {
 	 * @param {string|null} newValue 
 	 */
 	attributeChangedCallback(attr, oldValue, newValue) {
-		super.attributeChangedCallback(attr, oldValue, newValue, EMAIL_FIELD);
+		super.attributeChangedCallback(attr, oldValue, newValue, SEARCH_FIELD);
 	}
 }
 
-if (!customElements.get(CucumberEmailField.__localName)) {
-	customElements.define(CucumberEmailField.__localName, CucumberEmailField);
+if (!customElements.get(CucumberSearchField.__localName)) {
+	customElements.define(CucumberSearchField.__localName, CucumberSearchField);
 }
