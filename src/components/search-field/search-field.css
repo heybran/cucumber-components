@@ -65,7 +65,6 @@ input {
 [part="helper-text"]:not(:empty) {
   color: var(--helper-text-color);
   font-size: var(--cc-helper-text-font-size, 0.8em);
-  margin-top: .25em;
 }
 
 ::slotted([slot="prefix"]) {
@@ -153,4 +152,8 @@ button {
   align-items: center;
   justify-content: center;
   color: var(--cc-gray-7);
+}
+
+:host([helper-text]) [part="helper-text"] {
+  margin-top: 0.25em;
 }

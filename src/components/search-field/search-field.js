@@ -21,6 +21,14 @@ export default class CucumberSearchField extends FormElement {
 		this.shadowRoot.querySelector('slot[name="helper-text"]').textContent = text;
 	}
 
+	/**
+	 * Update label sr-only text
+	 * @param {string} text
+	 */
+	onAccessibleLabelChange(text) {
+		this.shadowRoot.querySelector('.sr-only').textContent = text + ':';
+	}
+
 	connectedCallback() {
 		/**
 		 * In your case, since the task of setting attributes and updating the form elements 
