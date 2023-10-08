@@ -170,6 +170,16 @@ const size = {
   reflect: true,
 }
 
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/search#search_form_labels_and_accessibility
+ * @example <cc-search-field accessible-label="Search through site content"></cc-search-field>
+ */
+const accessibleLabel = {
+  type: String,
+  reflect: true,
+  reflectAs: 'aria-label',
+}
+
 export const EMAIL_FIELD = {
   autocomplete,
   label,
@@ -202,4 +212,5 @@ export const SEARCH_FIELD = {
   required,
   size,
   value,
+  'accessible-label': accessibleLabel,
 }

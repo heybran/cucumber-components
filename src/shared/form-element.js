@@ -160,7 +160,7 @@ export default class FormElement extends BaseElement {
 
 		if (attrSource.reflect) {
 			if (attrSource.type === String) {
-				this.reflectTarget.setAttribute(attr, newValue);
+				this.reflectTarget.setAttribute(attrSource.reflectAs ?? attr, newValue);
 			} else if (attrSource.type === Boolean) {
 				this.reflectTarget.toggleAttribute(attr, this.hasAttribute(attr));
 			}
