@@ -33,6 +33,7 @@ export const SIDEBAR = [
   { text: "Tooltip", link: "/components/tooltip" },
   { text: "Text Field", link: "/components/text-field" },
   { text: "Select", link: "/components/select" },
+  { text: "Search Field", link: "/components/search-field" },
   { text: "Switch", link: "/components/switch" },
   { text: "Textarea", link: "/components/textarea" },
   { text: "Spinner", link: "/components/spinner" },

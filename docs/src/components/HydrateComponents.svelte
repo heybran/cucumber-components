@@ -24,6 +24,7 @@
       'divider',
       'email-field',
       'country-select',
+      'search-field',
     ];
 
     if (import.meta.env.MODE === 'development') {
