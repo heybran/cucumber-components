@@ -63,6 +63,8 @@ label {
   border-radius: var(--border-radius);
   transition: filter 0.15s ease, background-color 0.15s ease;
   color: #fff;
+  /* Otherwise width will be smaller than height, if no enough screen space. */
+  flex-shrink: 0;
 }
 
 :host(:not([checked], [disabled])) label:hover [part="checkbox"] {
