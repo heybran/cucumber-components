@@ -1,11 +1,17 @@
 <div part="container">
   <label part="label">
     <slot name="label"></slot>
-    <span part="required-indicator" aria-hidden="true">*</span>
   </label>
   <div part="input-container">
     <slot name="prefix"></slot>
-    <input part="input" type="email" autocapitalize="off" autocorrect="off" spellcheck="false" aria-invalid="false" aria-describedby="">
+    <input 
+      part="input" 
+      type="email" 
+      autocapitalize="off" 
+      autocorrect="off"
+      spellcheck="false" 
+      aria-invalid="false"
+    >
     <slot name="suffix"></slot>
   </div>
   <div part="helper-text">

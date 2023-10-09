@@ -1,12 +1,12 @@
 <label part="base">
-  <input 
-    class="sr-only"
-    type="checkbox" 
-    role="switch" 
-    aria-busy="false"
-    onchange="this.getRootNode().host.onInputChange(event)"
-  >
-  <span part="control">
+  <input
+		class="sr-only"
+		type="checkbox"
+		role="switch"
+		aria-busy="false"
+		onchange="this.getRootNode().host.onInputChange(event)" 
+  />
+	<span part="control">
     <span part="thumb" aria-hidden="true">
       <cc-icon icon="cross"></cc-icon>
     </span>
@@ -14,10 +14,10 @@
       <cc-icon icon="check"></cc-icon>
     </span>
   </span>
-  <div part="label">
+	<div part="label">
     <slot part="label"></slot>
-  </div>
-</label>
+    </div>
+  </label>
 <div part="helper-text">
   <slot name="helper-text"></slot>
 </div>

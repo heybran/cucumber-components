@@ -1,13 +1,13 @@
 <div part="container" role="alert" aria-hidden="true">
-  <div part="icon">
-    <slot name="icon"></slot>
-  </div>
-  <div part="message" aria-live="polite">
-    <slot></slot>
-  </div>
-  <div part="close">
-    <cc-button theme="icon" no-border onclick="this.getRootNode().host.hide();">
-      <cc-icon icon="cross" size="medium"></cc-icon>
-    </cc-button>
-  </div>
+	<div part="icon">
+		<slot name="icon"></slot>
+	</div>
+	<div part="message" aria-live="polite">
+		<slot></slot>
+	</div>
+	<div part="close">
+		<cc-button theme="icon" no-border onclick="this.getRootNode().host.hide();">
+			<cc-icon icon="cross" size="medium"></cc-icon>
+		</cc-button>
+	</div>
 </div>

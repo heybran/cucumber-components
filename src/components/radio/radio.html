@@ -1,13 +1,12 @@
 <label part="base">
-  <input 
-    class="sr-only"
-    type="radio" 
-    aria-busy="false"
-    onchange="this.getRootNode().host.onInputChange(event)"
-  >
-  <span part="radio" aria-hidden="true">
-  </span>
-  <span part="label">
+  <input
+		class="sr-only"
+		type="radio"
+		aria-busy="false"
+		onchange="this.getRootNode().host.onInputChange(event)" 
+  />
+	<span part="radio" aria-hidden="true"></span>
+	<span part="label">
     <slot></slot>
   </span>
   <slot name="tooltip"></slot>
