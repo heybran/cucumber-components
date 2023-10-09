@@ -3,8 +3,6 @@ layout: ../../layouts/MainLayout.astro
 title: 'Email Field'
 ---
 
-# Email Field
-
 Email Field is a wrapper around `<input type="email">` element which accepts only email addresss as input.
 
 <div class="preview">

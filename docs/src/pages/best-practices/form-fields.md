@@ -3,8 +3,6 @@ layout: ../../layouts/MainLayout.astro
 title: 'Best Practices for Form Fields'
 ---
 
-# Required Field
-
 *Opinions are mine.*
 
 Most common implementation for required field is to add a `*` or `(required)` after form field label like this.

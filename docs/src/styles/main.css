@@ -164,3 +164,13 @@ pre[class*="language-"] {
   margin-top: 1rem;
   box-shadow: 7px 7px #e2e8f0;
 }
+
+.github-edit-url {
+  color: inherit;
+  font-size: .9em;
+  
+  & + p {
+    margin-top: 1.5rem;
+  }
+}
+

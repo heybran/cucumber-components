@@ -1,4 +1,4 @@
-<div align="center"><img align="center" src="./docs/public/cucumber-components.png" alt="Cucumber Components Logo"></div>
+<div align="center"><img align="center" src="./docs/public/cucumber-components.svg" alt="Cucumber Components Logo"></div>
 <br />
 <p align="center">A collection of native web components built on top of web standards with a focus on:</p>
 <ul align="center" style="display: flex;"><span role="listitem">🚹 Accessibility  </span role="listitem"><span>🏗 Easy to use  </span role="listitem"><span>🎨 Easy to style</span></ul>

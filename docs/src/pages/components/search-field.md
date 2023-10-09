@@ -3,9 +3,7 @@ layout: ../../layouts/MainLayout.astro
 title: 'Search Field'
 ---
 
-# Search Field
-
-Search Field is a wrapper around `<input type="search">` element.
+`cc-search-field` is a wrapper around `<input type="search">` designed for the user to enter search queries into.
 
 ## Search form labels and accessibility
 
@@ -222,7 +220,11 @@ You can specify a minimum length, in characters, for the entered value using the
 
 You can use the `pattern` attribute to specify a regular expression that the inputted value must follow to be considered valid.
 
-Say we wanted to provide a product ID search form, and the IDs were all codes of two letters followed by four numbers. The following example covers it:
+If the specified pattern is not specified or is invalid, no regular expression is applied and this attribute is ignored completely.
+
+Say we wanted to provide a product ID search form, and the IDs were all codes of two letters followed by four numbers. The following example covers it (remember to put a helper text to assist user to enter the correct format):
+
+@todo - we probably want to support helper text as slot as in some cases we might want to make some words of helper text bold, e.g. ab1234 in this case.
 
 <div class="preview">
 <form action="/search" role="search">
@@ -253,6 +255,42 @@ Say we wanted to provide a product ID search form, and the IDs were all codes of
   >
     <cc-button slot="suffix" type="submit" theme="primary" style="margin: 4px;">
       Search
+    </cc-button>
+  </cc-search-field>
+</form>
+```
+
+## Size
+
+The `size` attribute is a numeric value indicating how many characters wide the input field should be. The value must be a number greater than zero, and the default value is 20. Since character widths vary, this may or may not be exact and should not be relied upon to be so; the resulting input may be narrower or wider than the specified number of characters, depending on the characters and the font.
+
+This does not set a limit on how many characters the user can enter into the field. It only specifies approximately how many can be seen at a time. To set an upper limit on the length of the input data, use the `maxlength` attribute.
+
+<div class="preview">
+  <form action="/search" role="search">
+    <cc-search-field 
+      name="q" 
+      placeholder="Search the site..."
+      accessible-label="Search through site content"
+      size="30"
+      >
+      <cc-button slot="suffix" theme="square borderless" type="submit">
+        <cc-icon label="Submit Search" icon="search"></cc-icon>
+      </cc-button>
+    </cc-search-field>
+  </form>
+</div>
+
+```html
+<form action="/search" role="search">
+  <cc-search-field 
+    name="q" 
+    placeholder="Search the site..."
+    accessible-label="Search through site content"
+    size="30"
+    >
+    <cc-button slot="suffix" theme="square borderless" type="submit">
+      <cc-icon label="Submit Search" icon="search"></cc-icon>
     </cc-button>
   </cc-search-field>
 </form>

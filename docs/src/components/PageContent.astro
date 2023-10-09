@@ -1,5 +1,6 @@
 ---
 const { content, githubEditUrl } = Astro.props;
+const urlForGitHub = 'https://github.com/heybran/cucumber-components/blob/main/' + content.file.match(/docs\/src\/pages\/(.*)/)[0];
 const title = content.title;
 // const headers = content.astro.headers;
 ---
@@ -8,6 +9,14 @@ const title = content.title;
 	<section class="main-section">
 		<nav class="block sm:hidden">
 		</nav>
+		<h1>{title}</h1>
+		<a class="github-edit-url" href={urlForGitHub} target="_blank">Edit this page on GitHub</a>
 		<slot />
 	</section>
 </article>
+
+<style>
+	h1:has(+ .github-edit-url) {
+		margin-bottom: .5em;
+	}
+</style>

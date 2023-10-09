@@ -3,8 +3,6 @@ layout: ../../layouts/MainLayout.astro
 title: 'Select'
 ---
 
-# Select
-
 `cc-select` functionality is similar to an HTML `select` element. But it is select-only as it's not made with an `input` element. However, like an HTML `select` element, users can type characters to select matching options.
 
 For `cc-option`, you need to add a `aria-selected="true"` to indicate that option is selected initially.
