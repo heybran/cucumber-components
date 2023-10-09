@@ -8,6 +8,9 @@ const { currentPage } = Astro.props;
 		<a href="/" class="logo">
 			<img src="/cucumber-components.png" role="presentation" alt="">
 		</a>
+		<a title="Github" class="github" href="https://github.com/heybran/breeze-components" target="_blank">
+			<img src="/github.svg" alt="github logo">
+		</a>
 		<button id="toggle-mobile-menu">Menu</button>
 	</h2>
 	<nav aria-labelledby="grid-left">
@@ -19,9 +22,6 @@ const { currentPage } = Astro.props;
 					<a href={item.link}>{item.text}</a>
 				</li>))}
 		</ul>
-		<a title="Github" href="https://github.com/heybran/breeze-components">
-			<img src="/github.svg" alt="github logo">
-		</a>
 	</nav>
 </header>
 
@@ -44,10 +44,18 @@ const { currentPage } = Astro.props;
 		flex-direction: column;
 		border: 1px solid #e5e7eb;
 		overflow-y: auto;
+		border-top: 0;
 	}
 	header > h2 {
 		margin: 0;
 		border-bottom: 1px solid #e5e7eb;
+		display: flex;
+		align-items: center;
+	}
+	header .github {
+		padding: 0;
+		padding-inline: 0.5em;
+		margin: 0;
 	}
 	#toggle-mobile-menu {
 		display: none;
@@ -66,6 +74,7 @@ const { currentPage } = Astro.props;
 		width: 16rem;
 		padding-block: 1rem;
 		border-bottom-width: 1px;
+		border-right: 1px solid #e5e7eb;
 	}
 	a[title="Github"] {
 		margin-block: 2rem;
@@ -75,15 +84,19 @@ const { currentPage } = Astro.props;
 		list-style: none;
     margin: 0;
     padding: 0;
-		padding-top: 2rem;
+		padding-bottom: 4rem;
 	}
 	ul h2 {
 		font-weight: 600;
 		padding: 0.5rem 2rem;
 		margin-top: 2rem;
 		font-size: 1.5rem;
+		margin-bottom: 0;
 	}
 	@media screen and (any-pointer: coarse) {
+		.logo {
+			border-right-width: 0;
+		}
 		header {
 			position: fixed;
 			width: 100%;

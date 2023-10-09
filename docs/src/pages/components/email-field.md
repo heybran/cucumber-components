@@ -265,3 +265,39 @@ A `cc-button` can be added as `suffix` slot to act as copy email button.
   </cc-button>
 </cc-email-field>
 ```
+
+## List
+
+From MDN: The value given to the list attribute should be the id of a `<datalist>` element located in the same document. The `<datalist>` provides a list of predefined values to suggest to the user for this input. Any values in the list that are not compatible with the type are not included in the suggested options. The values provided are suggestions, not requirements: users can select from this predefined list or provide a different value.
+
+You need to add a `<datalist>` element and set its slot to `datalist`. Although keep in mind that browser support for `<datalist>` is not great.
+
+<div class="preview">
+  <cc-email-field label="Email" list="email-options">
+    <cc-icon slot="prefix" icon="email"></cc-icon>
+    <datalist id="email-options" slot="datalist">
+      <option value="john@example.com"></option>
+      <option value="jane@example.com"></option>
+      <option value="info@example.com"></option>
+      <option value="contact@example.com"></option>
+    </datalist>
+  </cc-email-field>
+</div>
+
+```html
+<cc-email-field label="Email" list="email-options">
+  <cc-icon slot="prefix" icon="email"></cc-icon>
+  <datalist id="email-options" slot="datalist">
+    <option value="john@example.com"></option>
+    <option value="jane@example.com"></option>
+    <option value="info@example.com"></option>
+    <option value="contact@example.com"></option>
+  </datalist>
+</cc-email-field>
+```
+
+## Dirname
+
+The `dirname` attribute enables the submission of the directionality of the element. When included, the form control will submit with two `name/value` pairs: the first being the `name` and `value`, and the second being the value of the `dirname` attribute as the name, with a value of `ltr` or `rtl` as set by the browser.
+
+@todo: Not quite sure how these works yet.

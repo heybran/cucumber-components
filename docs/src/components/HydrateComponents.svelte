@@ -23,7 +23,7 @@
       'carousel-item',
       'divider',
       'email-field',
-      'country-select',
+      // 'country-select',
       'search-field',
     ];
 

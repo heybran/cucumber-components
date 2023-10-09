@@ -5,8 +5,6 @@ title: 'Search Field'
 
 # Search Field
 
-@todo - Think about error state, at the moment it shows red border (for required field) initially which is clearly wrong.
-
 Search Field is a wrapper around `<input type="search">` element.
 
 ## Search form labels and accessibility
