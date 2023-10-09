@@ -10,13 +10,14 @@
 ## Why Build A Web Components Collection When There Are Many Battle-tested Web Components Collections Already?
 
 - A proejct to dive deep into web accessibility.
-- Help develop mindset from both components author and componenst consumer.
+- Helps develop a mindset from both component author and component consumer.
 - A learning experience and opportunities to gain a deeper understanding of web components best practices.
-- It's fun!
+- It's fun as you're writing HTML/CSS/JavaScript!
 
 ## Why Go With Vanilla Web Components?
 - Vanilla Web Components can take you all the way if you're just building components collection to be consumed by other projects.
 - A better way to play around web components specs and trying out new ideas.
+- Provide a low barrier for entry, making it easier for developers to contribute to component collections.
 - Minimize the bundled size of each component.
 - "The beauty of zero-dependencies!" (#UseThePlatform).
 
