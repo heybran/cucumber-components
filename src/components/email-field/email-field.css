@@ -65,9 +65,10 @@ label {
   box-shadow: 0 0 0 0.1875rem var(--box-shadow-color);
 }
 
-[part=input-container]:has(:invalid) {
+/* Commented out for now, will need to think about error state after more study on this topic */
+/* [part=input-container]:has(:invalid) {
   border-color: var(--cc-red-7);
-}
+} */
 
 [part="helper-text"]:not(:empty) {
   color: var(--helper-text-color);
@@ -108,10 +109,6 @@ label {
 
 :host([label-position-side]) [part="input-container"] {
   margin-top: 0;
-}
-
-:host(:not([required])) [part="required-indicator"] {
-  display: none;
 }
 
 :host([readonly]) [part="input-container"] {
