@@ -54,7 +54,19 @@ export default class CucumberButton extends FormElement {
 			// 	bubbles: true,
 			// 	cancelable: true
 			// }));
-			const invalidFields = form.__cucumberElements?.filter((field) => !field.isValid());
+			/**
+			 * @see https://codepen.io/brandonzhang/pen/ZEmpqVV
+			 * For non custom elements, when form submitted, 
+			 * the very first invalid field is reporting error message,
+			 * but for form with cc components, last component reports error message. 
+			 * So, need to sort __cucumberElements by their DOM index.
+			 * Adding a reverse() seems to match native behavior,
+			 * but the thing is the components of original __cucumberElements are in asc order
+			 * by their position inside the form already.
+			 * 
+			 * @todo Circle back to this some other time.
+			 */
+			const invalidFields = [...form.__cucumberElements]?.filter((field) => !field.isValid())?.reverse();
 			if (invalidFields?.length > 0) {
 				invalidFields.forEach((field) => field.reportValidity());
 				/**

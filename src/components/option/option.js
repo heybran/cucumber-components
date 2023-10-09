@@ -20,22 +20,26 @@ export default class CucumberOption extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    this.setAttribute('role', 'option');
+    if (!this.hasAttribute('aria-selected')) {
+      this.setAttribute('aria-selected', 'false');
+    }
   }
 
   render() {
     // @ts-ignore
     this.shadowRoot.innerHTML = `
       <style>${shared}${css}</style>
-      <li>
-        <button type="button" title="${this.text}" onclick="this.getRootNode().host.handleClick()">
-          ${this.text}
-        </button>
-      </li>
+      <div onclick="this.getRootNode().host.handleClick();" title="${this.text}" part="container">
+        <span><slot name="prefix"></slot></span>
+        <span>${this.text}</span>
+        <span><slot name="suffix"></slot></span>
+      </div>
     `;
   }
 
   focus() {
-    this.shadowRoot.querySelector('button').focus();
+    // this.shadowRoot.querySelector('button').focus();
   }
 
   handleClick() {

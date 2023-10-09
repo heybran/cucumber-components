@@ -119,13 +119,18 @@ export default class CucumberCarousel extends BaseElement {
       .getPropertyValue('--spacing')
       .replace('px', '').trim());
 
+    /**
+     * Adding fixes for skipping specific slide, e.g. from slide 1 to slide 3,
+     * via clicking pagination button with mouse.
+     */
+    const scrollDistance = ((carouselItemWidth + gap) * this.itemsPerView) * Math.abs(slideIndex - this.activeSlide);
     // @ts-ignore
     if (slideIndex > this.activeSlide) {
       // @ts-ignore
-      this.carouselContainer.scrollLeft += (carouselItemWidth + gap) * this.itemsPerView;
+      this.carouselContainer.scrollLeft += scrollDistance;
     } else {
       // @ts-ignore
-      this.carouselContainer.scrollLeft -= (carouselItemWidth + gap) * this.itemsPerView;
+      this.carouselContainer.scrollLeft -= ScreenOrientation;
     }
 
     this.updatePaginationButtonsStatus(slideIndex);

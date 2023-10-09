@@ -56,7 +56,7 @@ export default class CucumberPasswordField extends FormElement {
 	}
 
 	/**
-	 * @param {string} arg 
+	 * @param {string} arg
 	 */
 	set pattern(arg) {
 		this.input.pattern = arg;
@@ -86,7 +86,7 @@ export default class CucumberPasswordField extends FormElement {
 	connectedCallback() {
 		super.render(html, css);
 
-		this.defer(() => {
+		requestAnimationFrame(() => {
 			const id = `input-${this.uuid()}`;
 			// @ts-ignore
 			this.shadowRoot.querySelector('[part="label"]').setAttribute("for", id);
@@ -95,11 +95,11 @@ export default class CucumberPasswordField extends FormElement {
 			if (!form) return;
 			if (!Array.isArray(form.__cucumberElements)) {
 				form.__cucumberElements = [];
-				form.__cucumberElements.push(this);
 				// Object.defineProperty(form.__cucumberElements, `${this.localName}-${this.uuid()}`, {
 				// 	value: this,
 				// });
 			}
+			form.__cucumberElements.push(this);
 		});
 
 		if (this.hasAttribute("value")) {
@@ -131,17 +131,17 @@ export default class CucumberPasswordField extends FormElement {
 			this.disabled = true;
 		}
 
-		if (this.hasAttribute('pattern')) {
+		if (this.hasAttribute("pattern")) {
 			// @ts-ignore
-			this.input.pattern = this.getAttribute('pattern');
+			this.input.pattern = this.getAttribute("pattern");
 		}
 
-		if (this.hasAttribute('minlength')) {
-			this.input.setAttribute('minlength', this.getAttribute('minlength'));
+		if (this.hasAttribute("minlength")) {
+			this.input.setAttribute("minlength", this.getAttribute("minlength"));
 		}
 
-		if (this.hasAttribute('maxlength')) {
-			this.input.setAttribute('maxlength', this.getAttribute('maxlength'));
+		if (this.hasAttribute("maxlength")) {
+			this.input.setAttribute("maxlength", this.getAttribute("maxlength"));
 		}
 
 		this.required = this.hasAttribute("required");
@@ -160,8 +160,21 @@ export default class CucumberPasswordField extends FormElement {
 
 		// @ts-ignore
 		this.input.addEventListener("change", (event) => {
+			/**
+			 * Reset validity to empty string otherwise this field
+			 * will stay invalid forever.
+			 */
+			this.input.setCustomValidity("");
 			this.dispatchEvent(new Event("change"));
 		});
+	}
+
+	/**
+	 *
+	 * @param {string} text
+	 */
+	setCustomValidity(text) {
+		this.input.setCustomValidity(text);
 	}
 
 	/**
@@ -209,7 +222,6 @@ export default class CucumberPasswordField extends FormElement {
 	}
 
 	isValid() {
-		console.log(this.input.validity);
 		return this.input.checkValidity();
 	}
 
@@ -245,7 +257,7 @@ export default class CucumberPasswordField extends FormElement {
 		const formData = event.formData;
 		if (!this.hasAttribute("name")) {
 			return console.warn(
-				`No 'name' attribute found on ${this.localName}, so this form field will not particiate on form submit.`,
+				`No 'name' attribute found on ${this.localName}, so this form field will not particiate on form submit.`
 			);
 		}
 
@@ -262,17 +274,14 @@ export default class CucumberPasswordField extends FormElement {
 	/**
 	 * @returns {string[]}
 	 */
-	static get observedAttributes() {
-	}
+	static get observedAttributes() {}
 
 	/**
 	 * @param {string} attr
 	 * @param {string} oldValue
 	 * @param {string} newValue
 	 */
-	attributeChangedCallback(attr, oldValue, newValue) {
-		
-	}
+	attributeChangedCallback(attr, oldValue, newValue) {}
 
 	disconnectedCallback() {
 		/**
