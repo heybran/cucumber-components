@@ -7,25 +7,26 @@
 > This project started out as `Breeze Components`, then it was renamed to `Cucumber Components` on Sep 4, 2023. Logo was designed by me with `Inkscape` based on cucumber icons ideas from https://www.flaticon.com/free-icons/cucumber, logo font is `Input Mono`. Reason for renaming is writing `cc-button` is a bit easier than `breeze-button`.
 
 
-## Why Build A Web Components Collection When There Are Many Battle-tested Web Components Collections Already?
+## Why build a Web Components collection when there are many battle-tested Web Components collections already?
 
-- A proejct to dive deep into web accessibility.
-- Help develop mindset from both components author and componenst consumer.
-- A learning experience and opportunities to gain a deeper understanding of web components best practices.
-- It's fun!
+- A project to dive deep into web accessibility.
+- Helps develop a mindset from both component author and component consumer.
+- A learning experience and an opportunity to gain a deeper understanding of web components best practices.
+- It's fun as you're writing HTML/CSS/JavaScript!
 
-## Why Go With Vanilla Web Components?
+## Why go with vanilla Web Components?
 - Vanilla Web Components can take you all the way if you're just building components collection to be consumed by other projects.
 - A better way to play around web components specs and trying out new ideas.
+- Provide a low barrier for entry, making it easier for developers to contribute to component collections.
 - Minimize the bundled size of each component.
 - "The beauty of zero-dependencies!" (#UseThePlatform).
 
-## How To Contribute
+## How to contribute
 #### 1. Fork and Clone This Repo.
 ```bash
-git clone https://github.com/heybran/breeze-components.git
+git clone https://github.com/heybran/cucumber-components.git
 ```
-#### 2. Install Dev Dependencies
+#### 2. Install dev dependencies
 Web Components dev dependencies
 ```bash
 npm install
@@ -36,7 +37,7 @@ Docs dependencies
 cd docs && npm install
 ```
 
-#### 3. Creat A Component Folder at `./src/components`.
+#### 3. Creat a component folder at `./src/components`.
 Structure:
 ```
 ── password-field
@@ -44,19 +45,8 @@ Structure:
    ├── password-field.html
    └── password-field.js
 ```
-#### 4. Export New Component at `./index.js`.
-e.g.
-```javascript
-import CucumberFormLayout from "./src/components/form-layout/form-layout.js";
-import CucumberPasswordField from "./src/components/password-field/password-field.js";
 
-export {
-  CucumberFormLayout,
-  CucumberPasswordField,
-  // new component class here
-};
-```
-#### 5. Add New Component to DOCS `./docs/src/components/demo/ComponentPreview.svelte`. This is to import the components codes to render them on the documentation.
+#### 4. Add new component to DOCS `./docs/src/components/demo/ComponentPreview.svelte`. This is to import the components codes to render them on the documentation.
 ```javascript
 const components = [
   'button',
@@ -73,8 +63,8 @@ const components = [
   // new component folder name here
 ];
 ```
-#### 6. Create New Component Documentation Page at `./docs/src/pages/components/new-component.mdx`. (If new component folder name is 'new-component').
-#### 7. Add Sidebar Link at `./docs/src/config.ts`. 
+#### 5. Create new component documentation page at `./docs/src/pages/components/new-component.md`. (If new component folder name is 'new-component').
+#### 6. Add sidebar link at `./docs/src/config.ts`. 
 e.g.
 ```javascript
 export const SIDEBAR = [
@@ -89,7 +79,10 @@ export const SIDEBAR = [
   // new component item here
 ];
 ```
-#### 8. Run DOCS dev server
+#### 7. Run DOCS dev server and visit `http://localhost:3000/`
+
+At the moment, all testing are done manually on the components you add to the documentation page.
+
 ```bash
 cd docs && npm run dev
 ```
