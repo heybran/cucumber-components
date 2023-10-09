@@ -7,7 +7,7 @@
   --_text-color: inherit;
 }
 
-:host([selected]) {
+:host([aria-selected="true"]) {
   --_background-color: var(--_primary-color);
   --_text-color: #fff;
 }
@@ -16,7 +16,7 @@ li {
   list-style: none;
 }
 
-button {
+[part="container"] {
   cursor: pointer;
   display: block;
   border: 0;
@@ -31,11 +31,11 @@ button {
   text-align: left;
 }
 
-:host([selected]) button:focus-visible {
+:host([aria-selected="true"]) [part="container"]:focus-visible {
   background-color: unset;
 }
 
-button::after {
+[part="container"]::after {
   border: 1px solid transparent;
   border-radius: var(--_border-radius-sm);
   content: "";
@@ -49,16 +49,20 @@ button::after {
   top: 0.1875rem;
 }
 
-button:focus-visible::after {
+:host(.current[aria-selected="false"]) [part="container"]::after {
   border-color: var(--_outline-color-focus);
   box-shadow: var(--_box-shadow);
 }
 
-:host(:not([selected])) button:hover {
+:host(.current[aria-selected="true"]) [part="container"]::after {
+  border-color: #fff;
+}
+
+:host(:not([aria-selected="true"])) [part="container"]:hover {
   background-color: var(--_hover-color);
 }
 
-:host([selected]) button:focus-visible::after {
+:host([aria-selected="true"]) [part="container"]:focus-visible::after {
   background-color: var(--_primary-color);
   z-index: -1;
 }

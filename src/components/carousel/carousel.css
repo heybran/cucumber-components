@@ -10,14 +10,17 @@
   --pagination-size: 1rem;
   /* TODO: naming? */
   --focus-ring-color: #6d4aff;
-  display: none;
+  --button-background-color: hsl(0, 0%, 85%);
+  --button-background-active-color: hsl(0, 0%, 35%);
+  display: block;
+  opacity: 0;
 }
 
 /*
   FIXME: slide image freshes before component is connected to DOM
 */
 :host(:defined) {
-  display: block;
+  opacity: 1;
 }
 
 [part="container"] {
@@ -53,6 +56,10 @@
   grid-area: slides;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  aspect-ratio: calc(var(--aspect-ratio) * var(--items-per-view));
 }
 
 [part="carousel-container"]::-webkit-scrollbar {
@@ -87,7 +94,7 @@ button {
 
 [part="navigation-button"]:hover,
 [part="navigation-button"]:focus-visible {
-  background: #dbdbdb;
+  background: var(--button-background-color);
 }
 
 [part="navigation-icon"] {
@@ -114,7 +121,7 @@ button {
 [role="tab"] {
   width: var(--pagination-size);
   height: var(--pagination-size);
-  background-color: #dbdbdb;
+  background: var(--button-background-color);
 }
 
 button:focus-visible {
@@ -123,7 +130,7 @@ button:focus-visible {
 }
 
 button[aria-selected="true"] {
-  filter: brightness(0.5);
+  background: var(--button-background-active-color);
 }
 
 button[disabled] {

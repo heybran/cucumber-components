@@ -25,6 +25,8 @@ a {
   --primary-color:  #6d4aff;
 
   --button-background-color: hsl(var(--background-h), var(--background-s), var(--background-l));
+
+  --button-gap: 0.2em;
 }
 
 :host([theme="primary"]) {
@@ -74,12 +76,15 @@ a {
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
-  gap: var(--button-gap, .2em);
   transition: .15s cubic-bezier(.22,1,.36,1);
   /*
     Adding 100% otherwise flex-grow: 1 on host will not work.
   */
   width: 100%;
+}
+
+:host([theme~="square"]) [part="button"] {
+  padding: 1ch;
 }
 
 [part="button"]:focus-visible {
@@ -154,4 +159,12 @@ a {
 
 :host([size="large"]) {
   font-size: 1.25rem;
+}
+
+::slotted([slot="prefix"]) {
+  margin-inline-end: var(--button-gap);
+}
+
+::slotted([slot="suffix"]) {
+  margin-inline-start: var(--button-gap);
 }

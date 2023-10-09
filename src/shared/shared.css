@@ -24,6 +24,9 @@
   --cc-red-8: #e03131;
   --cc-red-9: #c92a2a;
 
+
+  --cc-helper-text-font-size: .8em;
+
   
   --_outline-color-focus: var(--breeze-outline-color-focus, hsl(252, 100%, 65%));
   --_box-shadow-color-focus: var(--breeze-box-shadow-color-focus, rgba(109, 74, 255, 0.2));
