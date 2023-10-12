@@ -25,6 +25,8 @@
     "@rollup/plugin-terser": "^0.4.3",
     "@web/test-runner": "^0.17.0",
     "cypress": "^12.17.4",
+    "cypress-axe": "^1.5.0",
+    "cypress-ct-lit": "^0.3.3",
     "html-minifier": "^4.0.0",
     "lit": "^2.8.0",
     "rollup": "^3.28.0",

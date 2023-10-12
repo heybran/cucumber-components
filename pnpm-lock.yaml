@@ -29,6 +29,12 @@ devDependencies:
   cypress:
     specifier: ^12.17.4
     version: 12.17.4
+  cypress-axe:
+    specifier: ^1.5.0
+    version: 1.5.0(axe-core@4.7.2)(cypress@12.17.4)
+  cypress-ct-lit:
+    specifier: ^0.3.3
+    version: 0.3.3(cypress@12.17.4)(lit@2.8.0)
   html-minifier:
     specifier: ^4.0.0
     version: 4.0.0
@@ -414,6 +420,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@cypress/mount-utils@4.0.0:
+    resolution: {integrity: sha512-4w8WZpOALz5+vhJmPfh2HkT4NMsRP2DgVqSXxXu46GR5yUGfqJ0+WgUrmVuujtKKY6n1mDiO1L4AfZ+4bsEYGQ==}
+    dev: true
 
   /@cypress/request@2.88.12:
     resolution: {integrity: sha512-tOn+0mDZxASFM+cuAP9szGUGPI1HwWVSvdzm7V4cCsPdFTx6qMj29CwaQmRAMIEhORIUBFBsYROYJcveK4uOjA==}
@@ -1860,6 +1870,28 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+    dev: true
+
+  /cypress-axe@1.5.0(axe-core@4.7.2)(cypress@12.17.4):
+    resolution: {integrity: sha512-Hy/owCjfj+25KMsecvDgo4fC/781ccL+e8p+UUYoadGVM2ogZF9XIKbiM6KI8Y3cEaSreymdD6ZzccbI2bY0lQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      axe-core: ^3 || ^4
+      cypress: ^10 || ^11 || ^12 || ^13
+    dependencies:
+      axe-core: 4.7.2
+      cypress: 12.17.4
+    dev: true
+
+  /cypress-ct-lit@0.3.3(cypress@12.17.4)(lit@2.8.0):
+    resolution: {integrity: sha512-c+1xhG7XQyuB7e9BsH95TkdcsUtXU1Nu8y7CThUYw5jyQydMeojBuzA1d+7v5PJJwd0R36W9lDjg/a9xgE+x1Q==}
+    peerDependencies:
+      cypress: '>=10.6.0'
+      lit: ^2.0.0
+    dependencies:
+      '@cypress/mount-utils': 4.0.0
+      cypress: 12.17.4
+      lit: 2.8.0
     dev: true
 
   /cypress@12.17.4:
