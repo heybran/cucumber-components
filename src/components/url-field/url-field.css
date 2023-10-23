@@ -1,0 +1,159 @@
+:host {
+  --border-radius: 8px;
+  --border-color-normal: #adaba8;
+  --border-color-focus: hsl(252, 100%, 65%);
+  /* TODO: how to connect to hsl? */
+  --box-shadow-color: rgba(109, 74, 255, 0.2);
+  --helper-text-color: #5c5958;
+  --label-font-weight: 600;
+  /*
+    Adding display block otherwise components user setting margin
+    on this component will not work as expected.
+  */
+  display: block;
+
+  --block-padding: 1ch;
+  --inline-padding: 1.5ch;
+}
+
+input {
+  width: 100%;
+  height: auto;
+  background: none;
+  border-radius: var(--border-radius);
+  min-height: 0;
+  min-width: 0;
+  color: inherit;
+  outline: none;
+  padding: var(--block-padding) var(--inline-padding);
+  -webkit-appearance: none;
+  font: inherit;
+  margin: 0;
+  border: 0;
+}
+
+[part="prefix"] {
+  padding: var(--block-padding) var(--block-padding);
+  background-color: var(--cc-gray-2);
+}
+
+:host([has-prefix-slot]) input {
+  /* matching prefix slot left margin */
+  padding-inline: 1ch;
+}
+
+label {
+  font-weight: var(--label-font-weight);
+  /* move spacing from input-container to label */
+  padding-block: 0.25em 0.5em;
+  display: inline-block;
+}
+
+/*
+  When label aligns with input vertially, make top/bottom padding same,
+  as we're center-aligning vertically.
+*/
+:host([label-position-side]) label {
+  padding-block: 0.25em;
+}
+
+[part="input-container"] {
+  /* margin is not a good choice here as clicking margin area will not activate input */
+  /* margin-top: .5em; */
+  border: 1px solid var(--border-color-normal);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: .15s cubic-bezier(.22,1,.36,1), visibility 0s;
+  overflow: hidden;
+}
+
+[part=input-container]:focus-within {
+  border-color: var(--border-color-focus);
+  box-shadow: 0 0 0 0.1875rem var(--box-shadow-color);
+}
+
+/* Commented out for now, will need to think about error state after more study on this topic */
+/* [part=input-container]:has(:invalid) {
+  border-color: var(--cc-red-7);
+} */
+
+[part="helper-text"]:not(:empty) {
+  color: var(--helper-text-color);
+  font-size: var(--cc-helper-text-font-size, 0.8em);
+  margin-top: .25em;
+}
+
+::slotted([slot="prefix"]) {
+  /* padding-inline: 1ch; */
+  margin-inline-start: 1ch;
+  --size: 1.5em;
+  color: var(--cc-gray-7);
+  /* as we want to click icon to activate input. */
+  /* position: absolute;
+  pointer-events: none; */
+}
+
+::slotted([slot="suffix"]) {
+  /* padding-inline: 1ch; */
+  margin-inline-end: 1ch;
+  --size: 1.5em;
+  color: var(--cc-gray-7);
+  /* as we want to click icon to activate input. */
+  /* position: absolute;
+  pointer-events: none; */
+}
+
+::slotted(cc-button[slot="suffix"]) {
+  margin-inline-end: 0;
+}
+
+:host([label-position-side]) [part="container"] {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  justify-content: space-between;
+}
+
+:host([label-position-side]) [part="input-container"] {
+  margin-top: 0;
+}
+
+:host([readonly]) [part="input-container"] {
+  border-style: dashed;
+}
+
+:host([readonly]) slot[name="suffix"] > * {
+  opacity: .5;
+}
+
+:host([disabled]) slot[name="suffix"] > * {
+  pointer-events: none;
+}
+
+:host([disabled]) {
+  opacity: 0.5;
+}
+
+/*
+  These CSS below can be shared across multiple components though.
+*/
+:host([helper-text-position-top]) [part="container"] {
+  display: flex;
+  flex-direction: column;
+}
+
+:host([helper-text-position-top]) [part="label"] {
+  padding-block: 0.25em;
+}
+
+:host([helper-text-position-top]) [part="input-container"] {
+  order: 1;
+  margin-top: 0.25em;
+}
+
+:host([helper-text-position-top]) [part="helper-text"]:not(:empty) {
+  order: 0;
+  margin-top: 0;
+}

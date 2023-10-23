@@ -5,6 +5,11 @@
  * 
  */
 
+const name = {
+  type: String,
+  reflect: true,
+}
+
 /**
  * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
  * The HTML autocomplete attribute lets web developers specify 
@@ -87,6 +92,14 @@ const pattern = {
 }
 
 const helperText = {
+  type: String,
+  reflect: false,
+}
+
+/**
+ * Prefix text is being used on URL field, e.g. https://
+ */
+const prefixText = {
   type: String,
   reflect: false,
 }
@@ -181,6 +194,7 @@ const accessibleLabel = {
 }
 
 export const EMAIL_FIELD = {
+  name,
   autocomplete,
   label,
   'helper-text': helperText,
@@ -199,6 +213,27 @@ export const EMAIL_FIELD = {
   dirname,
 }
 
+export const URL_FIELD = {
+  name,
+  autocomplete,
+  label,
+  'helper-text': helperText,
+  required,
+  multiple,
+  pattern,
+  readonly,
+  disabled,
+  placeholder,
+  value,
+  'error-message': errorMessage,
+  list,
+  /**
+   * @todo - Add these docs to email field
+   */
+  dirname,
+  'prefix-text': prefixText,
+}
+
 export const SEARCH_FIELD = {
   name,
   'helper-text': helperText,
@@ -213,4 +248,10 @@ export const SEARCH_FIELD = {
   size,
   value,
   'accessible-label': accessibleLabel,
+}
+
+export const SELECT = {
+  name,
+  'helper-text': helperText,
+  disabled,
 }
