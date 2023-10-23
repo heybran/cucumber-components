@@ -25,6 +25,7 @@
       'email-field',
       // 'country-select',
       'search-field',
+      'url-field',
     ];
 
     if (import.meta.env.MODE === 'development') {

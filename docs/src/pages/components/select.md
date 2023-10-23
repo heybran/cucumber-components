@@ -5,6 +5,8 @@ title: 'Select'
 
 `cc-select` functionality is similar to an HTML `select` element. But it is select-only as it's not made with an `input` element. However, like an HTML `select` element, users can type characters to select matching options.
 
+The select options listbox can be opened when clicking, pressing up and down arrow keys, or by typing the initial character of one of the options.
+
 For `cc-option`, you need to add a `aria-selected="true"` to indicate that option is selected initially.
 <div class="preview">
   <cc-select label="Start of the week" style="width: 10em;">
@@ -19,8 +21,8 @@ For `cc-option`, you need to add a `aria-selected="true"` to indicate that optio
 </div>
 
 ```html
- <cc-select>
-  <cc-option value="monday" text="Monday" selected></cc-option>
+<cc-select>
+  <cc-option value="monday" text="Monday" aria-selected="true"></cc-option>
   <cc-option value="tuesday" text="Tuesday"></cc-option>
   <cc-option value="wednesday" text="Wednesday"></cc-option>
   <cc-icon icon="chevron-down" slot="suffix"></cc-icon>
@@ -87,3 +89,55 @@ For `cc-option`, you need to add a `aria-selected="true"` to indicate that optio
     </tr>
   </tbody>
 </table>
+
+## Disabled
+
+This `disabled` Boolean attribute indicates that the user cannot interact with the control. If this attribute is not specified, the control inherits its setting from the containing element, for example `<fieldset>`; if there is no containing element with the disabled attribute set, then the control is enabled.
+
+<div class="preview">
+  <form onsubmit="alert(new FormData(this).get('start-of-week')); return false;">
+    <p>First one here is a native `select` element.</p>
+    <label for="pet-select">Choose a pet:</label>
+    <select name="pets" id="pet-select" disabled>
+      <option value="">--Please choose an option--</option>
+      <option value="dog">Dog</option>
+      <option value="cat">Cat</option>
+      <option value="hamster">Hamster</option>
+      <option value="parrot">Parrot</option>
+      <option value="spider">Spider</option>
+      <option value="goldfish">Goldfish</option>
+    </select>
+    </select>
+    <cc-divider></cc-divider>
+    <cc-select label="Start of the week" name="start-of-week" disabled>
+      <cc-option value="monday" text="Monday" aria-selected="true"></cc-option>
+      <cc-option value="tuesday" text="Tuesday"></cc-option>
+      <cc-option value="wednesday" text="Wednesday"></cc-option>
+      <cc-option value="thursday" text="Thursday"></cc-option>
+      <cc-option value="friday" text="Friday"></cc-option>
+      <cc-option value="saturday" text="Saturday"></cc-option>
+      <cc-option value="sunday" text="Sunday"></cc-option>
+    </cc-select>
+  </form>
+</div>
+
+<div class="preview">
+  <form onsubmit="alert(new FormData(this).get('start-of-week')); return false;">
+    <cc-form-layout>
+    <cc-select label="Start of the week" name="start-of-week" style="width: 10em;">
+      <cc-option value="monday" text="Monday" aria-selected="true"></cc-option>
+      <cc-option value="tuesday" text="Tuesday"></cc-option>
+      <cc-option value="wednesday" text="Wednesday"></cc-option>
+      <cc-option value="thursday" text="Thursday"></cc-option>
+      <cc-option value="friday" text="Friday"></cc-option>
+      <cc-option value="saturday" text="Saturday"></cc-option>
+      <cc-option value="sunday" text="Sunday"></cc-option>
+    </cc-select>
+    <cc-button type="submit" theme="primary">Submit</cc-button>
+    </cc-form-layout>
+  </form>
+</div>
+
+```
+
+```
