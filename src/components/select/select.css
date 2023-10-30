@@ -6,8 +6,18 @@
   position: relative;
 }
 
-button {
-  cursor: pointer;
+[part="input-container"] {
+  padding-inline-end: 1ch;
+}
+
+/* Has been moved to shared CSS */
+/* [part=input-container]:focus-within {
+  border-color: var(--border-color-focus);
+  box-shadow: 0 0 0 0.1875rem var(--box-shadow-color);
+} */
+
+[part="input"] {
+  /* cursor: pointer;
   -webkit-appearance: none;
   background: transparent;
   font: inherit;
@@ -21,16 +31,24 @@ button {
   border-radius: var(--_border-radius-md);
   padding: 1ch 1ch 1ch 1.5ch;
   width: 100%;
-  gap: .5em;
+  gap: .5em; */
+
+  width: 100%;
+  height: auto;
+  background: none;
+  border-radius: var(--border-radius);
+  min-height: 0;
+  min-width: 0;
+  color: inherit;
+  outline: none;
+  padding: 1ch 1.5ch;
+  -webkit-appearance: none;
+  font: inherit;
+  margin: 0;
+  border: 0;
 }
 
-button:is(:focus-visible, :focus),
-:host(:focus-within) button {
-  outline: 1px auto var(--_outline-color-focus);
-  box-shadow: var(--_box-shadow);
-}
-
-button[part="close"] {
+[part="close"] {
   display: none; /* todo */
 }
 
@@ -57,12 +75,12 @@ button[part="close"] {
   pointer-events: none;
 }
 
-button[aria-expanded="true"] + [part="dropdown"] {
+[aria-expanded="true"][part="dropdown"] {
   /* transform: scale(1); */
   left: 0;
   top: calc(100% + 10px);
   visibility: visible;
-  pointer-events: initial;
+  pointer-events: all;
   transition: .15s cubic-bezier(.22,1,.36,1), visibility 0s;
   animation: scale .15s cubic-bezier(.33,1,.68,1) both;
 }
@@ -98,15 +116,21 @@ button[aria-expanded="true"] + [part="dropdown"] {
   pointer-events: none;
 }
 
-button[aria-expanded="true"] ::slotted([slot="suffix"]),
-button[aria-expanded="true"] [part="suffix"] {
+[part="input"][aria-expanded="true"] ::slotted([slot="suffix"]),
+[part="input"][aria-expanded="true"] [part="suffix"] {
   transform: rotate(180deg);
 }
 
 label {
   font-weight: var(--label-font-weight, 600);
+  padding-block: 0.25em 0.5em;
+  display: inline-block;
 }
 
-label:not(:empty) + button {
+label:not(:empty) + [part="input"] {
   margin-top: .25em;
+}
+
+slot[name="suffix"] > * {
+  pointer-events: none;
 }

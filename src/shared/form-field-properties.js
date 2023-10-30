@@ -250,8 +250,15 @@ export const SEARCH_FIELD = {
   'accessible-label': accessibleLabel,
 }
 
-export const SELECT = {
+export const SELECT_FIELD = {
   name,
+  label,
+  /**
+   * When placeholder is present but label is not,
+   * Need to add a hidden label that match the placeholder so it can be accessible
+   */
+  placeholder,
   'helper-text': helperText,
   disabled,
+  multiple,
 }

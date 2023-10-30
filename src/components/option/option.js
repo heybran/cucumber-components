@@ -10,7 +10,7 @@ export default class CucumberOption extends HTMLElement {
 
   /** @returns {string} */
   get text() {
-    return this.getAttribute('text') ?? '';
+    return this.textContent;
   }
 
   constructor() {
@@ -24,25 +24,22 @@ export default class CucumberOption extends HTMLElement {
     if (!this.hasAttribute('aria-selected')) {
       this.setAttribute('aria-selected', 'false');
     }
+    this.addEventListener('click', this.handleClick.bind(this));
   }
 
   render() {
     // @ts-ignore
     this.shadowRoot.innerHTML = `
       <style>${shared}${css}</style>
-      <div onclick="this.getRootNode().host.handleClick();" title="${this.text}" part="container">
+      <div part="container">
         <span><slot name="prefix"></slot></span>
-        <span>${this.text}</span>
+        <span><slot></slot></span>
         <span><slot name="suffix"></slot></span>
       </div>
     `;
   }
 
-  focus() {
-    // this.shadowRoot.querySelector('button').focus();
-  }
-
-  handleClick() {
+  handleClick(event) {
     this.dispatchEvent(new CustomEvent('cc-option-selected', {
       bubbles: true, 
       composed: true, 

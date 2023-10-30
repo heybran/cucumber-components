@@ -1,0 +1,34 @@
+<div part="container">
+  <label part="label">
+    <slot name="label"></slot>
+  </label>
+  <div part="input-container">
+    <slot name="prefix"></slot>
+    <input 
+      type="text"
+      autocomplete="off"
+      spellcheck="false"
+      autocapitalize="off"
+      readonly
+      role="combobox"
+      aria-expanded="false"
+      aria-disabled="false"
+      aria-haspopup="listbox"
+      part="input"
+    >
+    <slot name="suffix">
+      <cc-icon icon="chevron-down"></cc-icon>
+    </slot>
+  </div>
+  <div part="helper-text">
+    <slot name="helper-text"></slot>
+  </div>
+  <div role="listbox" tabindex="-1" part="dropdown" aria-expanded="false">
+    <button part="close">
+      <span class="sr-only">Close</span>
+    </button>
+    <div part="dropdown-content">
+      <slot></slot>
+    </div>
+  </div>
+</div>

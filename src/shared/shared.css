@@ -53,6 +53,17 @@
   --_hover-color: rgba(194, 193, 192, 0.2);
 
   --_button-border-color: var(--breeze-button-border-color, #dedbd9);
+
+  /* Shared by form controls */
+  --border-radius: 8px;
+  /* Shared by form controls */
+  --border-color-normal: #adaba8;
+  /* Shared by form controls */
+  --border-color-focus: hsl(252, 100%, 65%);
+  /* Shared by form controls */
+  --box-shadow-color: rgba(109, 74, 255, 0.2);
+  /* Shared by form controls */
+  --helper-text-color: #5c5958;
 }
 
 * {
@@ -69,4 +80,28 @@
   position: absolute;
   top: 0;
   width: 1px;
+}
+
+[part="input-container"] {
+  border: 1px solid var(--border-color-normal);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: .15s cubic-bezier(.22,1,.36,1), visibility 0s;
+  overflow: hidden;
+}
+
+/*
+  Shared by form controls.
+*/
+[part=input-container]:focus-within {
+  border-color: var(--border-color-focus);
+  box-shadow: 0 0 0 0.1875rem var(--box-shadow-color);
+}
+
+[part="helper-text"]:not(:empty) {
+  color: var(--helper-text-color);
+  font-size: var(--cc-helper-text-font-size, 0.8em);
+  margin-top: .25em;
 }

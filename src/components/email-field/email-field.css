@@ -4,7 +4,6 @@
   --border-color-focus: hsl(252, 100%, 65%);
   /* TODO: how to connect to hsl? */
   --box-shadow-color: rgba(109, 74, 255, 0.2);
-  --helper-text-color: #5c5958;
   --label-font-weight: 600;
   /*
     Adding display block otherwise components user setting margin
@@ -58,6 +57,7 @@ label {
   align-items: center;
   position: relative;
   transition: .15s cubic-bezier(.22,1,.36,1), visibility 0s;
+  overflow: hidden;
 }
 
 [part=input-container]:focus-within {
@@ -69,12 +69,6 @@ label {
 /* [part=input-container]:has(:invalid) {
   border-color: var(--cc-red-7);
 } */
-
-[part="helper-text"]:not(:empty) {
-  color: var(--helper-text-color);
-  font-size: var(--cc-helper-text-font-size, 0.8em);
-  margin-top: .25em;
-}
 
 ::slotted([slot="prefix"]) {
   /* padding-inline: 1ch; */
