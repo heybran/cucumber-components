@@ -24,6 +24,17 @@
   --cc-red-8: #e03131;
   --cc-red-9: #c92a2a;
 
+  /* Sizes - credits: https://open-props.style/#sizes */
+  --cc-size-1: .25rem;
+  --cc-size-2: .5rem;
+  --cc-size-3: 1rem;
+  --cc-size-4: 1.25rem;
+  --cc-size-5: 1.5rem;
+  --cc-size-6: 1.75rem;
+  --cc-size-7: 2rem;
+  --cc-size-8: 3rem;
+  --cc-size-9: 4rem;
+
 
   --cc-helper-text-font-size: .8em;
 

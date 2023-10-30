@@ -1,0 +1,24 @@
+<dialog>
+  <form method="dialog">
+    <header part="header">
+      <h3 part="title">
+        <slot name="title">Dialog default title.</slot>
+      </h3>
+      <cc-button part="close-button" theme="borderless icon" onclick="this.closest('dialog').close('close');">
+        <cc-icon icon="cross" label="Close dialog" style="--size: 2em;"></cc-icon>
+        <cc-tooltip slot="tooltip" text="Close dialog"></cc-tooltip>
+      </cc-button>
+    </header>
+    <article>
+      <slot part="body"></slot>
+    </article>
+    <footer part="footer">
+      <menu part="footer-menu">
+        <slot name="footer-actions-left"></slot>
+      </menu>
+      <menu part="footer-actions-right">
+        <slot name="footer-actions-right"></slot>
+      </menu>
+    </footer>
+  </form>
+</dialog>

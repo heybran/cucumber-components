@@ -1,0 +1,104 @@
+/*
+  Most of codes are taken from this tutorials: https://web.dev/building-a-dialog-component/
+  All credits goes to Adam Argyle.
+*/
+dialog {
+  /*
+    Overwrite default user agent padding as we want padding on form element.
+  */
+  padding: 0;
+  display: grid;
+  border-width: 0;
+  /*
+    The dialog defaults to delegating its size to its contents,
+    which is generally great.
+    My goal here is to constrain the max-inline-size to a readable size 60ch or 90% of the viewport width.
+    This ensures the dialog won't go edge to edge on a mobile device,
+    and won't be so wide on a desktop screen that it's hard to read.
+  */
+  max-inline-size: min(90vw, 60ch);
+  overflow: hidden;
+  /*
+    The following styles fix the dialog element to the window,
+    stretching it to each corner, and uses margin: auto to center the content:
+  */
+  margin: auto;
+  position: fixed;
+  inset: 0;
+  z-index: var(--layer-important);
+  /**
+    Last, add some flair to the dialog so it looks like a soft surface sitting far above the page.
+    The softness is achieved by rounding the corners of the dialog.
+    The depth is achieved with one of Open Props’ carefully crafted shadow props.
+  */
+  border-radius: var(--border-radius);
+  box-shadow: rgba(37, 38, 39, 0.03) 0px -1px 2px 0px,
+    rgba(37, 38, 39, 0.04) 0px 3px 2px -2px,
+    rgba(37, 38, 39, 0.04) 0px 7px 5px -2px,
+    rgba(37, 38, 39, 0.05) 0px 12px 10px -2px,
+    rgba(37, 38, 39, 0.06) 0px 22px 18px -2px,
+    rgba(37, 38, 39, 0.07) 0px 41px 33px -2px,
+    rgba(37, 38, 39, 0.08) 0px 100px 80px -2px;
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(2px);
+  transition: backdrop-filter 0.5s ease;
+}
+
+dialog:not([open]) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+dialog[open] {
+  animation: slide-in-up 0.5s ease forwards;
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
+}
+
+html:has(dialog[open]) .dashboard-main {
+  overflow: hidden;
+}
+
+form > :is(header, article, footer) {
+  padding: 1em;
+}
+
+header {
+  display: flex;
+  gap: var(--cc-size-3);
+  justify-content: space-between;
+  align-items: center;
+  padding-block: var(--cc-size-3);
+  padding-inline: var(--cc-size-5);
+
+  & h3 {
+    margin: 0;
+  }
+
+  & [part="close-button"] {
+    color: var(--cc-gray-7);
+  }
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cc-size-3);
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-inline: var(--cc-size-5);
+  padding-block: var(--cc-size-3);
+
+  & menu {
+    margin: 0;
+  }
+}
+
+@keyframes slide-in-up {
+  0% {
+    transform: translateY(100%);
+  }
+}

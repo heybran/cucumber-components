@@ -23,6 +23,7 @@ export const COMPONENTS = {
     { text: "Carousel", link: "/components/carousel" },
     { text: "Carousel Item", link: "/components/carousel-item"},
     // { text: "Country Select", link: "/components/country-select"},
+    { text: "Dialog", link: "/components/dialog" },
     { text: "Divider", link: "/components/divider" },
     { text: "Email Field", link: "/components/email-field" },
     { text: "Radio", link: "/components/radio" },

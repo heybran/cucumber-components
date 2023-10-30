@@ -24,6 +24,7 @@
       'divider',
       'email-field',
       // 'country-select',
+      'dialog',
       'search-field',
       'url-field',
     ];
