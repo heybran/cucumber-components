@@ -17,7 +17,7 @@ export const OPEN_GRAPH = {
 export const COMPONENTS = {
   heading: 'Components',
   items: [
-    { text: "Alert", link: "/components/alert" },
+    // { text: "Alert", link: "/components/alert" },
     { text: "Button", link: "/components/button" },
     { text: "Checkbox", link: "/components/checkbox" },
     { text: "Carousel", link: "/components/carousel" },
