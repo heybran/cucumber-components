@@ -27,6 +27,7 @@
       'dialog',
       'search-field',
       'url-field',
+      'date-picker',
     ];
 
     if (import.meta.env.MODE === 'development') {

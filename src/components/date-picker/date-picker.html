@@ -1,0 +1,15 @@
+<div part="container">
+  <label part="label" for="input">
+    <slot name="label"></slot>
+  </label>
+  <div part="input-container">
+    <slot name="prefix"></slot>
+    <input id="input" part="input" type="date" aria-invalid="false">
+    <slot name="suffix"></slot>
+  </div>
+  <div part="helper-text">
+    <slot name="helper-text"></slot>
+  </div>
+  <div part="error-message"></div>
+  <slot name="datalist"></slot>
+</div>

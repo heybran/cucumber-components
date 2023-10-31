@@ -193,6 +193,37 @@ const accessibleLabel = {
   reflectAs: 'aria-label',
 }
 
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min
+ * It is valid for the input types including: 
+ * date, month, week, time, datetime-local, number and range types, and the <meter> element.
+ */
+const min = {
+  type: String,
+  reflect: true,
+}
+
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/max
+ * Valid for the numeric input types, including the 
+ * date, month, week, time, datetime-local, number and range types, 
+ * and both the <progress> and <meter> elements, 
+ * the max attribute is a number that specifies the most positive value a form control 
+ * to be considered valid.
+ */
+const max = {
+  type: String,
+  reflect: true,
+}
+
+/**
+ * 
+ */
+const step = {
+  type: String,
+  reflect: true,
+}
+
 export const EMAIL_FIELD = {
   name,
   autocomplete,
@@ -261,4 +292,15 @@ export const SELECT_FIELD = {
   'helper-text': helperText,
   disabled,
   multiple,
+}
+
+export const DATE_PICKER = {
+  value,
+  label,
+  name,
+  'helper-text': helperText,
+  min,
+  max,
+  step,
+  required,
 }

@@ -22,6 +22,7 @@ export const COMPONENTS = {
     { text: "Checkbox", link: "/components/checkbox" },
     { text: "Carousel", link: "/components/carousel" },
     { text: "Carousel Item", link: "/components/carousel-item"},
+    { text: "Date Picker", link: "/components/date-picker"},
     // { text: "Country Select", link: "/components/country-select"},
     { text: "Dialog", link: "/components/dialog" },
     { text: "Divider", link: "/components/divider" },
