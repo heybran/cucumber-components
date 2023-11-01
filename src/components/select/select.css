@@ -57,11 +57,12 @@
   border-radius: var(--_border-radius-md);
   max-height: calc(min(var(--available-height, var(--max-height)), var(--max-height)) - 2px);
   max-height: 300px;
-  max-width: calc(min(var(--available-width, var(--max-width)), var(--max-width)) - 2px);
+  /* max-width: calc(min(var(--available-width, var(--max-width)), var(--max-width)) - 2px); */
   min-height: min(var(--min-height,1em),100vh);
-  min-width: min(var(--min-width,1.5em),100vw);
+  /* min-width: min(var(--min-width,1.5em),100vw); */
   overflow: auto;
-  width: var(--width);
+  /* width: var(--width); */
+  width: 100%; /* now is absolute position */
   box-shadow: rgb(35 35 52 / 20%) 0px 7px 29px 0px;
   position: absolute;
   z-index: 999;
@@ -123,7 +124,10 @@
 
 label {
   font-weight: var(--label-font-weight, 600);
-  padding-block: 0.25em 0.5em;
+  /* cancel previous top padding as it will mess up with layout,
+    if component is being used with other standard native form labels.
+  */
+  padding-block-end: 0.5em;
   display: inline-block;
 }
 

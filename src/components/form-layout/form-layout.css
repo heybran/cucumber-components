@@ -19,7 +19,12 @@
 
 [part="container"] {
   display: grid;
-  align-items: baseline;
+  /* align-items: baseline; */
+  /*
+    @see https://developer.mozilla.org/en-US/docs/Web/CSS/align-items#values
+    Correct value should be "align-items: end;" here.
+  */
+  align-items: end;
   column-gap: var(--cc-form-layout-column-gap);
   row-gap: var(--cc-form-layout-row-gap);
   grid-template-columns: repeat(var(--cc-form-layout-columns--global, var(--cc-form-layout-columns)), 1fr);

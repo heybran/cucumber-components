@@ -40,10 +40,17 @@ export default class CucumberDialog extends BaseElement {
   }
 
   connectedCallback() {
-    if (this.hasAttribute('label')) {
-      this.shadowRoot.querySelector('slot[name="label"]').textContent = this.getAttribute('label');
-    }
   }
+
+  static get observedAttributes() {
+		return ['label'];
+	}
+
+  attributeChangedCallback(attr, oldValue, newValue) {
+    if (attr === 'label') {
+      this.shadowRoot.querySelector('slot[name="title"]').textContent = this.getAttribute('label');
+    }
+	}
 }
 
 if (!customElements.get(CucumberDialog.__localName)) {

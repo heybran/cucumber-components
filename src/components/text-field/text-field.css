@@ -31,8 +31,7 @@ input {
 
 label {
   font-weight: var(--label-font-weight);
-  /* move spacing from input-container to label */
-  padding-block: 0.25em 0.5em;
+  padding-block-end: 0.5em;
   display: inline-block;
 }
 
