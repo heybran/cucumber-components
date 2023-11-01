@@ -4,12 +4,20 @@
   </label>
   <div part="input-container">
     <slot name="prefix"></slot>
-    <input id="input" part="input" type="date" aria-invalid="false">
-    <slot name="suffix"></slot>
+    <input id="input" part="input" type="date" aria-describedby="helper-text">
+    <slot name="suffix">
+      <cc-button 
+        slot="suffix" 
+        theme="square borderless"
+        onclick="this.getRootNode().host.showPicker();"
+      >
+        <cc-icon label="Show date picker" icon="calendar"></cc-icon>
+      </cc-button>
+    </slot>
   </div>
-  <div part="helper-text">
+  <div part="helper-text" id="helper-text">
     <slot name="helper-text"></slot>
   </div>
-  <div part="error-message"></div>
+  <div part="error-message" id="error-message"></div>
   <slot name="datalist"></slot>
 </div>

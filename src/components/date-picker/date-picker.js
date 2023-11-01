@@ -28,6 +28,13 @@ export default class CucumberDatePicker extends FormElement {
 	}
 
 	/**
+	 * Pass down showPicker()
+	 */
+	showPicker() {
+		return this.reflectTarget.showPicker();
+	}
+
+	/**
 	 * Update label text.
 	 * @param {string} text
 	 */
