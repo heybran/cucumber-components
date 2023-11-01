@@ -1,22 +1,22 @@
 <div part="container">
-  <label part="label">
+	<label part="label">
     <slot name="label"></slot>
   </label>
-  <div part="input-container">
-    <slot name="prefix"></slot>
-    <input 
-      part="input" 
-      type="email" 
-      autocapitalize="off" 
-      autocorrect="off"
-      spellcheck="false" 
-      aria-invalid="false"
-    >
+	<div part="input-container">
+		<slot name="prefix"></slot>
+    <input
+			part="input"
+			type="email"
+			autocapitalize="off"
+			autocorrect="off"
+			spellcheck="false"
+			aria-invalid="false"
+		/>
     <slot name="suffix"></slot>
-  </div>
-  <div part="helper-text">
+	</div>
+	<div part="helper-text">
     <slot name="helper-text"></slot>
   </div>
-  <div part="error-message"></div>
-  <slot name="datalist"></slot>
+	<div part="error-message"></div>
+	<slot name="datalist"></slot>
 </div>

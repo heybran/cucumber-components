@@ -11,7 +11,8 @@
     "test": "web-test-runner ./src/components/*/*.test.js --coverage --node-resolve",
     "test:watch": "web-test-runner ./src/components/*.test.js --coverage --node-resolve --watch",
     "dev": "vite",
-    "build": "node copyHTML.js && node minifyHTML.js && vite build && node renameHTML.js",
+    "build": "vite build",
+    "build:production": "node copyHTML.js && node minifyHTML.js && vite build && node renameHTML.js",
     "preview": "vite preview",
     "cypress:open": "cypress open",
     "format": "biome format --write ./src"

@@ -1,5 +1,4 @@
 // @ts-check
-import shared from "../../shared/shared.css?inline";
 import html from "./select.html?raw";
 import css from "./select.css?inline";
 import sharedCss from "../../shared/shared.css?inline";
@@ -9,7 +8,8 @@ import { SELECT_FIELD } from "../../shared/form-field-properties";
 
 export default class CucumberSelect extends FormElement {
 	constructor() {
-		super().render(html, css, sharedCss);
+		super();
+		this.render(html, css, sharedCss);
 	}
 
   /**
