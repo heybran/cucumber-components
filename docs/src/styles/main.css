@@ -184,3 +184,11 @@ pre[class*="language-"] {
   left: 2rem;
   top: 1rem;
 }
+
+cc-dialog > p {
+  margin: 0 !important;
+}
+
+cc-dialog#dialog-blur::part(dialog)::backdrop {
+  filter: blue(3px);
+}
