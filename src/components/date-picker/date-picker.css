@@ -42,8 +42,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 label {
   font-weight: var(--label-font-weight);
-  /* move spacing from input-container to label */
-  padding-block: 0.25em 0.5em;
+  padding-block: var(--form-control-label-top-padding) 0.5em;
   display: inline-block;
 }
 

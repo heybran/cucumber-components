@@ -1,20 +1,22 @@
 <div part="container">
-	<label part="label">
+	<label part="label" for="input">
     <span></span>
   </label>
 	<div part="input-container">
 		<slot name="prefix"></slot>
     <input
 			part="input"
+			id="input"
 			type="text"
 			autocomplete="off"
 			autocapitalize="off"
 			autocorrect="off"
 			spellcheck="false"
 			aria-invalid="false"
+			aria-describedby="helper-text"
 		/>
     <slot name="suffix"></slot>
 	</div>
-	<div part="helper-text"></div>
-	<div part="error-message"></div>
+	<div part="helper-text" id="helper-text"></div>
+	<div part="error-message" id="error-message"></div>
 </div>

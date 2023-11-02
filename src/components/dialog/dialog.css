@@ -1,3 +1,7 @@
+:host {
+  display: inline-block;
+}
+
 /*
   Most of codes are taken from this tutorials: https://web.dev/building-a-dialog-component/
   All credits goes to Adam Argyle.
@@ -16,7 +20,7 @@ dialog {
     This ensures the dialog won't go edge to edge on a mobile device,
     and won't be so wide on a desktop screen that it's hard to read.
   */
-  max-inline-size: min(90vw, 60ch);
+  /* max-inline-size: min(90vw, 60ch); */
   overflow: hidden;
   /*
     The following styles fix the dialog element to the window,
@@ -39,10 +43,11 @@ dialog {
     rgba(37, 38, 39, 0.06) 0px 22px 18px -2px,
     rgba(37, 38, 39, 0.07) 0px 41px 33px -2px,
     rgba(37, 38, 39, 0.08) 0px 100px 80px -2px;
+
+  inline-size: var(--width, 55ch);
 }
 
 dialog::backdrop {
-  backdrop-filter: blur(2px);
   transition: backdrop-filter 0.5s ease;
 }
 
@@ -52,7 +57,7 @@ dialog:not([open]) {
 }
 
 dialog[open] {
-  animation: slide-in-up 0.5s ease forwards;
+  animation: slide-down 0.3s ease forwards;
   @media (prefers-reduced-motion) {
     animation: none;
   }
@@ -66,6 +71,17 @@ form > :is(header, article, footer) {
   padding: 1em;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  /* chrome user agent max-height for dialog */
+  max-height: calc((100vh - 6px) - 2em);
+}
+
+article {
+  overflow-y: auto;
+}
+
 header {
   display: flex;
   gap: var(--cc-size-3);
@@ -73,6 +89,7 @@ header {
   align-items: center;
   padding-block: var(--cc-size-3);
   padding-inline: var(--cc-size-5);
+  border-bottom: 1px solid var(--cc-border-color);
 
   & h3 {
     margin: 0;
@@ -91,14 +108,16 @@ footer {
   align-items: flex-start;
   padding-inline: var(--cc-size-5);
   padding-block: var(--cc-size-3);
+  border-top: 1px solid var(--cc-border-color);
 
   & menu {
     margin: 0;
+    padding: 0;
   }
 }
 
-@keyframes slide-in-up {
+@keyframes slide-down {
   0% {
-    transform: translateY(100%);
+    transform: translateY(-50px);
   }
 }

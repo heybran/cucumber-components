@@ -58,13 +58,13 @@ export default class CucumberTextField extends FormElement {
 
 	connectedCallback() {
 		super.render(html, css);
-
-		this.defer(() => {
-			const id = `input-${this.uuid()}`;
-			// @ts-ignore
-			this.shadowRoot.querySelector('[part="label"]').setAttribute("for", id);
-			this.input.id = id;
-		});
+		const form = this.getForm();
+		if (form) {
+			if (!Array.isArray(form.__cucumberElements)) {
+				form.__cucumberElements = [];
+			}
+			form.__cucumberElements.push(this);
+		}
 
 		if (this.hasAttribute("value")) {
 			this.value = this.getAttribute("value") ?? "";
@@ -107,27 +107,13 @@ export default class CucumberTextField extends FormElement {
 		});
 	}
 
-	/**
-	 * @param {FormDataEvent} event
-	 * @returns void
-	 */
-	// setFormData = (event) => {
-	// 	const formData = event.formData;
-	// 	if (!this.hasAttribute("name")) {
-	// 		return console.warn(
-	// 			`No 'name' attribute found on ${this.localName}, so this form field will not particiate on form submit.`,
-	// 		);
-	// 	}
+	isValid() {
+		return this.input.checkValidity();
+	}
 
-	// 	/**
-	// 	 * Fixes for not able to remove formdata event listener when disconnected
-	// 	 */
-	// 	if (!this.getForm()) {
-	// 		return;
-	// 	}
-	// 	// @ts-ignore
-	// 	formData.set(this.getAttribute("name"), this.value);
-	// };
+	reportValidity() {
+		this.input.reportValidity();
+	}
 
 	disconnectedCallback() {
 		/**

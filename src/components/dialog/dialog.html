@@ -1,5 +1,5 @@
-<dialog>
-  <form method="dialog">
+<dialog part="dialog">
+  <form method="dialog" part="form">
     <header part="header">
       <h3 part="title">
         <slot name="title">Dialog default title.</slot>
@@ -16,7 +16,7 @@
       <menu part="footer-menu">
         <slot name="footer-actions-left"></slot>
       </menu>
-      <menu part="footer-actions-right">
+      <menu part="footer-menu">
         <slot name="footer-actions-right"></slot>
       </menu>
     </footer>
