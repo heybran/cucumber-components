@@ -1,10 +1,10 @@
 <dialog part="dialog" aria-labelledby="title">
   <form method="dialog" part="form">
     <header part="header">
-      <h3 part="title">
+      <h3 part="title" id="title">
         <slot name="title">Dialog default title.</slot>
       </h3>
-      <cc-button part="close-button" theme="borderless icon" onclick="this.closest('dialog').close('close');">
+      <cc-button part="close-button" theme="borderless icon round" onclick="this.closest('dialog').close('close');">
         <cc-icon icon="cross" label="Close dialog" style="--size: 2em;"></cc-icon>
         <cc-tooltip slot="tooltip" text="Close dialog"></cc-tooltip>
       </cc-button>

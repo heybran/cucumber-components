@@ -111,6 +111,15 @@ a {
   padding: 0.25ch;
 }
 
+:host([theme~="icon"]) [part="button"]:hover {
+  background-color: var(--cc-gray-2);
+}
+
+:host([theme~="round"]) [part="button"] {
+  border-radius: 50%;
+}
+
+
 :host([theme~="borderless"]) [part="button"] {
   border: none;
 }
