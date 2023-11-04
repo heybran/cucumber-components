@@ -8,7 +8,8 @@
     "start": "astro dev",
     "build": "astro build",
     "format": "prettier -w --plugin-search-dir=. '**/*.{js,jsx,cjs,ts,tsx,astro}'",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "deploy": "netlify deploy --prod --dir dist"
   },
   "devDependencies": {
     "@astrojs/image": "^0.14.0",

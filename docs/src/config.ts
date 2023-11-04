@@ -2,7 +2,7 @@ export const SITE = {
   title: "Breeze Components",
   description: "Astro theme to build your design system fast.",
   defaultLanguage: "en_US",
-  twitter: "@jordienr",
+  twitter: "",
   github: "heybran",
 };
 
@@ -27,6 +27,7 @@ export const COMPONENTS = {
     { text: "Dialog", link: "/components/dialog" },
     { text: "Divider", link: "/components/divider" },
     { text: "Email Field", link: "/components/email-field" },
+    { text: "File Upload", link: "/components/file-upload" },
     { text: "Radio", link: "/components/radio" },
     { text: "Tooltip", link: "/components/tooltip" },
     { text: "Text Field", link: "/components/text-field" },

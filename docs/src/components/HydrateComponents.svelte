@@ -28,6 +28,7 @@
       'search-field',
       'url-field',
       'date-picker',
+      'file-upload',
     ];
 
     if (import.meta.env.MODE === 'development') {
