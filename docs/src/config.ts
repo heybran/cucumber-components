@@ -33,6 +33,8 @@ export const COMPONENTS = {
     { text: "Text Field", link: "/components/text-field" },
     { text: "Select", link: "/components/select" },
     { text: "Search Field", link: "/components/search-field" },
+    { text: "Side Nav", link: "/components/side-nav" },
+    { text: "Side Nav Item", link: "/components/side-nav-item" },
     { text: "Switch", link: "/components/switch" },
     { text: "Textarea", link: "/components/textarea" },
     { text: "Spinner", link: "/components/spinner" },

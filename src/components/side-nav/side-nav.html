@@ -1,0 +1,9 @@
+<button part="label" aria-controls="children">
+  <slot name="label"></slot>
+  <span part="toggle-icon" aria-hidden="true">
+    <cc-icon icon="chevron-down"></cc-icon>
+  </span>
+</button>
+<ul part="children" role="list" aria-hidden="false">
+  <slot></slot>
+</ul>

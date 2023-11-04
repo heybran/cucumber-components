@@ -29,6 +29,8 @@
       'url-field',
       'date-picker',
       'file-upload',
+      'side-nav-item',
+      'side-nav',
     ];
 
     if (import.meta.env.MODE === 'development') {

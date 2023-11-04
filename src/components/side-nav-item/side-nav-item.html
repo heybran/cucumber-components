@@ -1,0 +1,15 @@
+<div part="container">
+  <a id="link" part="link" aria-current="false">
+    <slot name="prefix"></slot>
+    <slot></slot>
+    <span part="toggle-icon" aria-hidden="true">
+      <cc-icon icon="chevron-down"></cc-icon>
+    </span>
+  </a>
+  <slot name="suffix"></slot>
+  <slot name="actions"></slot>
+  <ul part="children" role="list" aria-hidden="true" hidden>
+    <slot name="children"></slot>
+  </ul>
+  <div class="sr-only" id="i18n">Toggle child items</div>
+</div>
