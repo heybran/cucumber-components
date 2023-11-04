@@ -35,6 +35,14 @@ export default class FormElement extends BaseElement {
   }
 
 	/**
+	 * Focus on native form control, so it can be called from other components.
+	 * @returns void
+	 */
+	focus() {
+		this.reflectTarget?.focus();
+	}
+
+	/**
 	 * 
 	 * @param {string} message 
 	 */
@@ -64,24 +72,6 @@ export default class FormElement extends BaseElement {
     }
     return null;
   }
-
-  /**
-   * 
-   * @returns {boolean}
-   */
-  // isValid() {
-  //   // @ts-ignore
-	// 	return this.input.checkValidity();
-	// }
-
-  /**
-   * In case users want to call this method as well.
-   * @returns {boolean}
-   */
-  // checkVisibility() {
-  //   // @ts-ignore
-  //   return this.input.checkValidity();
-  // }
 
   /**
 	 * @param {FormDataEvent} event

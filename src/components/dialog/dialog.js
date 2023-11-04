@@ -2,6 +2,9 @@ import css from "./dialog.css?inline";
 import sharedCSS from "../../shared/shared.css?inline";
 import html from "./dialog.html?raw";
 import BaseElement from "../../shared/base-element.js";
+import "../button/button.js";
+import "../icon/icon.js";
+import "../tooltip/tooltip.js";
 
 export default class CucumberDialog extends BaseElement {
   /** @type {string} */
@@ -19,8 +22,9 @@ export default class CucumberDialog extends BaseElement {
     return this.shadowRoot.querySelector('dialog');
   }
 
-  showModal() {
-    return this.dialog.showModal();
+  #showModal() {
+    this.dialog.showModal();
+    this.#afterShow();
   }
 
   /**
@@ -28,7 +32,18 @@ export default class CucumberDialog extends BaseElement {
    * @returns void
    */
   show() {
-    return this.dialog.showModal();
+    return this.#showModal();
+  }
+
+  /**
+   * Actions to perform after dialog is shown to users.
+   * @returns void
+   */
+  #afterShow() {
+    const custom_initial_focus_element = this.querySelector('[initial-focus]');
+    if (!custom_initial_focus_element) return;
+    // @ts-ignore
+    custom_initial_focus_element?.focus();
   }
 
   close() {
