@@ -1,0 +1,16 @@
+<div part="container">
+  <label part="label" for="input">
+    <slot name="label"></slot>
+  </label>
+  <div part="input-container">
+    <slot name="upload-icon"></slot>
+    <input id="input" part="input" type="file" aria-describedby="helper-text">
+    <div class="content" part="content">
+      <slot></slot>
+    </div>
+  </div>
+  <div part="helper-text" id="helper-text">
+    <slot name="helper-text"></slot>
+  </div>
+  <div part="error-message" id="error-message"></div>
+</div>

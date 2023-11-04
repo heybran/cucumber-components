@@ -224,6 +224,31 @@ const step = {
   reflect: true,
 }
 
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept
+ * The accept attribute value is a string that defines the file types the file input should accept. 
+ * This string is a comma-separated list of unique file type specifiers. 
+ * Because a given file type may be identified in more than one manner, 
+ * it's useful to provide a thorough set of type specifiers when you need files of a given format.
+ */
+const accept = {
+  type: String,
+  reflect: true,
+}
+
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture
+ * The capture attribute specifies that, optionally, a new file should be captured, 
+ * and which device should be used to capture that new media of a type defined by the accept attribute.
+ * 
+ * Note these work better on mobile devices; 
+ * if your device is a desktop computer, you'll likely get a typical file picker.
+ */
+const capture = {
+  type: String,
+  reflect: true,
+}
+
 export const EMAIL_FIELD = {
   name,
   autocomplete,
@@ -302,5 +327,14 @@ export const DATE_PICKER = {
   min,
   max,
   step,
+  required,
+}
+
+export const FILE_UPLOAD = {
+  label,
+  name,
+  'helper-text': helperText,
+  accept,
+  multiple,
   required,
 }
