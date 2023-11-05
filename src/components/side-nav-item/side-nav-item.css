@@ -1,11 +1,6 @@
-a {
-  text-decoration: none;
-}
-
 :host {
   position: relative;
   display: block;
-  font-size: var(--font-size, 1.2rem);
   min-width: 10em;
   /* border radius */
   --border-radius-base: 8px;
@@ -13,8 +8,6 @@ a {
   --border-radius-md: calc(var(--border-radius-base) * 1);
   --border-radius-lg: calc(var(--border-radius-base) * 1.5);
   --border-radius-xl: calc(var(--border-radius-base) * 2);
-
-  --padding: 0.5rem;
 }
 
 [part="container"] {
@@ -32,12 +25,14 @@ a {
   color: inherit;
   font: inherit;
   width: 100%;
-  padding: var(--padding);
-  gap: var(--padding);
+  padding: var(--cc-side-nav-item-padding-block) var(--cc-side-nav-item-padding-inline);
+  gap: 0.5rem;
   border-radius: var(--border-radius-sm);
 
-  &:hover {
+  &:hover,
+  &[aria-current="true"] {
     background-color: var(--cc-gray-1);
+    color: var(--link-hover-color);
   }
 }
 

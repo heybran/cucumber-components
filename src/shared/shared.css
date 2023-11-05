@@ -80,6 +80,10 @@
 
 
   --cc-border-color: var(--cc-gray-2);
+
+  /* Side nav & side nav items paddings */
+  --cc-side-nav-item-padding-block: 0.5rem;
+  --cc-side-nav-item-padding-inline: 0.75rem;
 }
 
 * {

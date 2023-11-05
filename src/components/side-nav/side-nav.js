@@ -13,7 +13,14 @@ export default class CucumberSideNav extends BaseElement {
   }
 
   connectedCallback() {
-    
+    this.setAttribute('role', 'navigation');
+    /** @type {HTMLSlotElement} */
+    const labelSlot = this.shadowRoot?.querySelector('slot[name="label"]');
+    if (labelSlot.assignedElements().length > 0) {
+      const id = `side-nav-label-${this.uuid()}`;
+      this.setAttribute('aria-labelledby', id);
+      this.querySelector('[slot="label"]').id = id;
+    }
   }
 
   static get observedAttributes() {

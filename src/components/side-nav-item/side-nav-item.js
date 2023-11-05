@@ -14,6 +14,21 @@ export default class CucumberSideNavItem extends BaseElement {
 
   connectedCallback() {
     this.setAttribute('role', 'listitem');
+    this.toggleActiveState();
+    /**
+     * For url changes inside single page application.
+     * @todo need to test this once an SPA demo site is setup.
+     */
+    window.addEventListener('popstate', this.toggleActiveState.bind(this));
+  }
+
+  toggleActiveState() {
+    const path = window.location.pathname;
+    if (this.getAttribute('path') === path) {
+      this.link.setAttribute('aria-current', 'true');
+    } else {
+      this.link.setAttribute('aria-current', 'false');
+    }
   }
 
   static get observedAttributes() {
