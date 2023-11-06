@@ -18,6 +18,7 @@ export const COMPONENTS = {
   heading: 'Components',
   items: [
     // { text: "Alert", link: "/components/alert" },
+    { text: "Badge", link: "/components/badge" },
     { text: "Button", link: "/components/button" },
     { text: "Checkbox", link: "/components/checkbox" },
     { text: "Carousel", link: "/components/carousel" },

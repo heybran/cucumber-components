@@ -31,6 +31,7 @@
       'file-upload',
       'side-nav-item',
       'side-nav',
+      'badge',
     ];
 
     if (import.meta.env.MODE === 'development') {

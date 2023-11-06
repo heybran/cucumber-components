@@ -1,0 +1,17 @@
+import css from "./badge.css?inline";
+import sharedCSS from "../../shared/shared.css?inline";
+import html from "./badge.html?raw";
+import BaseElement from "../../shared/base-element.js";
+
+export default class CucumberBadge extends BaseElement {
+  /** @type {string} */
+  static __localName = 'cc-badge';
+
+  connectedCallback() {
+    this.render(html, css, sharedCSS);
+  }
+}
+
+if (!customElements.get(CucumberBadge.__localName)) {
+	customElements.define(CucumberBadge.__localName, CucumberBadge);
+}

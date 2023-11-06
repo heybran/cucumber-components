@@ -1,0 +1,42 @@
+:host {
+  display: inline-flex;
+}
+
+[part="container"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: max(12px, 0.75em);
+  font-weight: var(--cc-badge-font-weight, 600);
+  line-height: 1;
+  white-space: nowrap;
+  padding: 0.35em 0.65em;
+  user-select: none;
+  cursor: inherit;
+  color: #fff;
+  border-radius: var(--cc-border-radius-sm);
+}
+
+:host([theme~="primary"]) [part="container"] {
+  background-color: var(--cc-color-primary);
+}
+
+:host([theme~="success"]) [part="container"] {
+  background-color: var(--cc-color-success);
+}
+
+:host([theme~="warning"]) [part="container"] {
+  background-color: var(--cc-color-warning);
+}
+
+:host([theme~="danger"]) [part="container"] {
+  background-color: var(--cc-color-danger);
+}
+
+:host([theme~="neutral"]) [part="container"] {
+  background-color: var(--cc-color-neutral);
+}
+
+:host([theme~="pill"]) [part="container"] {
+  border-radius: 9999px;
+}
