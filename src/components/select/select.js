@@ -79,8 +79,10 @@ export default class CucumberSelect extends FormElement {
 	connectedCallback() {
 		/**
 		 * Update initial selected option when component is connected.
+		 * 
+		 * Error: Uncaught Error: Missing 'cc-option' inside 'cc-select'
 		 */
-		this.reflectTarget.setAttribute('value', this.selectedOption.text);
+		setTimeout(() => this.reflectTarget.setAttribute('value', this.selectedOption.text), 0);
 		this.addEventListener('cc-option-selected', this.handleSelect.bind(this));
 		this.addEventListener('keydown', this.onKeyDown);
 		this.shadowRoot.querySelector('[part="input-container"]').addEventListener('click', this.toggleDropdown.bind(this));

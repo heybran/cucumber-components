@@ -16,14 +16,14 @@ export default class CucumberOption extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-  }
-
-  connectedCallback() {
-    this.render();
     this.setAttribute('role', 'option');
+    this.render();
     if (!this.hasAttribute('aria-selected')) {
       this.setAttribute('aria-selected', 'false');
     }
+  }
+
+  connectedCallback() {
     this.addEventListener('click', this.handleClick.bind(this));
   }
 
