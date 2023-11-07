@@ -39,12 +39,3 @@
 [part="link"][href] {
   cursor: pointer;
 }
-
-[part="toggle-icon"] {
-  display: none;
-  align-items: center;
-
-  :host([has-children]) & {
-    display: flex;
-  }
-}

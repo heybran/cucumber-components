@@ -8,7 +8,7 @@ a {
 
 :host {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
   /* border radius */
   --border-radius-base: 8px;
   --border-radius-sm: calc(var(--border-radius-base) * 0.5);
@@ -108,7 +108,18 @@ a {
 
 :host([theme~="icon"]) [part="button"] {
   gap: 0;
+  /*
+    For icon buttons used with badges, maybe we don't need padding here?
+    But, for icon buttons used as close button inside modal, 
+    padding would make more sense as we want a hover background in this case.
+    @todo - need more thinking.
+  */
   padding: 0.25ch;
+}
+
+/* Add a new theme variant to remove padding ?*/
+:host([theme~="no-padding"]) [part="button"] {
+  padding: 0;
 }
 
 :host([theme~="icon"]) [part="button"]:hover {
@@ -176,4 +187,12 @@ a {
 
 ::slotted([slot="suffix"]) {
   margin-inline-start: var(--button-gap);
+}
+
+::slotted(cc-badge) {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  translate: 50% -50%;
+  pointer-events: none;
 }

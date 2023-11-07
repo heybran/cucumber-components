@@ -2,11 +2,8 @@
   <a id="link" part="link" aria-current="false">
     <slot name="prefix"></slot>
     <slot></slot>
-    <span part="toggle-icon" aria-hidden="true">
-      <cc-icon icon="chevron-down"></cc-icon>
-    </span>
+    <slot name="suffix"></slot>
   </a>
-  <slot name="suffix"></slot>
   <slot name="actions"></slot>
   <ul part="children" role="list" aria-hidden="true" hidden>
     <slot name="children"></slot>
