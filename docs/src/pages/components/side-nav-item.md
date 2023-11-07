@@ -35,6 +35,28 @@ title: 'Side Nav Item'
 </cc-side-nav-item>
 ```
 
+## Collapsible Nav Items
+
+@todo
+
+<div class="preview" style="flex-direction: column; align-items: flex-start; padding: 1rem;">
+  <cc-side-nav-item path="#">
+    <cc-icon icon="grid" slot="prefix"></cc-icon>
+    Dashboard
+    <cc-icon icon="chevron-down" slot="suffix"></cc-icon>
+  </cc-side-nav-item>
+  <cc-side-nav-item path="#">
+    <cc-icon icon="people" slot="prefix"></cc-icon>
+    Users
+    <cc-icon icon="chevron-down" slot="suffix"></cc-icon>
+  </cc-side-nav-item>
+  <cc-side-nav-item path="#">
+    <cc-icon icon="table" slot="prefix"></cc-icon>
+    Companies
+    <cc-icon icon="chevron-down" slot="suffix"></cc-icon>
+  </cc-side-nav-item>
+</div>
+
 ## Standalone SVG Icon
 
 You can use standalone SVG icon to be used a prefix slot. Please keep in mind to add these three attributes to hide from screen readers.
