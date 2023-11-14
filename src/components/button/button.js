@@ -3,12 +3,16 @@ import css from "./button.css?inline";
 import html from "./button.html?raw";
 
 export default class CucumberButton extends FormElement {
+	constructor() {
+		super();
+		this.render(html, css);
+	}
+
 	get type() {
 		return this.getAttribute("type");
 	}
 
 	connectedCallback() {
-		super.render(html, css);
 		this._connected = true;
 		this.loading = this.hasAttribute("loading");
 		this.disabled = this.hasAttribute("disabled");
@@ -47,43 +51,53 @@ export default class CucumberButton extends FormElement {
 			);
 		}
 
-		this.button.addEventListener("click", (event) => {
-			// FIXME: form got submitted twice
-			// form.dispatchEvent(new Event(type, { cancelable: true }));
-			// form.dispatchEvent(new SubmitEvent('submit', {
-			// 	bubbles: true,
-			// 	cancelable: true
-			// }));
-			/**
-			 * @see https://codepen.io/brandonzhang/pen/ZEmpqVV
-			 * For non custom elements, when form submitted, 
-			 * the very first invalid field is reporting error message,
-			 * but for form with cc components, last component reports error message. 
-			 * So, need to sort __cucumberElements by their DOM index.
-			 * Adding a reverse() seems to match native behavior,
-			 * but the thing is the components of original __cucumberElements are in asc order
-			 * by their position inside the form already.
-			 * 
-			 * @todo Circle back to this some other time.
-			 */
-			const invalidFields = [...form.__cucumberElements]?.filter((field) => !field.isValid())?.reverse();
-			if (invalidFields?.length > 0) {
-				invalidFields.forEach((field) => field.reportValidity());
-				/**
-				 * Reset __cucumberElements array otherwise form will never be submitted.
-				 * Updated: This will cause an even nastier bug as skipping the validation step
-				 * and submit the form immediately.
-				 */
-				// form.__cucumberElements = [];
-			} else {
-				const fakeButton = document.createElement('button');
-				fakeButton.setAttribute('type', type);
-				fakeButton.style.position = 'absolute';
-				form.appendChild(fakeButton);
-				fakeButton.click();
-				fakeButton.remove();
-			}
+		document.addEventListener('keypress', (event) => {
+			if (!(event.key === 'Enter' && document.activeElement.closest('form') === form)) return;
+			this.submitForm(form, type);
 		});
+
+		this.button.addEventListener("click", (event) => {
+			this.submitForm(form, type);	
+		});
+	}
+
+	validateForm(form) {
+		/**
+		 * @see https://codepen.io/brandonzhang/pen/ZEmpqVV
+		 * For non custom elements, when form submitted, 
+		 * the very first invalid field is reporting error message,
+		 * but for form with cc components, last component reports error message. 
+		 * So, need to sort __cucumberElements by their DOM index.
+		 * Adding a reverse() seems to match native behavior,
+		 * but the thing is the components of original __cucumberElements are in asc order
+		 * by their position inside the form already.
+		 * 
+		 * @todo Circle back to this some other time.
+		 */
+		const invalidFields = [...form.__cucumberElements]?.filter((field) => !field.isValid())?.reverse();
+		if (invalidFields?.length > 0) {
+			invalidFields.forEach((field) => field.reportValidity());
+			/**
+			 * Reset __cucumberElements array otherwise form will never be submitted.
+			 * Updated: This will cause an even nastier bug as skipping the validation step
+			 * and submit the form immediately.
+			 */
+			// form.__cucumberElements = [];
+			return false;
+		}
+
+		return true;
+	}
+
+	submitForm(form, type) {
+		const valid = this.validateForm(form);
+		if (!valid) return;
+		const fakeButton = document.createElement('button');
+		fakeButton.setAttribute('type', type);
+		fakeButton.style.position = 'absolute';
+		form.appendChild(fakeButton);
+		fakeButton.click();
+		fakeButton.remove();
 	}
 
 	/**
@@ -91,12 +105,7 @@ export default class CucumberButton extends FormElement {
 	 */
 	get button() {
 		// @ts-ignore
-		return this.shadowRoot.querySelector("button");
-	}
-
-	render() {
-		// @ts-ignore
-		this.shadowRoot.appendChild(template.content.cloneNode(true));
+		return this.shadowRoot.querySelector("[part=button]"); // #14
 	}
 
 	static get observedAttributes() {
