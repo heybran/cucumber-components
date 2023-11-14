@@ -4,8 +4,12 @@ import html from "./icon.html?raw";
 import css from "./icon.css?inline";
 
 export default class CucumberIcon extends BaseElement {
+	constructor() {
+		super();
+		this.render(html, css);
+	}
+
 	connectedCallback() {
-		super.render(html, css);
     // @ts-ignore
     this.shadowRoot.querySelector('svg').innerHTML = icons[this.getAttribute('icon')];
 		if (this.hasAttribute("label")) {

@@ -1,99 +1,92 @@
-// @ts-check
-import shared from "../../shared/shared.css?inline";
+import html from "./textarea.html?raw";
 import css from "./textarea.css?inline";
+import sharedCss from "../../shared/shared.css?inline";
+import FormElement from "../../shared/form-element.js";
+import { TEXTAREA } from "../../shared/form-field-properties";
 
-export default class CucumberTextarea extends HTMLElement {
-  /** @returns {string} */
-  get helperText() {
-    return this.getAttribute('helper-text') ?? '';
-  }
-
-  /** @returns {string} */
-  get placeholder() {
-    return this.getAttribute('placeholder') ?? '';
-  }
-
-  /** @returns {string} */
-  get label() {
-    return this.getAttribute('label') ?? '';
-  }
-
-  /** @returns {number} */
-  get rows() {
-    return Number(this.getAttribute('rows'));
-  }
-
-  /** @returns {boolean} */
-  get disabled() {
-    return this.hasAttribute('disabled');
-  }
-
-  /**
-   * @param {boolean|number} flag
-   */
-  set disabled(flag) {
-    this.toggleAttribute('disabled', Boolean(flag));
-    // @ts-ignore
-    this.shadowRoot.querySelector('input').toggleAttribute('disabled', Boolean(flag));
-  }
-
+export default class CucumberTextarea extends FormElement {
   constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-  }
+		super();
+		this.render(html, css, sharedCss);
+	}
+  
+  /** @type {string} */
+	static __localName = 'cc-textarea';
+
+	/**
+	 * Since we can't just put text content directly inside cc-textarea
+	 * @param {string} arg
+	 */
+	set value(arg) {
+		this.reflectTarget.value = arg;
+	}
+
+	get value() {
+		return this.reflectTarget.value;
+	}
+
+	/**
+	 * Update label text.
+	 * @param {string} text
+	 */
+	onLabelChange(text) {
+		this.shadowRoot.querySelector('slot[name="label"]').textContent = text;
+	}
+
+	/**
+	 * Update helper text.
+	 * @param {string} text 
+	 */
+	onHelperTextChange(text) {
+		this.shadowRoot.querySelector('slot[name="helper-text"]').textContent = text;
+	}
 
   connectedCallback() {
-    this.render();
+    const form = this.getForm();
+		if (form) {
+			if (!Array.isArray(form.__cucumberElements)) {
+				form.__cucumberElements = [];
+			}
+			form.__cucumberElements.push(this);
+		}
+
+		/**
+		 * Store an initial value to be used on form resetting
+		 */
+		// this._initialValue = this.value;
+
+		this.getForm()?.addEventListener("formdata", this.setFormData);
+
+		// this.getForm()?.addEventListener("reset", (event) => {
+		// 	// @ts-ignore
+		// 	// @todo 
+		// 	this.value = this._initialValue;
+		// });
   }
 
-  static get observedAttributes() {
-    return ['checked', 'disabled'];
-  }
+  isValid() {
+		return this.reflectTarget.checkValidity();
+	}
 
-  attributeChangedCallback(attr, oldValue, newValue) {
-    if (oldValue === null) {
-      return;
-    }
-    if (attr === 'checked') {
-      this.checked = this.hasAttribute('checked');
-    } else if (attr === 'disabled') {
-      this.disabled = this.hasAttribute('disabled');
-    }
-  }
+	reportValidity() {
+		this.reflectTarget.reportValidity();
+	}
 
-  render() {
-    // @ts-ignore
-    this.shadowRoot.innerHTML = `
-      <style>${shared}${css}</style>
-      <div class="container">
-        <label for="" aria-hidden="false">
-          <slot name="label">${this.label}</slot>
-        </label>
-        <textarea 
-          part="textarea" 
-          spellcheck="true"
-          aria-describedby=""
-          placeholder="${this.placeholder}"
-          rows="${this.rows || 4}"
-          name="${this.name ?? ''}"
-          ${this.hasAttribute('disabled') ? 'disabled' : ''}
-        ></textarea>
-        <div
-          part="helper-text" 
-          id="TODO"
-          aria-hidden="${
-            (this.helperText || this.querySelector('[slot="helper-text"]'))
-              ? 'false'
-              : 'true'
-          }"
-        >
-          <slot name="helper-text">${this.helperText}</slot>
-        </div>
-      </div>
-    `;
-  }
+	static get observedAttributes() {
+		return [...Object.keys(TEXTAREA)];
+	}
+
+	/**
+	 * 
+	 * @param {string} attr 
+	 * @param {string|null} oldValue 
+	 * @param {string|null} newValue 
+	 */
+	attributeChangedCallback(attr, oldValue, newValue) {
+		super.attributeChangedCallback(attr, oldValue, newValue, TEXTAREA);
+	}
 }
 
-if (!customElements.get('cc-textarea')) {
-  customElements.define('cc-textarea', CucumberTextarea);
+if (!customElements.get(CucumberTextarea.__localName)) {
+	customElements.define(CucumberTextarea.__localName, CucumberTextarea);
 }

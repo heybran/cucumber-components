@@ -1,0 +1,9 @@
+<div class="container">
+  <label for="textarea">
+    <slot name="label"></slot>
+  </label>
+  <textarea id="textarea" part="textarea" spellcheck="true" aria-describedby="helper-text"></textarea>
+  <div part="helper-text" id="helper-text">
+    <slot name="helper-text"></slot>
+  </div>
+</div>

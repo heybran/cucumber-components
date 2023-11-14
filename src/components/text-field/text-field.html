@@ -1,6 +1,6 @@
 <div part="container">
 	<label part="label" for="input">
-    <span></span>
+    <slot name="label"></slot>
   </label>
 	<div part="input-container">
 		<slot name="prefix"></slot>
@@ -17,6 +17,8 @@
 		/>
     <slot name="suffix"></slot>
 	</div>
-	<div part="helper-text" id="helper-text"></div>
+	<div part="helper-text" id="helper-text">
+		<slot name="helper-text"></slot>
+	</div>
 	<div part="error-message" id="error-message"></div>
 </div>

@@ -1,95 +1,41 @@
 import FormElement from "../../shared/form-element.js";
 import css from "./text-field.css?inline";
+import sharedCss from "../../shared/shared.css?inline";
 import html from "./text-field.html?raw";
+import { TEXT_FIELD } from "../../shared/form-field-properties.js";
 
 export default class CucumberTextField extends FormElement {
+	constructor() {
+		super();
+		this.render(html, css, sharedCss);
+	}
+
+	/** @type {string} */
+	static __localName = 'cc-text-field';
+
 	/**
-	 * @returns {HTMLInputElement}
+	 * Update label text.
+	 * @param {string} text
 	 */
-	get input() {
-		// @ts-ignore
-		return this.shadowRoot.querySelector("input");
+	onLabelChange(text) {
+		this.shadowRoot.querySelector('slot[name="label"]').textContent = text;
 	}
 
 	/**
-	 * @param {string} arg
+	 * Update helper text.
+	 * @param {string} text 
 	 */
-	set label(arg) {
-		// @ts-ignore
-		this.shadowRoot.querySelector('[part="label"] span').textContent = arg;
-	}
-
-	/**
-	 * @param {string} arg
-	 */
-	set placeholder(arg) {
-		// @ts-ignore
-		this.input.placeholder = arg;
-	}
-
-	/**
-	 * @param {string} arg
-	 */
-	set helperText(arg) {
-		// @ts-ignore
-		this.shadowRoot.querySelector('[part="helper-text"]').textContent = arg;
-	}
-
-	/**
-	 * @returns {string}
-	 */
-	get value() {
-		return this.input.value;
-	}
-
-	/**
-	 * @param {string} arg
-	 */
-	set value(arg) {
-		this.input.value = arg;
-	}
-
-	/**
-	 * @param {boolean} flag
-	 */
-	set required(flag) {
-		this.input.required = flag;
+	onHelperTextChange(text) {
+		this.shadowRoot.querySelector('slot[name="helper-text"]').textContent = text;
 	}
 
 	connectedCallback() {
-		super.render(html, css);
-		const form = this.getForm();
-		if (form) {
-			if (!Array.isArray(form.__cucumberElements)) {
-				form.__cucumberElements = [];
-			}
-			form.__cucumberElements.push(this);
-		}
-
-		if (this.hasAttribute("value")) {
-			this.value = this.getAttribute("value") ?? "";
-		}
+		this.connectSelfToForm();
 
 		/**
 		 * Store an initial value to be used on form resetting
 		 */
 		this._initialValue = this.value;
-
-		if (this.hasAttribute("label")) {
-			this.label = this.getAttribute("label") ?? "";
-		}
-
-		if (this.hasAttribute("placeholder")) {
-			this.placeholder = this.getAttribute("placeholder") ?? "";
-		}
-
-		if (this.hasAttribute("helper-text")) {
-			this.helperText = this.getAttribute("helper-text") ?? "";
-		}
-
-		this.required = this.hasAttribute("required");
-
-		this.getForm()?.addEventListener("formdata", this.setFormData);
 
 		this.getForm()?.addEventListener("reset", (event) => {
 			// @ts-ignore
@@ -107,14 +53,6 @@ export default class CucumberTextField extends FormElement {
 		});
 	}
 
-	isValid() {
-		return this.input.checkValidity();
-	}
-
-	reportValidity() {
-		this.input.reportValidity();
-	}
-
 	disconnectedCallback() {
 		/**
 		 * console.log(this.getForm()); // renders null when disconnected from DOM,
@@ -122,8 +60,22 @@ export default class CucumberTextField extends FormElement {
 		 */
 		this.getForm()?.removeEventListener("formdata", this.setFormData);
 	}
+
+	static get observedAttributes() {
+		return [...Object.keys(TEXT_FIELD)];
+	}
+
+	/**
+	 * 
+	 * @param {string} attr 
+	 * @param {string|null} oldValue 
+	 * @param {string|null} newValue 
+	 */
+	attributeChangedCallback(attr, oldValue, newValue) {
+		super.attributeChangedCallback(attr, oldValue, newValue, TEXT_FIELD);
+	}
 }
 
-if (!customElements.get("cc-text-field")) {
-	customElements.define("cc-text-field", CucumberTextField);
+if (!customElements.get(CucumberTextField.__localName)) {
+	customElements.define(CucumberTextField.__localName, CucumberTextField);
 }

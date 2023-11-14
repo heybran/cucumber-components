@@ -20,6 +20,10 @@ textarea[disabled] {
   opacity: .5;
 }
 
+label {
+  font-weight: var(--label-font-weight, 600)
+}
+
 [part="helper-text"] {
   color: #5c5958;
   font-size: 80%;

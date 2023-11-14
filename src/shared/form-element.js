@@ -7,6 +7,21 @@ export default class FormElement extends BaseElement {
     this.attributesDefined = [];
   }
 
+	connectSelfToForm() {
+		const form = this.getForm();
+		if (!form) return;
+
+		if (!Array.isArray(form.__cucumberElements)) {
+			form.__cucumberElements = [];
+		}
+
+		if (form.__cucumberElements.includes(this)) return;
+		
+		form.__cucumberElements.push(this);
+
+		form.addEventListener("formdata", this.setFormData);
+	}
+
   /**
    * @returns {HTMLInputElement}
    */
@@ -34,6 +49,10 @@ export default class FormElement extends BaseElement {
     return this.input;
   }
 
+	isValid() {
+		return this.reflectTarget.checkValidity();
+	}
+	
 	/**
 	 * Focus on native form control, so it can be called from other components.
 	 * @returns void

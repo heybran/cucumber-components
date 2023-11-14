@@ -18,8 +18,24 @@ export default class CucumberSideNavItem extends BaseElement {
     /**
      * For url changes inside single page application.
      * @todo need to test this once an SPA demo site is setup.
+     * 
+     * When testing with breeze-router, popstate never fired
+     * when navigating pages by clicking anchor link,
+     * but fired when click browser back/fowward buttons.
      */
-    window.addEventListener('popstate', this.toggleActiveState.bind(this));
+    // window.addEventListener('popstate', this.toggleActiveState.bind(this));
+    document.addEventListener('click', this.handleAnchorClick.bind(this));
+  }
+
+  /**
+   * @param {PointerEvent} event 
+   */
+  handleAnchorClick(event) {
+    const anchor = event.composedPath().find((elem) => elem.tagName === "A");
+    if (!anchor) return;
+    if (!event.defaultPrevented) return;
+    if (!anchor.getAttribute('href')) return;
+    this.toggleActiveState();
   }
 
   toggleActiveState() {

@@ -249,6 +249,37 @@ const capture = {
   reflect: true,
 }
 
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#rows
+ * The number of visible text lines for the control. 
+ * If it is specified, it must be a positive integer. 
+ * If it is not specified, the default value is 2.
+ */
+const rows = {
+  type: String,
+  reflect: true,
+}
+
+export const TEXT_FIELD = {
+  name,
+  label,
+  'helper-text': helperText,
+  required,
+  pattern,
+  readonly,
+  disabled,
+  placeholder,
+  value,
+  'error-message': errorMessage,
+  list,
+  minlength,
+  maxlength,
+  /**
+   * @todo
+   */
+  dirname,
+}
+
 export const EMAIL_FIELD = {
   name,
   autocomplete,
@@ -337,4 +368,17 @@ export const FILE_UPLOAD = {
   accept,
   multiple,
   required,
+}
+
+export const TEXTAREA = {
+  label,
+  'helper-text': helperText,
+  rows,
+  placeholder,
+  disabled,
+  required,
+  readonly,
+  name,
+  minlength,
+  maxlength,
 }
