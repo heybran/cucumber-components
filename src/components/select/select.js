@@ -82,35 +82,32 @@ export default class CucumberSelect extends FormElement {
 		 * 
 		 * Error: Uncaught Error: Missing 'cc-option' inside 'cc-select'
 		 */
-		setTimeout(() => this.reflectTarget.setAttribute('value', this.selectedOption.text), 0);
+		setTimeout(() => {
+			this.reflectTarget.setAttribute('value', this.selectedOption.text);
+		  this.trigger.setAttribute('aria-activedescendant', this.selectedOption.id);
+		}, 0);
 		this.addEventListener('cc-option-selected', this.handleSelect.bind(this));
 		this.addEventListener('keydown', this.onKeyDown);
 		this.shadowRoot.querySelector('[part="input-container"]').addEventListener('click', this.toggleDropdown.bind(this));
 		this.dropdown?.addEventListener('close', this.onDropdownClose.bind(this));
-		requestIdleCallback(() => {
-			const id = this.uuid();
-		  this.shadowRoot.querySelector('label').id = 'combo-label-' + id;
-		  this.trigger.setAttribute('aria-labelledby', 'combo-label-' + id);
-		  this.dropdown.setAttribute('aria-labelledby', 'combo-label-' + id);
-		  this.dropdown?.setAttribute('id', 'listbox-' + id);
-		  this.trigger?.setAttribute('aria-controls', 'listbox-' + id);
-		  /**
-		   * Get current selected option, set an id and update 'aria-activedescendant' aria attribute
-		   */
-		  const options = this.querySelectorAll('[role="option"]');
-		  Array.from(options).forEach((option, i) => {
-		    option.id = `combo-${id}-${i}`;
-		  });
-		  this.trigger.setAttribute('aria-activedescendant', this.selectedOption.id);
-			// @ts-ignore
-			const form = this.getForm();
-			if (!form) return;
-			if (!Array.isArray(form.__cucumberElements)) {
-				form.__cucumberElements = [];
-			}
-		  form.__cucumberElements.push(this);
-		  form.addEventListener('formdata', this.setFormData);
-		});
+
+	  /**
+	   * Get current selected option, set an id and update 'aria-activedescendant' aria attribute
+	   */
+	  const options = this.querySelectorAll('[role="option"]');
+		const id = this.uuid();
+	  Array.from(options).forEach((option, i) => {
+	    option.id = `combo-${id}-${i}`;
+	  });
+		
+		// @ts-ignore
+		const form = this.getForm();
+		if (!form) return;
+		if (!Array.isArray(form.__cucumberElements)) {
+			form.__cucumberElements = [];
+		}
+	  form.__cucumberElements.push(this);
+	  form.addEventListener('formdata', this.setFormData);
 	}
 
 	/**
