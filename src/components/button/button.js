@@ -93,6 +93,11 @@ export default class CucumberButton extends FormElement {
 		const valid = this.validateForm(form);
 		if (!valid) return;
 		const fakeButton = document.createElement('button');
+		/**
+		 * Connect current component to this fake button,
+		 * so we can grab current component from event.submitter.host 
+		 */
+		fakeButton.host = this;
 		fakeButton.setAttribute('type', type);
 		fakeButton.style.position = 'absolute';
 		form.appendChild(fakeButton);
