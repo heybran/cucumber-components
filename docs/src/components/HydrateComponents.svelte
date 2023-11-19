@@ -32,6 +32,7 @@
       'side-nav-item',
       'side-nav',
       'badge',
+      'visually-hidden',
     ];
 
     if (import.meta.env.MODE === 'development') {

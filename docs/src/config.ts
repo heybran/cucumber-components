@@ -41,6 +41,7 @@ export const COMPONENTS = {
     { text: "Spinner", link: "/components/spinner" },
     { text: "Password Field", link: "/components/password-field" },
     { text: "URL Field", link: "/components/url-field" },
+    { text: "Visually Hidden", link: "/components/visually-hidden" },
   ]
 }
 
