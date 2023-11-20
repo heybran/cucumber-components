@@ -5,13 +5,13 @@ import BaseElement from "../../shared/base-element.js";
 
 export default class CucumberBadge extends BaseElement {
   /** @type {string} */
-  static __localName = 'cc-badge';
+  static tagName = 'cc-badge';
 
   connectedCallback() {
     this.render(html, css, sharedCSS);
   }
 }
 
-if (!customElements.get(CucumberBadge.__localName)) {
-	customElements.define(CucumberBadge.__localName, CucumberBadge);
+if (!customElements.get(CucumberBadge.tagName)) {
+	customElements.define(CucumberBadge.tagName, CucumberBadge);
 }
