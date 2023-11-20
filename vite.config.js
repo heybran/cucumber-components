@@ -1,5 +1,4 @@
 import { defineConfig } from "vite";
-import babel from "@rollup/plugin-babel";
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
@@ -46,13 +45,4 @@ export default defineConfig({
   plugins: [
     terser()
   ],
-  // plugins: [
-  //   babel({
-  //     babelrc: false,
-  //     configFile: './.babelrc',
-  //     extensions: ['.js'],
-  //     exclude: 'node_modules/**',
-  //     babelHelpers: 'bundled'
-  //   })
-  // ]
 });
