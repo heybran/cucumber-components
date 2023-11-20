@@ -1,4 +1,4 @@
-import{s as a}from"../assets/shared-267037b7.js";import{B as n}from"../assets/base-element-be430c97.js";class i extends n{static __localName="cc-side-nav-item";constructor(){super(),this.render(`<div part="container">
+import{s as a}from"../assets/shared-267037b7.js";import{B as n}from"../assets/base-element-b7991dcc.js";class i extends n{static __localName="cc-side-nav-item";constructor(){super(),this.render(`<div part="container">
   <a id="link" part="link" aria-current="false">
     <slot name="prefix"></slot>
     <slot></slot>

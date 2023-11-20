@@ -1,4 +1,4 @@
-import{s as i}from"../assets/shared-267037b7.js";import{B as a}from"../assets/base-element-be430c97.js";import"../button/button.js";import"../icon/icon.js";import"../tooltip/tooltip.js";import"../assets/form-element-ad540cf6.js";class o extends a{static __localName="cc-dialog";#e=[];constructor(){super(),this.render(`<dialog part="dialog" aria-labelledby="title">
+import{s as i}from"../assets/shared-267037b7.js";import{B as a}from"../assets/base-element-b7991dcc.js";import"../button/button.js";import"../icon/icon.js";import"../tooltip/tooltip.js";import"../assets/form-element-caaf4a05.js";class o extends a{static __localName="cc-dialog";#e=[];constructor(){super(),this.render(`<dialog part="dialog" aria-labelledby="title">
   <form method="dialog" part="form">
     <header part="header">
       <h3 part="title" id="title">

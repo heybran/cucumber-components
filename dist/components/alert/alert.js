@@ -1,4 +1,4 @@
-import{B as e}from"../assets/base-element-be430c97.js";customElements.define("cc-alert",class extends e{constructor(){super(),this.alertsShown=[]}connectedCallback(){super.render(`<div part="container" role="alert" aria-hidden="true">
+import{B as e}from"../assets/base-element-b7991dcc.js";customElements.define("cc-alert",class extends e{constructor(){super(),this.alertsShown=[]}connectedCallback(){super.render(`<div part="container" role="alert" aria-hidden="true">
   <div part="icon">
     <slot name="icon"></slot>
   </div>

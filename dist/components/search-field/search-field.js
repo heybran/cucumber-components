@@ -1,4 +1,4 @@
-import{F as n}from"../assets/form-element-ad540cf6.js";import{s as a}from"../assets/shared-267037b7.js";import{S as i}from"../assets/form-field-properties-584fd27e.js";import"../assets/base-element-be430c97.js";class r extends n{constructor(){super().render(`<div part="container">
+import{F as n}from"../assets/form-element-caaf4a05.js";import{s as a}from"../assets/shared-267037b7.js";import{S as i}from"../assets/form-field-properties-584fd27e.js";import"../assets/base-element-b7991dcc.js";class r extends n{constructor(){super().render(`<div part="container">
 	<label part="label">
     <span class="sr-only">Search</span>
   </label>

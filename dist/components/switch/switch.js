@@ -1,4 +1,4 @@
-import{F as i}from"../assets/form-element-ad540cf6.js";import"../icon/icon.js";import"../assets/base-element-be430c97.js";customElements.get("cc-switch")||customElements.define("cc-switch",class extends i{set checked(t){this.input.checked=t,this.input.ariaChecked=t?"true":"false"}set disabled(t){this.input.disabled=t}set required(t){this.input.required=t}set value(t){this.input.value=t}get value(){return this.input.value}set name(t){this.input.name=t}connectedCallback(){super.render(`<label part="base">
+import{F as i}from"../assets/form-element-caaf4a05.js";import"../icon/icon.js";import"../assets/base-element-b7991dcc.js";customElements.get("cc-switch")||customElements.define("cc-switch",class extends i{set checked(t){this.input.checked=t,this.input.ariaChecked=t?"true":"false"}set disabled(t){this.input.disabled=t}set required(t){this.input.required=t}set value(t){this.input.value=t}get value(){return this.input.value}set name(t){this.input.name=t}connectedCallback(){super.render(`<label part="base">
   <input
 		class="sr-only"
 		type="checkbox"
