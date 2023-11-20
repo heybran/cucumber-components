@@ -1,11 +1,12 @@
 import FormElement from "../../shared/form-element.js";
 import css from "./button.css?inline";
+import sharedCss from "../../shared/shared.css?inline";
 import html from "./button.html?raw";
 
 export default class CucumberButton extends FormElement {
 	constructor() {
 		super();
-		this.render(html, css);
+		this.render(html, css, sharedCss);
 	}
 
 	get type() {
