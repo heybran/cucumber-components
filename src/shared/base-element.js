@@ -6,10 +6,14 @@ export default class BaseElement extends HTMLElement {
   }
 
   render(html, css, sharedCss) {
-    const template = document.createElement('template');
-    template.innerHTML = `<style>${sharedCss ?? ''}${css}</style>` + html;
+    const sharedSheet = new CSSStyleSheet();
+    sharedSheet.replaceSync(sharedCss);
+    const sheet = new CSSStyleSheet();
+    sheet.replaceSync(css);
     // @ts-ignore
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.shadowRoot.adoptedStyleSheets = [sharedSheet, sheet];
+    // @ts-ignore
+    this.shadowRoot.innerHTML = html;
   }
 
   /**
