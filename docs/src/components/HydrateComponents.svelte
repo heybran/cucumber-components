@@ -33,6 +33,8 @@
       'side-nav',
       'badge',
       'visually-hidden',
+      'popover',
+      'popover-wrapper'
     ];
 
     if (import.meta.env.MODE === 'development') {
