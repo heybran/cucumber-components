@@ -1,62 +1,66 @@
 /**
  *
  * @param {Object} options
- * @param {HTMLElement} options.element
- * @param {HTMLElement} options.target
- * @param {'top'|'bottom'|'left'|'right'} options.position
+ * @param {HTMLElement} options.popover
+ * @param {HTMLElement} options.anchorElement
+ * @param {'top'|'bottom'|'left'|'right'|'bottom-end'|'bottom-start'} options.position
  * @param {number} options.offset
  */
 export default function calculatePosition({
-	element,
-	target,
+	popover,
+	anchorElement,
 	position,
 	offset,
 }) {
-	const { left, top } = target.getBoundingClientRect();
+	const { left, top, width: anchorElementWidth, height: anchorElementHeight } = anchorElement.getBoundingClientRect();
 	let x;
 	let y;
-	const { width: elementWidth, height: elementHeight } =
-		element.getBoundingClientRect();
-	const { width: targetWidth, height: targetHeight } =
-		target.getBoundingClientRect();
-	if (position === "top") {
-		y = top - elementHeight - offset;
-		x = left + targetWidth / 2 - elementWidth / 2;
-		// @ts-ignore
-		if (element.hasArrow) {
-			element.setAttribute("arrow-position", "bottom");
-		}
-		if (y < 2) {
-			// 2 => breathing space
-			// y = top + targetHeight + offset;
-			return calculatePosition({ element, target, position: "bottom", offset });
-		}
-	} else if (position === "bottom") {
-		y = top + targetHeight + offset;
-		x = left + targetWidth / 2 - elementWidth / 2;
-		// @ts-ignore
-		if (element.hasArrow) {
-			element.setAttribute("arrow-position", "top");
-		}
-		if (y + elementHeight + 2 > window.innerHeight) {
-			// y = top - elementHeight - offset;
-			return calculatePosition({ element, target, position: "top", offset });
-		}
-	} else if (position === "left") {
-		y = top + targetHeight / 2 - elementHeight / 2;
-		x = left - offset - elementWidth;
-		// @ts-ignore
-		if (element.hasArrow) {
-			element.setAttribute("arrow-position", "right");
-		}
-	} else if (position === "right") {
-		y = top + targetHeight / 2 - elementHeight / 2;
-		x = left + targetWidth + offset;
-		// @ts-ignore
-		if (element.hasArrow) {
-			element.setAttribute("arrow-position", "left");
-		}
+	const { width: popoverWidth, height: popoverHeight } = popover.getBoundingClientRect();
+
+	switch(position) {
+		case 'top':
+			y = top - popoverHeight - offset;
+			x = left + anchorElementWidth / 2 - popoverWidth / 2;
+		
+			if (y < 2) {
+				// 2 => breathing space
+				// y = top + targetHeight + offset;
+				return calculatePosition({ popover, anchorElement, position: "bottom", offset });
+			}
+			break;
+
+		case 'left':
+			y = top + anchorElementHeight / 2 - popoverHeight / 2;
+			x = left - offset - popoverWidth;
+			break;
+
+		case 'bottom':
+			y = top + anchorElementHeight + offset;
+			x = left - ((popoverWidth - anchorElementWidth) / 2);
+			// x = left;
+			console.log(x, left, popoverWidth, anchorElementWidth);
+		
+			if (y + popoverHeight + 2 > window.innerHeight) {
+				// y = top - elementHeight - offset;
+				return calculatePosition({ popover, anchorElement, position: "top", offset });
+			}
+			break;
+
+		case 'right':
+			y = top + anchorElementHeight / 2 - popoverHeight / 2;
+			x = left + anchorElementWidth + offset;
+			break;
+
+		case "bottom-start":
+			y = top + anchorElementHeight + offset;
+			x = left;
+			break;
+
+		case 'bottom-end':
+			y = top + anchorElementHeight + offset;
+			x = left - ((popoverWidth - anchorElementWidth));
+			break;
 	}
 
-	return { x, y };
+	return { x, y, anchorElementWidth };
 }
