@@ -48,4 +48,23 @@ export default class BaseElement extends HTMLElement {
     // @ts-ignore
     return this.shadowRoot.querySelector('slot:not([name])');
   }
+
+  /**
+   * Get all non-default slot elements.
+   * @param {string} name
+   * @returns {HTMLSlotElement}
+   */
+  getSlot(name) {
+    // @ts-ignore
+    return this.shadowRoot.querySelector(`slot[name="${name}"]`);
+  }
+
+  /**
+   * Get all assigned elements from given slot
+   * @param {HTMLSlotElement} slot 
+   * @returns {Element[]}
+   */
+  getAssignedElementsFor(slot) {
+    return slot.assignedElements({ flatten: true });
+  }
 }
