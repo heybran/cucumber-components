@@ -1,4 +1,4 @@
-import{B as n}from"../assets/base-element-b7991dcc.js";customElements.define("cc-carousel",class extends n{get itemsPerView(){let t=3;return this.getAttribute("items-per-view")&&(t=Number(this.getAttribute("items-per-view"))),t}get totalSlides(){return Math.ceil(this.carouselItems.length/this.itemsPerView)}connectedCallback(){super.render(`<div part="container">
+import{B as n}from"../assets/base-element-f411db3f.js";customElements.define("cc-carousel",class extends n{get itemsPerView(){let t=3;return this.getAttribute("items-per-view")&&(t=Number(this.getAttribute("items-per-view"))),t}get totalSlides(){return Math.ceil(this.carouselItems.length/this.itemsPerView)}connectedCallback(){super.render(`<div part="container">
 	<div
 		part="carousel-container"
 		aria-busy="false"

@@ -1,4 +1,4 @@
-import{F as n}from"../assets/form-element-caaf4a05.js";import{s as a}from"../assets/shared-267037b7.js";import{D as o}from"../assets/form-field-properties-584fd27e.js";import"../assets/base-element-b7991dcc.js";class i extends n{constructor(){super(),this.render(`<div part="container">
+import{F as n}from"../assets/form-element-1a56e9b6.js";import{s as a}from"../assets/shared-69ba54c1.js";import{D as o}from"../assets/form-field-properties-584fd27e.js";import"../assets/base-element-f411db3f.js";class i extends n{constructor(){super(),this.render(`<div part="container">
   <label part="label" for="input">
     <slot name="label"></slot>
   </label>

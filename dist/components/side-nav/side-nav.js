@@ -1,4 +1,4 @@
-import{s as t}from"../assets/shared-267037b7.js";import{B as r}from"../assets/base-element-b7991dcc.js";class a extends r{static __localName="cc-side-nav";constructor(){super(),this.render(`<button part="label" aria-controls="children">
+import{s as t}from"../assets/shared-69ba54c1.js";import{B as r}from"../assets/base-element-f411db3f.js";class a extends r{static __localName="cc-side-nav";constructor(){super(),this.render(`<button part="label" aria-controls="children">
   <slot name="label"></slot>
   <span part="toggle-icon" aria-hidden="true">
     <cc-icon icon="chevron-down"></cc-icon>
