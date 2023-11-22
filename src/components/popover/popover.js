@@ -6,6 +6,8 @@ import BaseElement from "../../shared/base-element.js";
  * @element cc-popover
  * 
  * @slot - content to display within the popover.
+ * 
+ * @fires popoverOpened - event fired when popover is opened.
  */
 export default class CucumberPopover extends BaseElement {
   /** @type {string} */
@@ -14,6 +16,9 @@ export default class CucumberPopover extends BaseElement {
   connectedCallback() {
     this.render('<slot></slot><div id="tip" aria-hidden="true"></div>', css, sharedCss);
     document.addEventListener('click', this.closeWhenClickOutside.bind(this));
+    if (!this.hasAttribute('placement')) {
+      this.setAttribute('placement', 'bottom-center');
+    }
   }
 
   closeWhenClickOutside(event) {
@@ -36,9 +41,20 @@ export default class CucumberPopover extends BaseElement {
 
   attributeChangedCallback(attr, oldValue, newValue) {
     if (this.hasAttribute(attr)) {
-      this.addEventListener('animationend', () => this.classList.add('opened'), { once: true });
+      this.addEventListener('animationend', () => {
+        this.classList.add('opened');
+        this.dispatchEvent(new Event('popoverOpened', {
+          bubbles: true,
+          composed: true
+        }));
+      }, { once: true });
     } else {
       this.classList.remove('opened');
+      this.classList.remove('reverse');
+      this.dispatchEvent(new Event('popoverClosed', {
+        bubbles: true,
+        composed: true
+      }));
     }
   }
 }
