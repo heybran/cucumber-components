@@ -1,4 +1,4 @@
-import{s as a}from"../assets/shared-267037b7.js";import"../icon/icon.js";import{F as l}from"../assets/form-element-caaf4a05.js";import{a as s}from"../assets/form-field-properties-584fd27e.js";import"../assets/base-element-b7991dcc.js";customElements.get("cc-select")||customElements.define("cc-select",class extends l{constructor(){super(),this.render(`<div part="container">
+import{s as a}from"../assets/shared-69ba54c1.js";import"../icon/icon.js";import{F as l}from"../assets/form-element-1a56e9b6.js";import{a as s}from"../assets/form-field-properties-584fd27e.js";import"../assets/base-element-f411db3f.js";customElements.get("cc-select")||customElements.define("cc-select",class extends l{constructor(){super(),this.render(`<div part="container">
   <label part="label" id="combo-label">
     <slot name="label"></slot>
   </label>

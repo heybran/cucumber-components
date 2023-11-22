@@ -133,6 +133,9 @@
   --cc-color-warning: var(--cc-yellow-7);
   --cc-color-danger: var(--cc-red-7);
   --cc-color-neutral: var(--cc-gray-7);
+
+  --cc-cubic-bezier: cubic-bezier(0.22, 1, 0.36, 1);
+  --cc-box-shadow: rgba(35, 35, 52, 0.2) 0px 7px 29px 0px;
 }
 
 * {

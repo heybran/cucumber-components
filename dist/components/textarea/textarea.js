@@ -1,4 +1,4 @@
-import{s as o}from"../assets/shared-267037b7.js";import{F as i}from"../assets/form-element-caaf4a05.js";import{b as r}from"../assets/form-field-properties-584fd27e.js";import"../assets/base-element-b7991dcc.js";class t extends i{constructor(){super(),this.render(`<div class="container">
+import{s as o}from"../assets/shared-69ba54c1.js";import{F as i}from"../assets/form-element-1a56e9b6.js";import{b as r}from"../assets/form-field-properties-584fd27e.js";import"../assets/base-element-f411db3f.js";class t extends i{constructor(){super(),this.render(`<div class="container">
   <label for="textarea">
     <slot name="label"></slot>
   </label>

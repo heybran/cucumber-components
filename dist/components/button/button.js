@@ -1,4 +1,4 @@
-import{F as c}from"../assets/form-element-caaf4a05.js";import{s as d}from"../assets/shared-267037b7.js";import"../assets/base-element-b7991dcc.js";const a={};customElements.get("cc-button")||customElements.define("cc-button",class extends c{constructor(){super(),this.render(`<button type="button" part="button">
+import{F as c}from"../assets/form-element-1a56e9b6.js";import{s as d}from"../assets/shared-69ba54c1.js";import"../assets/base-element-f411db3f.js";const a={};customElements.get("cc-button")||customElements.define("cc-button",class extends c{constructor(){super(),this.render(`<button type="button" part="button">
 	<span part="prefix" aria-hidden="true">
     <slot name="prefix"></slot>
   </span>

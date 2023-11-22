@@ -1,6 +1,6 @@
 export const SITE = {
-  title: "Breeze Components",
-  description: "Astro theme to build your design system fast.",
+  title: "Cucumber Components",
+  description: "A collection of native web components built on top of web standards with a focus on accessibility.",
   defaultLanguage: "en_US",
   twitter: "",
   github: "heybran",
@@ -29,6 +29,7 @@ export const COMPONENTS = {
     { text: "Divider", link: "/components/divider" },
     { text: "Email Field", link: "/components/email-field" },
     { text: "File Upload", link: "/components/file-upload" },
+    { text: "Popover", link: "/components/popover" },
     { text: "Radio", link: "/components/radio" },
     { text: "Tooltip", link: "/components/tooltip" },
     { text: "Text Field", link: "/components/text-field" },
