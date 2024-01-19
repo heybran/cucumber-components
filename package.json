@@ -1,6 +1,5 @@
 {
-  "name": "cucumber-components",
-  "private": true,
+  "name": "cucumber-web-components",
   "version": "0.1.0",
   "type": "module",
   "main": "index.js",
