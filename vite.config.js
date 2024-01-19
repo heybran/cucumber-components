@@ -33,8 +33,8 @@ export default defineConfig({
         return basket;
       }, {}),
       output: {
-        dir: path.resolve(__dirname, 'dist/components/'),
-        entryFileNames: "[name]/[name].js",
+        dir: path.resolve(__dirname, 'dist/'),
+        entryFileNames: "[name]/index.js",
         format: 'esm',
       },
       plugins: [
