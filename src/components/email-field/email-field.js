@@ -17,7 +17,7 @@ export default class CucumberEmailField extends FormElement {
 	 * @param {string} text
 	 */
 	onLabelChange(text) {
-		this.shadowRoot.querySelector('slot[name="label"]').textContent = text;
+		this.getSlot('label').textContent = text;
 	}
 
 	/**
@@ -25,29 +25,16 @@ export default class CucumberEmailField extends FormElement {
 	 * @param {string} text 
 	 */
 	onHelperTextChange(text) {
-		this.shadowRoot.querySelector('slot[name="helper-text"]').textContent = text;
+		this.getSlot('helper-text').textContent = text
 	}
 
 	connectedCallback() {
-		/**
-		 * In your case, since the task of setting attributes and updating the form elements 
-		 * does not require immediate attention and is not related to visual updates or animations, 
-		 * using `requestIdleCallback()` would be more appropriate. 
-		 * It ensures that the task is performed during idle periods, 
-		 * reducing the impact on critical rendering and user interactions.
-		 */
-		requestIdleCallback(() => {
-			const id = `input-${this.uuid()}`;
-			// @ts-ignore
-			this.shadowRoot.querySelector('[part="label"]').setAttribute("for", id);
-			this.input.id = id;
-			const form = this.getForm();
-			if (!form) return;
-			if (!Array.isArray(form.__cucumberElements)) {
-				form.__cucumberElements = [];
-			}
-			form.__cucumberElements.push(this);
-		});
+		const form = this.getForm();
+		if (!form) return;
+		if (!Array.isArray(form.__cucumberElements)) {
+			form.__cucumberElements = [];
+		}
+		form.__cucumberElements.push(this);
 
 		/**
 		 * Store an initial value to be used on form resetting

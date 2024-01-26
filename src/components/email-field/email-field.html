@@ -1,10 +1,11 @@
 <div part="container">
-	<label part="label">
+	<label part="label" for="email">
     <slot name="label"></slot>
   </label>
 	<div part="input-container">
 		<slot name="prefix"></slot>
     <input
+			id="email"
 			part="input"
 			type="email"
 			autocapitalize="off"
