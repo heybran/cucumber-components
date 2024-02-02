@@ -1,5 +1,6 @@
 import FormElement from "../../shared/form-element.js";
 import "../icon/icon.js";
+import sharedCss from "../../shared/shared.css?inline";
 import css from "./checkbox.css?inline";
 import html from "./checkbox.html?raw";
 
@@ -59,7 +60,7 @@ export default class CucumberCheckbox extends FormElement {
   }
 
 	connectedCallback() {
-		super.render(html, css);
+		super.render(html, css, sharedCss);
 		this._connected = true;
 		this.checked = this.hasAttribute("checked");
 		this.disabled = this.hasAttribute("disabled");

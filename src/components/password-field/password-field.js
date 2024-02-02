@@ -1,5 +1,6 @@
 import FormElement from "../../shared/form-element.js";
 import BreezeIcon from "../icon/icon.js";
+import sharedCss from "../../shared/shared.css?inline";
 import css from "./password-field.css?inline";
 import html from "./password-field.html?raw";
 
@@ -84,7 +85,7 @@ export default class CucumberPasswordField extends FormElement {
 	}
 
 	connectedCallback() {
-		super.render(html, css);
+		super.render(html, css, sharedCss);
 
 		requestAnimationFrame(() => {
 			const id = `input-${this.uuid()}`;

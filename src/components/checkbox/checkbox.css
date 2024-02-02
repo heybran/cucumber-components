@@ -81,14 +81,15 @@ label {
 }
 
 :host([checked]) [part="checkbox"] {
-  background-color: var(--background-color-hover);
+  background-color: var(--cc-color-primary);
 }
 
 :host([checked]) [part="checkbox"] svg {
   transform: scale(1);
 }
 
-input:focus-visible + [part="checkbox"] {
-  outline: var(--background-color-hover) auto 1px;
-  outline-offset: 3px;
+input:focus-visible + [part="checkbox"],
+input:focus + [part="checkbox"] {
+  outline: var(--cc-color-primary) auto 1px;
+  outline-offset: var(--cc-outline-offset);
 }

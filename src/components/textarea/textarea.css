@@ -11,8 +11,8 @@ textarea {
 }
 
 textarea:focus-visible {
-  outline-color: var(--_primary-color);
-  box-shadow: var(--_box-shadow);
+  outline: var(--cc-color-primary) auto 1px;
+  outline-offset: var(--cc-outline-offset);
 }
 
 textarea[disabled] {

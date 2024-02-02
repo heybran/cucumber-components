@@ -136,6 +136,9 @@
 
   --cc-cubic-bezier: cubic-bezier(0.22, 1, 0.36, 1);
   --cc-box-shadow: rgba(35, 35, 52, 0.2) 0px 7px 29px 0px;
+
+  /* Outline Offset */
+  --cc-outline-offset: 5px;
 }
 
 * {
@@ -162,14 +165,6 @@
   position: relative;
   transition: .15s cubic-bezier(.22,1,.36,1), visibility 0s;
   overflow: hidden;
-}
-
-/*
-  Shared by form controls.
-*/
-[part=input-container]:focus-within {
-  border-color: var(--border-color-focus);
-  box-shadow: 0 0 0 0.1875rem var(--box-shadow-color);
 }
 
 [part="helper-text"]:not(:empty) {

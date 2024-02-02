@@ -1,11 +1,6 @@
-* {
-  box-sizing: border-box;
-}
-
 :host {
   --border-color: #adaba8;
   --background-color: #adaba8;
-  --primary-color: #6d4aff;
   --size: 1.5em;
   --gap: 0.5em;
   --helper-text-color: #667085;
@@ -18,18 +13,6 @@
 
 :host([size="large"]) {
   font-size: 1.25rem;
-}
-
-.sr-only {
-  clip: rect(0 0 0 0);
-  border: 0;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  width: 1px;
 }
 
 label {
@@ -85,7 +68,7 @@ slot[name="helper-text"] {
 
 :host([checked]) [part="control"]::before {
   transform: translateX(calc(var(--size) - 2px));
-  background-color: var(--primary-color);
+  background-color: var(--cc-color-primary);
 }
 
 [part="thumb"] {
@@ -113,4 +96,9 @@ slot[name="helper-text"] {
 
 :host([theme~="label-top"]) [part="label"] {
   order: -1;
+}
+
+input:focus + [part="control"] {
+  outline: var(--cc-color-primary) auto 1px;
+  outline-offset: var(--cc-outline-offset, 4px);
 }

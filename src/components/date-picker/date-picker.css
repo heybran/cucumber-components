@@ -67,8 +67,8 @@ label {
 }
 
 [part=input-container]:focus-within {
-  border-color: var(--border-color-focus);
-  box-shadow: 0 0 0 0.1875rem var(--box-shadow-color);
+  outline: var(--cc-color-primary) auto 1px;
+  outline-offset: var(--cc-outline-offset, 4px);
 }
 
 /* Commented out for now, will need to think about error state after more study on this topic */
