@@ -108,8 +108,12 @@ a {
 
 :host([theme~="round"]) [part="button"] {
   border-radius: 50%;
+  padding: 1ch;
 }
 
+:host([theme~="round"]) [part="button"]:hover {
+  background-color: var(--cc-gray-2);
+}
 
 :host([theme~="borderless"]) [part="button"] {
   border: none;
