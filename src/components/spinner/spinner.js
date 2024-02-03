@@ -1,25 +1,23 @@
-// @ts-check
-import css from "./spinner.css?inline";
+import style from "./spinner.css?inline";
 
 export default class CucumberSpinner extends HTMLElement {  
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-  }
+  static tagName = 'cc-spinner';
 
   connectedCallback() {
-    this.render();
-  }
+    if (!("replaceSync" in CSSStyleSheet.prototype) || this.shadowRoot) {
+			return;
+		}
 
-  render() {
-    // @ts-ignore
-    this.shadowRoot.innerHTML = `
-      <style>${css}</style>
-      <div part="spinner" role="progressbar" aria-label="Loading"></div>
-    `;
+    const shadowroot = this.attachShadow({ mode: "open" });
+    const sheet = new CSSStyleSheet();
+		sheet.replaceSync(style);
+		shadowroot.adoptedStyleSheets = [sheet];
+    let template = document.createElement("template");
+    template.innerHTML = `<div part="spinner" role="progressbar" aria-label="Loading"></div>`;
+    shadowroot.appendChild(template.content.cloneNode(true));
   }
 }
 
-if (!customElements.get('cc-spinner')) {
-  customElements.define('cc-spinner', CucumberSpinner);
+if ("customElements" in window) {
+	customElements.define(CucumberSpinner.tagName, CucumberSpinner);
 }

@@ -1,20 +1,25 @@
 :host {
-  --track-width: 2px;
-  --track-color: #adaba8;
-  --indicator-color: #6d4aff;
-  --speed: 1s;
-  --size: 1em;
+  --_track-width: var(--cc-spinner-track-width, 2px);
+  --_track-color: var(--cc-spinner-track-color, #adaba8);
+  --_indicator-color: var(--cc-spinner-indicator-color, #1c7ed6);
+  --_speed: var(--cc-spinner-speed, 1s);
+  --_size: var(--cc-spinner-size, 1em);
+  --_border-style: var(--cc-spinner-border-style, solid);
   display: inline-block;
 }
 
 [part="spinner"] {
-  height: var(--size);
-  width: var(--size);
-  border-width: var(--track-width);
-  border-style: solid;
-  border-color: var(--indicator-color) var(--track-color) var(--track-color) var(--track-color);
+  height: var(--_size);
+  width: var(--_size);
+  border-width: var(--_track-width);
+  border-style: var(--_border-style);
+  border-color: 
+    var(--_indicator-color) 
+    var(--_track-color) 
+    var(--_track-color) 
+    var(--_track-color);
   border-radius: 50%;
-  animation: spin var(--speed) linear infinite;
+  animation: spin var(--_speed) linear infinite;
 }
 
 @keyframes spin {
