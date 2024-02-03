@@ -14,6 +14,11 @@ export default function calculatePosition({
   offset,
   reverse = false,
 }) {
+  // BUG: anchorElement is null
+  // TODO: anchorElement is null
+  if ([null, undefined].includes(anchorElement) && !(anchorElement instanceof HTMLElement)) {
+    throw new Error("Anchor element is required");
+  }
   const {
     left,
     top,
