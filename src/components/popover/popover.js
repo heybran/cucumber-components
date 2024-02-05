@@ -1,12 +1,12 @@
 import css from "./popover.css?inline";
-import sharedCss from "../../shared/shared.css";
+import sharedCss from "../../shared/shared.css?inline";
 import BaseElement from "../../shared/base-element.js";
 
 /**
  * @element cc-popover
- * 
+ *
  * @slot - content to display within the popover.
- * 
+ *
  * @fires popoverOpened - event fired when popover is opened.
  */
 export default class CucumberPopover extends BaseElement {

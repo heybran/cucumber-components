@@ -13,6 +13,7 @@ import CucumberSwitch from "./src/components/switch/switch.js";
 import CucumberCheckbox from "./src/components/checkbox/checkbox.js";
 import CucumberRadio from "./src/components/radio/radio.js";
 import CucumberRadioGroup from "./src/components/radio-group/radio-group.js";
+import CucumberSpace from "./src/components/space/space.js";
 
 export {
   BreezeButton,
@@ -30,4 +31,5 @@ export {
   CucumberCheckbox,
   CucumberRadio,
   CucumberRadioGroup,
+  CucumberSpace
 };

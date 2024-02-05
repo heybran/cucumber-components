@@ -40,6 +40,7 @@ export const COMPONENTS = {
     { text: "Switch", link: "/components/switch" },
     { text: "Textarea", link: "/components/textarea" },
     { text: "Spinner", link: "/components/spinner" },
+    { text: "Space", link: "/components/space" },
     { text: "Password Field", link: "/components/password-field" },
     { text: "URL Field", link: "/components/url-field" },
     { text: "Visually Hidden", link: "/components/visually-hidden" },
@@ -58,6 +59,6 @@ export const LAYOUTS = {
 export const BEST_PRACTICES = {
   heading: 'Best Practices',
   items: [
-    { text: "Form Fields", link: "/best-practices/form-fields" }, 
+    { text: "Form Fields", link: "/best-practices/form-fields" },
   ]
 }

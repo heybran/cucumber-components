@@ -31,6 +31,7 @@
       'file-upload',
       'side-nav-item',
       'side-nav',
+      "space",
       'badge',
       'visually-hidden',
       'popover',

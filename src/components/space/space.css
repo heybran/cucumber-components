@@ -1,0 +1,37 @@
+:host .cc-space-section {
+  display: inline-flex;
+}
+:host([direction~="vertical"]) .cc-space-section {
+  flex-direction: column;
+  justify-content: center;
+}
+:host([direction~="vertical"]):host([align="start"]) .cc-space-section  {
+  justify-content: start;
+}
+:host([direction~="vertical"]):host([align="end"]) .cc-space-section {
+  justify-content: end;
+}
+:host([direction~="vertical"]):host([align="center"]) .cc-space-section  {
+  justify-content: center;
+}
+:host([direction~="horizontal"]) .cc-space-section {
+  flex-direction: row;
+  align-items: center;
+}
+:host([direction~="horizontal"]):host([align="start"]) .cc-space-section,
+:host([align="start"]) .cc-space-section {
+  align-items: flex-start;
+}
+:host([direction~="horizontal"]):host([align="end"])  .cc-space-section,
+:host([align="end"]) .cc-space-section {
+  align-items: flex-end;
+}
+:host([direction~="horizontal"]):host([align="center"]) .cc-space-section,
+:host([align="center"]) .cc-space-section {
+  align-items: center;
+}
+:host([direction~="horizontal"]):host([align="baseline"]) .cc-space-section,
+:host([align="baseline"]) .cc-space-section {
+  align-items: baseline;
+}
+
