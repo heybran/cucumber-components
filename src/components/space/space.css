@@ -1,4 +1,15 @@
-.cc-space {
+:host .cc-space-section {
   display: inline-flex;
+}
+:host([direction~="vertical"]) .cc-space-section {
+  flex-direction: column;
+  justify-content: center;
+}
+:host([direction~="horizontal"]) .cc-space-section {
   align-items: center;
+  flex-direction: row;
+}
+:host(:not([direction~="vertical"]):not([direction~="horizontal"])) .cc-space-section {
+  align-items: center;
+  flex-direction: row;
 }
