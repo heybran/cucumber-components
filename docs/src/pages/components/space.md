@@ -20,7 +20,7 @@ title: 'Space'
       <cc-radio label="customize" value="customize"></cc-radio>
     </cc-radio-group>
   </div>
-  <div id="custom-size-slider" >
+  <div id="custom-size-slider" style="display: none" >
     <input type="range" />
   </div>
   <div class="preview">
@@ -62,6 +62,10 @@ title: 'Space'
     prevRef.setAttribute("direction", value);
   }
   function sizeChange(value) {
+    if (value === "customize") {
+      customSizeSlider.style.display = "block";
+      return;
+    }
     prevRef.setAttribute("size", value);
     sliderInputRef.setAttribute("value", value);
   } 
