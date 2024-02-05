@@ -1,6 +1,6 @@
 import css from "./popover.css?inline";
 import sharedCss from "../../shared/shared.css?inline";
-import BaseElement from "../../shared/base-element.js?raw";
+import BaseElement from "../../shared/base-element.js";
 
 /**
  * @element cc-popover
