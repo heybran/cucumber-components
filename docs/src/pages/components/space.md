@@ -35,7 +35,7 @@ title: 'Space'
 ## Align items
 
 <div>
-  <cc-radio-group label="Justify" name="justify" onchange="alert(this.value)">
+  <cc-radio-group label="Justify" name="justify" onchange="alignChange(this.value)">
     <cc-radio label="start" value="start"></cc-radio>
     <cc-radio label="end" value="end"></cc-radio>
     <cc-radio label="center" value="center" checked></cc-radio>
@@ -43,7 +43,7 @@ title: 'Space'
   </cc-radio-group>
 </div>
 <div class="preview">
-  <cc-space id="cc-space-preview2" direction="horizontal" size="10" justify="space-between">
+  <cc-space id="cc-space-preview2" size="10" align="center">
     <span>center</span>
     <cc-button theme="primary" style="height: 40px">primary</cc-button>
     <span style="display: block; height: 60px; width: 60px; background-color: #2b8a3e; color: white; display: grid; place-content: center">Block</span>
@@ -51,6 +51,7 @@ title: 'Space'
 </div>
 <script>
   const prevRef = document.querySelector("#cc-space-preview1");
+  const prevRef2 = document.querySelector("#cc-space-preview2");
   const customSizeSlider = document.querySelector("#custom-size-slider");
   const sliderInputRef = document.querySelector("#custom-size-slider input");
   sliderInputRef.setAttribute("value", prevRef.getAttribute("size"));
@@ -64,6 +65,9 @@ title: 'Space'
     prevRef.setAttribute("size", value);
     sliderInputRef.setAttribute("value", value);
   } 
+  function alignChange(value) {
+    prevRef2.setAttribute("align", value); 
+  }
 
 </script>
 

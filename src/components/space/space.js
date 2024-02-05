@@ -32,9 +32,9 @@ export default class CucumberSpace extends FormElement {
     return this.getAttribute("direction") || "horizontal";
   }
 
-  // watch the direction and size attribute
+  // watch the direction, align, and size attributes
   static get observedAttributes() {
-    return ['direction', 'size'];
+    return ['direction', 'size']
   }
 
   /**
