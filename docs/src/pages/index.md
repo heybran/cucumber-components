@@ -4,8 +4,10 @@ title: 'Cucumber Components'
 ---
 
 <p>A collection of native web components built on top of web standards without any external dependencies.</p>
-<h2>This is an ongoing project...</h2>
-<p>Will work on this home page when this project has been published to NPM & CDN.</p>
+
+```bash
+npm i cucumber-web-components
+```
 
 ## Credits
 - Color: https://yeun.github.io/open-color/
