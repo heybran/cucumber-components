@@ -24,16 +24,40 @@ export default class CucumberPopover extends BaseElement {
 
   closeWhenClickOutside(event) {
     if (!this.hasAttribute('open')) {
-			return;
-		}
+      return;
+    }
 
     if (!this.classList.contains('opened')) {
       return;
     }
 
-		if (!event.composedPath().includes(this)) {
-			this.removeAttribute('open');
-		}
+    /**
+     * trigger a bug, so comment it out
+     */
+    // if (!event.composedPath().includes(this)) {
+    // 	this.removeAttribute('open');
+    // }
+  }
+
+  /**
+   * open the popover
+   */
+  openPopover() {
+    this.setAttribute('open', '');
+  }
+
+  /**
+   * close the popover
+   */
+  closePopover() {
+    this.removeAttribute('open');
+  }
+
+  /**
+   * toggle the popover
+   */
+  togglePopover() {
+    this.toggleAttribute('open');
   }
 
   static get observedAttributes() {
@@ -48,7 +72,7 @@ export default class CucumberPopover extends BaseElement {
           bubbles: true,
           composed: true
         }));
-      }, { once: true });
+      }, {once: true});
     } else {
       this.classList.remove('opened');
       this.classList.remove('reverse');
@@ -61,5 +85,5 @@ export default class CucumberPopover extends BaseElement {
 }
 
 if (!customElements.get(CucumberPopover.tagName)) {
-	customElements.define(CucumberPopover.tagName, CucumberPopover);
+  customElements.define(CucumberPopover.tagName, CucumberPopover);
 }

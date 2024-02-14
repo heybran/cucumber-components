@@ -30,30 +30,31 @@ export default class CucumberPopover extends BaseElement {
     this.addEventListener("popoverClosed", (event) => {
       window.removeEventListener("wheel", this.updatePosition);
     });
-
-
-    this.handleTriggerToggle.bind(this);
     if (this.triggerProp === "hover") {
-      this.trigger.addEventListener("mouseenter", this.handleTriggerToggle.bind(this));
-      this.trigger.addEventListener("mouseleave", this.handleTriggerToggle.bind(this));
+      this.trigger.addEventListener("mouseenter", (event) => this.handleTrigger(event, 'open'));
+      this.trigger.addEventListener("mouseleave", (event) => this.handleTrigger(event, 'close'));
     } if (this.triggerProp === 'focus') {
-      this.trigger.addEventListener("focus", (event) => {
-        this.handleTriggerToggle(event);
-      });
-      this.trigger.addEventListener("blur", (event) => {
-        this.handleTriggerToggle(event);
-      });
-
+      this.trigger.addEventListener("focus", (event) => this.handleTrigger(event, 'open'));
+      this.trigger.addEventListener('blur', (event) => this.handleTrigger(event, 'close'));
     } else {
-      console.log("click",)
-      this.trigger.addEventListener("click", this.handleTriggerToggle.bind(this));
+      this.trigger.addEventListener("click", (event) => {
+        /**
+         * if the trigger is hover, the click event should not be handled.
+         */
+        if (this.triggerProp === 'hover') return;
+        this.handleTrigger(event, 'toggle')
+      });
     }
   }
-
-  handleTriggerToggle(event) {
-    console.log(event, "event")
+  /**
+   * handle the trigger event
+   * @param {Event} event
+   * @param {'open' | 'close' | 'toggle'} type
+   */
+  handleTrigger(event, type) {
     this.updatePosition(event);
-    this.popoverElement.toggleAttribute("open");
+    // 'openPopover' | 'closePopover' | 'togglePopover' in popover.js
+    this.popoverElement[`${type}Popover`]();
   }
 
   updatePosition = (event) => {
