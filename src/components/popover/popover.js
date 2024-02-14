@@ -21,6 +21,7 @@ export default class CucumberPopover extends BaseElement {
     }
   }
 
+
   closeWhenClickOutside(event) {
     if (!this.hasAttribute('open')) {
 			return;
