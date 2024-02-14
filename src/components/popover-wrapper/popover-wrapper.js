@@ -12,11 +12,14 @@ export default class CucumberPopover extends BaseElement {
   /** @type {string} */
   static tagName = "cc-popover-wrapper";
 
+  get triggerProp () {
+    return this.getAttribute("trigger");
+  }
+
   connectedCallback() {
     this.render('<slot name="trigger"></slot><slot></slot>', css);
     this.trigger = this.getAssignedElementsFor(this.getSlot("trigger"))[0];
     this.popoverElement = this.getAssignedElementsFor(this.defaultSlot)[0];
-    this.trigger.addEventListener("click", this.handleTriggerClick.bind(this));
 
     this.addEventListener("popoverOpened", (event) => {
       window.addEventListener("wheel", this.updatePosition);
@@ -27,9 +30,28 @@ export default class CucumberPopover extends BaseElement {
     this.addEventListener("popoverClosed", (event) => {
       window.removeEventListener("wheel", this.updatePosition);
     });
+
+
+    this.handleTriggerToggle.bind(this);
+    if (this.triggerProp === "hover") {
+      this.trigger.addEventListener("mouseenter", this.handleTriggerToggle.bind(this));
+      this.trigger.addEventListener("mouseleave", this.handleTriggerToggle.bind(this));
+    } if (this.triggerProp === 'focus') {
+      this.trigger.addEventListener("focus", (event) => {
+        this.handleTriggerToggle(event);
+      });
+      this.trigger.addEventListener("blur", (event) => {
+        this.handleTriggerToggle(event);
+      });
+
+    } else {
+      console.log("click",)
+      this.trigger.addEventListener("click", this.handleTriggerToggle.bind(this));
+    }
   }
 
-  handleTriggerClick(event) {
+  handleTriggerToggle(event) {
+    console.log(event, "event")
     this.updatePosition(event);
     this.popoverElement.toggleAttribute("open");
   }

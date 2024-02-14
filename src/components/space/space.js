@@ -17,11 +17,17 @@ export default class CucumberSpace extends FormElement {
    */
   get sizeInPx() {
     const attrSize = this.getAttribute("size") || 16;
-    if (attrSize === 'small') return 8;
-    if (attrSize === 'large') return 24;
-    if (attrSize === 'middle') return 16;
-    const parsedNum= parseInt(attrSize, 10);
-    return Number.isNaN(parsedNum) ? 16 : parsedNum;
+    switch (attrSize) {
+      case "small":
+        return 8;
+      case "middle":
+        return 16;
+      case "large":
+        return 24;
+      default:
+        const parsedNum = parseInt(attrSize, 10);
+        return Number.isNaN(parsedNum) ? 16 : parsedNum;
+    }
   }
 
   /**

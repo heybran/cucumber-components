@@ -3,9 +3,65 @@ layout: ../../layouts/MainLayout.astro
 title: 'Popover'
 ---
 
+## Trigger Mode
+
+`cc-popover-wrapper` supports three trigger modes: `hover`, `focus`, and `click`. You can use the `trigger` attribute to specify
+the trigger mode. The default trigger mode is `click`.
+
+<div class="preview">
+  <cc-space>
+    <cc-popover-wrapper trigger="click">
+      <cc-button theme="primary" slot="trigger">Click me(default)</cc-button>
+      <!-- placement default to bottom center -->
+      <cc-popover>
+        <ul class="wrapper">
+          <li>You're signed in as @heybran</li>
+          <li>
+            <cc-button style="width: 100%;">Settings</cc-button>
+          </li>
+          <li>
+            <cc-button theme="primary" style="width: 100%;">Sign out</cc-button>
+          </li>
+        </ul>
+      </cc-popover>
+    </cc-popover-wrapper>
+    <cc-popover-wrapper trigger="focus">
+      <cc-button theme="primary" slot="trigger">Focus me</cc-button>
+      <!-- placement default to bottom center -->
+      <cc-popover>
+        <ul class="wrapper">
+          <li>You're signed in as @heybran</li>
+          <li>
+            <cc-button style="width: 100%;">Settings</cc-button>
+          </li>
+          <li>
+            <cc-button theme="primary" style="width: 100%;">Sign out</cc-button>
+          </li>
+        </ul>
+      </cc-popover>
+    </cc-popover-wrapper>
+    <cc-popover-wrapper trigger="hover">
+      <cc-button theme="primary" slot="trigger">Hover me</cc-button>
+      <!-- placement default to bottom center -->
+      <cc-popover>
+        <ul class="wrapper">
+          <li>You're signed in as @heybran</li>
+          <li>
+            <cc-button style="width: 100%;">Settings</cc-button>
+          </li>
+          <li>
+            <cc-button theme="primary" style="width: 100%;">Sign out</cc-button>
+          </li>
+        </ul>
+      </cc-popover>
+    </cc-popover-wrapper>
+  </cc-space>
+</div>
+
 ## Bottom Center (default)
 
-`cc-popover` defaults to `bottom-center` placement. When there is no enough room to place the popover beneath the trigger element, popover will adjust itself to be placed on `top-center`.
+`cc-popover` defaults to `bottom-center` placement. When there is no enough room to place the popover beneath the
+trigger element, popover will adjust itself to be placed on `top-center`.
 <div class="preview">
   <cc-popover-wrapper>
     <cc-button theme="primary" slot="trigger">Bottom center (default)</cc-button>
@@ -25,6 +81,7 @@ title: 'Popover'
 </div>
 
 ```html
+
 <cc-popover-wrapper>
   <cc-button theme="primary" slot="trigger">Bottom center (default)</cc-button>
   <!-- placement default to bottom center -->
@@ -44,7 +101,9 @@ title: 'Popover'
 
 ## Bottom Start
 
-Add an attribute `placement="bottom-center"` if you want the popover to left-aligned with trigger element underneath. When there is no enough room to place the popover beneath the trigger element, popover will adjust itself to be placed on `top-start`.
+Add an attribute `placement="bottom-center"` if you want the popover to left-aligned with trigger element underneath.
+When there is no enough room to place the popover beneath the trigger element, popover will adjust itself to be placed
+on `top-start`.
 
 <div class="preview">
   <cc-popover-wrapper>
@@ -64,6 +123,7 @@ Add an attribute `placement="bottom-center"` if you want the popover to left-ali
 </div>
 
 ```html
+
 <cc-popover-wrapper>
   <cc-button theme="primary" slot="trigger">Bottom start</cc-button>
   <cc-popover placement="bottom-start">
@@ -81,7 +141,10 @@ Add an attribute `placement="bottom-center"` if you want the popover to left-ali
 ```
 
 ## Bottom End
-Add an attribute `placement="bottom-end"` if you want the popover to right-aligned with trigger element underneath. When there is no enough room to place the popover beneath the trigger element, popover will adjust itself to be placed on `top-end`.
+
+Add an attribute `placement="bottom-end"` if you want the popover to right-aligned with trigger element underneath. When
+there is no enough room to place the popover beneath the trigger element, popover will adjust itself to be placed
+on `top-end`.
 
 <div class="preview">
   <cc-popover-wrapper>
@@ -101,6 +164,7 @@ Add an attribute `placement="bottom-end"` if you want the popover to right-align
 </div>
 
 ```html
+
 <cc-popover-wrapper>
   <cc-button theme="primary" slot="trigger">Bottom end</cc-button>
   <cc-popover placement="bottom-end">
@@ -117,9 +181,11 @@ Add an attribute `placement="bottom-end"` if you want the popover to right-align
 </cc-popover-wrapper>
 ```
 
-
 ## Top Center
-Add an attribute `placement="top-center"` if you want the popover to center-aligned and above trigger element. When there is no enough room to place the popover above the trigger element, popover will adjust itself to be placed on `bottom-center`.
+
+Add an attribute `placement="top-center"` if you want the popover to center-aligned and above trigger element. When
+there is no enough room to place the popover above the trigger element, popover will adjust itself to be placed
+on `bottom-center`.
 
 <div class="preview">
   <cc-popover-wrapper>
@@ -139,6 +205,7 @@ Add an attribute `placement="top-center"` if you want the popover to center-alig
 </div>
 
 ```html
+
 <cc-popover-wrapper>
   <cc-button theme="primary" slot="trigger">Bottom end</cc-button>
   <cc-popover placement="top-center">
@@ -156,7 +223,10 @@ Add an attribute `placement="top-center"` if you want the popover to center-alig
 ```
 
 ## Top Start
-Add an attribute `placement="top-start"` if you want the popover to left-aligned and above trigger element. When there is no enough room to place the popover above the trigger element, popover will adjust itself to be placed on `bottom-start`.
+
+Add an attribute `placement="top-start"` if you want the popover to left-aligned and above trigger element. When there
+is no enough room to place the popover above the trigger element, popover will adjust itself to be placed
+on `bottom-start`.
 
 <div class="preview">
   <cc-popover-wrapper>
@@ -176,6 +246,7 @@ Add an attribute `placement="top-start"` if you want the popover to left-aligned
 </div>
 
 ```html
+
 <cc-popover-wrapper>
   <cc-button theme="primary" slot="trigger">Top start</cc-button>
   <cc-popover placement="top-start">
@@ -193,7 +264,9 @@ Add an attribute `placement="top-start"` if you want the popover to left-aligned
 ```
 
 ## Top End
-Add an attribute `placement="top-end"` if you want the popover to right-aligned and above trigger element. When there is no enough room to place the popover above the trigger element, popover will adjust itself to be placed on `bottom-end`.
+
+Add an attribute `placement="top-end"` if you want the popover to right-aligned and above trigger element. When there is
+no enough room to place the popover above the trigger element, popover will adjust itself to be placed on `bottom-end`.
 
 <div class="preview">
   <cc-popover-wrapper>
@@ -213,6 +286,7 @@ Add an attribute `placement="top-end"` if you want the popover to right-aligned 
 </div>
 
 ```html
+
 <cc-popover-wrapper>
   <cc-button theme="primary" slot="trigger">Top end</cc-button>
   <cc-popover placement="top-end">
@@ -228,7 +302,6 @@ Add an attribute `placement="top-end"` if you want the popover to right-aligned 
   </cc-popover>
 </cc-popover-wrapper>
 ```
-
 
 <style>
   .wrapper {
