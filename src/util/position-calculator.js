@@ -3,17 +3,18 @@
  * @param {Object} options
  * @param {HTMLElement} options.popover
  * @param {HTMLElement} options.anchorElement
- * @param {'top'|'bottom'|'left'|'right'|'top-start'|'top-center'|'top-end'|'bottom-start'|'bottom-center'|'bottom-end'} options.position
+ * @param {string} options.anchorElementHeight
+ * @param {'top'|'bottom'|'left-center'| 'left-start' | 'left-end' | 'right-center' | 'right-start' | 'right-end' |'top-start'|'top-center'|'top-end'|'bottom-start'|'bottom-center'|'bottom-end'} options.position
  * @param {number} options.offset
  * @param {boolean} [options.reverse=false] - Track the placement of popover, as we need to update arrow position.
  */
 export default function calculatePosition({
-  popover,
-  anchorElement,
-  position,
-  offset,
-  reverse = false,
-}) {
+                                            popover,
+                                            anchorElement,
+                                            position,
+                                            offset,
+                                            reverse = false,
+                                          }) {
   // BUG: anchorElement is null
   // TODO: anchorElement is null
   if ([null, undefined].includes(anchorElement) && !(anchorElement instanceof HTMLElement)) {
@@ -27,7 +28,7 @@ export default function calculatePosition({
   } = anchorElement.getBoundingClientRect();
   let x;
   let y;
-  const { width: popoverWidth, height: popoverHeight } =
+  const {width: popoverWidth, height: popoverHeight} =
     popover.getBoundingClientRect();
 
   switch (position) {
@@ -48,8 +49,16 @@ export default function calculatePosition({
       }
       break;
 
-    case "left":
+    case "left-center":
       y = top + anchorElementHeight / 2 - popoverHeight / 2;
+      x = left - offset - popoverWidth;
+      break;
+    case "left-start":
+      y = top;
+      x = left - offset - popoverWidth;
+      break;
+    case "left-end":
+      y = top + anchorElementHeight - popoverHeight;
       x = left - offset - popoverWidth;
       break;
 
@@ -69,8 +78,16 @@ export default function calculatePosition({
       }
       break;
 
-    case "right":
+    case "right-center":
       y = top + anchorElementHeight / 2 - popoverHeight / 2;
+      x = left + anchorElementWidth + offset;
+      break;
+    case "right-start":
+      y = top;
+      x = left + anchorElementWidth + offset;
+      break;
+    case "right-end":
+      y = top + anchorElementHeight - popoverHeight;
       x = left + anchorElementWidth + offset;
       break;
 
@@ -141,5 +158,7 @@ export default function calculatePosition({
       break;
   }
 
-  return { x, y, anchorElementWidth, reverse };
+  console.log(anchorElementHeight, "anchorElementHeight");
+  console.log(anchorElementWidth, "anchorElementWidth");
+  return {x, y, anchorElementWidth, anchorElementHeight, reverse};
 }
