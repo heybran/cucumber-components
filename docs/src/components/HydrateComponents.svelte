@@ -35,7 +35,8 @@
       'badge',
       'visually-hidden',
       'popover',
-      'popover-wrapper'
+      'popover-wrapper',
+      'qr-code',
     ];
 
     if (import.meta.env.MODE === 'development') {

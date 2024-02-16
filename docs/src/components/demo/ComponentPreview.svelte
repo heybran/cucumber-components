@@ -22,6 +22,7 @@
       'carousel',
       'carousel-item',
       'divider',
+      'qr-code',
       'email-field',
     ];
 
@@ -37,7 +38,7 @@
   }
 
   export let component;
-  export let style;  
+  export let style;
   export let js;
 
   let container;

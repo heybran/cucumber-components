@@ -158,7 +158,5 @@ export default function calculatePosition({
       break;
   }
 
-  console.log(anchorElementHeight, "anchorElementHeight");
-  console.log(anchorElementWidth, "anchorElementWidth");
   return {x, y, anchorElementWidth, anchorElementHeight, reverse};
 }

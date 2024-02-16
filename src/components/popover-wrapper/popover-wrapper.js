@@ -59,7 +59,6 @@ export default class CucumberPopover extends BaseElement {
 
   updatePosition = (event) => {
     const position = this.popoverElement.getAttribute("placement");
-    console.log(this.trigger)
     const { x, y, anchorElementWidth, anchorElementHeight, reverse } = calculatePosition({
       popover: this.popoverElement,
       anchorElement: this.trigger,
