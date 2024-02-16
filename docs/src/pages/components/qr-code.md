@@ -11,7 +11,7 @@ to visit a website, dial a phone number, read a message, etc.
 
 <div class="preview">
   <cc-qr-code id="test-qr-code-value"></cc-qr-code>
-  <cc-text-field label="QR Code" value="https://cucumber.technology"></cc-text-field>
+  <cc-text-field label="QR Code" value="https://cucumber-components.netlify.app/"></cc-text-field>
 </div>
 <script>
   const codeRef = document.querySelector('#test-qr-code-value');
@@ -145,8 +145,8 @@ QR codes can be rendered with various levels of `error correction` that can be s
 This example generates four codes with the same value using different error correction levels.
 
 <cc-space>
-<cc-qr-code value="https://shoelace.style/" error-correction="L"></cc-qr-code>
-<cc-qr-code value="https://shoelace.style/" error-correction="M"></cc-qr-code>
-<cc-qr-code value="https://shoelace.style/" error-correction="Q"></cc-qr-code>
-<cc-qr-code value="https://shoelace.style/" error-correction="H"></cc-qr-code>
+<cc-qr-code value="https://cucumber-components.netlify.app/" error-correction="L"></cc-qr-code>
+<cc-qr-code value="https://cucumber-components.netlify.app/" error-correction="M"></cc-qr-code>
+<cc-qr-code value="https://cucumber-components.netlify.app/" error-correction="Q"></cc-qr-code>
+<cc-qr-code value="https://cucumber-components.netlify.app/" error-correction="H"></cc-qr-code>
 </cc-space>
