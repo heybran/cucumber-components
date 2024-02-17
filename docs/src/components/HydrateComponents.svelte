@@ -45,7 +45,7 @@
       })
     } else if (import.meta.env.MODE === 'production') {
       components.forEach(name => {
-        import(`../../../dist/components/${name}/${name}.js`);
+        import(`../../../dist/${name}/index.js`);
       })
     }
   }
