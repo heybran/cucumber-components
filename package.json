@@ -1,17 +1,14 @@
 {
   "name": "cucumber-web-components",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "type": "module",
   "main": "index.js",
   "files": [
     "dist/"
   ],
   "scripts": {
-    "test": "web-test-runner ./src/components/*/*.test.js --coverage --node-resolve",
-    "test:watch": "web-test-runner ./src/components/*.test.js --coverage --node-resolve --watch",
     "dev": "vite",
     "build": "vite build",
-    "build:production": "node copyHTML.js && node minifyHTML.js && vite build && node renameHTML.js",
     "preview": "vite preview",
     "cypress:open": "cypress open",
     "format": "biome format --write ./src"
