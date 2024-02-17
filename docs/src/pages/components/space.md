@@ -66,6 +66,7 @@ title: 'Space'
       customSizeSlider.style.display = "block";
       return;
     }
+    customSizeSlider.style.display = "none";
     prevRef.setAttribute("size", value);
     sliderInputRef.setAttribute("value", value);
   } 

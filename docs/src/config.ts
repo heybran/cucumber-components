@@ -44,6 +44,7 @@ export const COMPONENTS = {
     { text: "Password Field", link: "/components/password-field" },
     { text: "URL Field", link: "/components/url-field" },
     { text: "Visually Hidden", link: "/components/visually-hidden" },
+    { text: "QrCode", link: "/components/qr-code" },
   ]
 }
 

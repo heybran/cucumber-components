@@ -14,6 +14,7 @@ import CucumberCheckbox from "./src/components/checkbox/checkbox.js";
 import CucumberRadio from "./src/components/radio/radio.js";
 import CucumberRadioGroup from "./src/components/radio-group/radio-group.js";
 import CucumberSpace from "./src/components/space/space.js";
+import CucumberQrCode from "./src/components/qr-code/qr-code.js";
 
 export {
   BreezeButton,
@@ -31,5 +32,6 @@ export {
   CucumberCheckbox,
   CucumberRadio,
   CucumberRadioGroup,
-  CucumberSpace
+  CucumberSpace,
+  CucumberQrCode
 };
