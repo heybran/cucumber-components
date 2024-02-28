@@ -1,6 +1,6 @@
 {
   "name": "cucumber-web-components",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "type": "module",
   "main": "index.js",
   "files": [
@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:production": "node minifyHTML.js && vite build && node renameHTML.js",
     "preview": "vite preview",
     "cypress:open": "cypress open",
     "format": "biome format --write ./src"

@@ -10,19 +10,21 @@ const componentsNames = fs.readdirSync(componentsDir);
 
 componentsNames.forEach((component, index) => {
   const htmlFilePath = path.resolve(componentsDir, `${component}/${component}.html`);
-  if (!fs.existsSync(htmlFilePath)) {
-    return;
-  }
-
   // Get file path of component-copy.html
   const htmlFileDir = path.dirname(htmlFilePath);
   const backupHTMLFilePath = path.join(htmlFileDir, `${component}-copy.html`);
 
-  // Delete the minified HTML file.
-  fs.unlinkSync(htmlFilePath);
-  
-  // Rename component-copy.html back to component.html
-  fs.renameSync(backupHTMLFilePath, htmlFilePath);
+  if (!fs.existsSync(backupHTMLFilePath)) {
+    return;
+  }
+
+  if (fs.existsSync(htmlFilePath)) {
+    // Delete the minified HTML file.
+    fs.unlinkSync(htmlFilePath);
+
+    // Rename component-copy.html back to component.html
+    fs.renameSync(backupHTMLFilePath, htmlFilePath);
+  }
 });
 
 
