@@ -25,6 +25,11 @@
   animation: scale .15s var(--cc-cubic-bezier) both;
 }
 
+@media (prefers-reduced-motion) {
+  :host([open]) {
+    animation: none;
+  }
+}
 /* --- Transform origin for initial bottom-ish placements */
 :host([placement="bottom-start"]) {
   transform-origin: top left;
@@ -81,9 +86,11 @@
 :host([placement="left-start"]) {
   transform-origin: top right;
 }
+
 :host([placement="left-start"][reverse]) {
   transform-origin: top left;
 }
+
 :host([placement="left-center"]) {
   transform-origin: center right;
 }
@@ -93,9 +100,11 @@
 :host([placement="right-start"]) {
   transform-origin: top left;
 }
+
 :host([placement="right-start"][reverse]) {
   transform-origin: top right;
 }
+
 :host([placement="right-center"]) {
   transform-origin: center left;
 }
@@ -152,6 +161,7 @@ When inital placement is "top", place arrow at the bottom.
   /* How come we need this to work? */
   z-index: 2;
 }
+
 :host([placement*="left"]:not([reverse]))::after {
   left: unset;
   right: calc(var(--arrow-size) * -2);
@@ -170,6 +180,7 @@ When inital placement is "top", place arrow at the bottom.
   border-left: calc(var(--arrow-size) + 1px) solid #fff;
   z-index: 2;
 }
+
 :host([placement*="right"]:not([reverse]))::after {
   right: unset;
   left: calc(var(--arrow-size) * -2);
@@ -188,10 +199,6 @@ When inital placement is "top", place arrow at the bottom.
   border-right: calc(var(--arrow-size) + 1px) solid #fff;
   z-index: 2;
 }
-
-
-
-
 /* --- End of arrow position to initial bottom-placed popover. */
 
 /* @TODO - tutorial */
