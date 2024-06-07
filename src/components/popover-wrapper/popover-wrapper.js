@@ -5,14 +5,14 @@ import calculatePosition from "../../util/position-calculator.js";
 /**
  * @element cc-popover-wrapper
  *
- * @slot trigger - button that opens the popover
+ * @slot trigger - button that opens the popover.
  * @slot - the popover element.
  */
-export default class CucumberPopover extends BaseElement {
+export default class CucumberPopoverWrapper extends BaseElement {
   /** @type {string} */
   static tagName = "cc-popover-wrapper";
 
-  get triggerProp () {
+  get triggerProp() {
     return this.getAttribute("trigger");
   }
 
@@ -31,23 +31,47 @@ export default class CucumberPopover extends BaseElement {
       window.removeEventListener("wheel", this.updatePosition);
     });
     if (this.triggerProp === "hover") {
-      this.trigger.addEventListener("mouseenter", (event) => this.handleTrigger(event, 'open'));
-      this.trigger.addEventListener("mouseleave", (event) => this.handleTrigger(event, 'close'));
-    } if (this.triggerProp === 'focus') {
-      this.trigger.addEventListener("focus", (event) => this.handleTrigger(event, 'open'));
-      this.trigger.addEventListener('blur', (event) => this.handleTrigger(event, 'close'));
+      this.trigger.addEventListener("mouseenter", (event) =>
+        this.handleTrigger(event, "open")
+      );
+      this.trigger.addEventListener("mouseleave", (event) =>
+        this.handleTrigger(event, "close")
+      );
+    }
+    if (this.triggerProp === "focus") {
+      this.trigger.addEventListener("focus", (event) =>
+        this.handleTrigger(event, "open")
+      );
+      this.trigger.addEventListener("blur", (event) =>
+        this.handleTrigger(event, "close")
+      );
     } else {
       this.trigger.addEventListener("click", (event) => {
         /**
          * if the trigger is hover, the click event should not be handled.
          */
-        if (this.triggerProp === 'hover') return;
-        this.handleTrigger(event, 'toggle')
+        if (this.triggerProp === "hover") return;
+        this.handleTrigger(event, "toggle");
       });
+      document.addEventListener("click", this.closeWhenClickOutside);
     }
   }
+
   /**
-   * handle the trigger event
+   * Closes the popover when a click event occurs outside of it.
+   *
+   * @param {Event} event - The click event that occurred.
+   * @return {void} This function does not return anything.
+   */
+  closeWhenClickOutside = (event) => {
+    if (!this.contains(event.target)) {
+      this.handleTrigger(event, "close");
+    }
+  };
+
+  /**
+   * Handle the trigger event.
+   *
    * @param {Event} event
    * @param {'open' | 'close' | 'toggle'} type
    */
@@ -59,30 +83,31 @@ export default class CucumberPopover extends BaseElement {
 
   updatePosition = (event) => {
     const position = this.popoverElement.getAttribute("placement");
-    const { x, y, anchorElementWidth, anchorElementHeight, reverse } = calculatePosition({
-      popover: this.popoverElement,
-      anchorElement: this.trigger,
-      position: position ?? "bottom-center",
-      offset: 10,
-    });
+    const { x, y, anchorElementWidth, anchorElementHeight, reverse } =
+      calculatePosition({
+        popover: this.popoverElement,
+        anchorElement: this.trigger,
+        position: position ?? "bottom-center",
+        offset: 10,
+      });
     this.popoverElement.style.setProperty("--left", `${x}px`);
     this.popoverElement.style.setProperty("--top", `${y}px`);
     this.popoverElement.style.setProperty(
       "--anchor-element-width",
-      `${anchorElementWidth}px`,
+      `${anchorElementWidth}px`
     );
     this.popoverElement.style.setProperty(
       "--anchor-element-height",
-      `${anchorElementHeight}px`,
-    )
+      `${anchorElementHeight}px`
+    );
     if (reverse) {
-      this.popoverElement?.setAttribute('reverse', '');
+      this.popoverElement?.setAttribute("reverse", "");
     } else {
-      this.popoverElement?.removeAttribute('reverse');
+      this.popoverElement?.removeAttribute("reverse");
     }
   };
 }
 
-if (!customElements.get(CucumberPopover.tagName)) {
-  customElements.define(CucumberPopover.tagName, CucumberPopover);
+if (!customElements.get(CucumberPopoverWrapper.tagName)) {
+  customElements.define(CucumberPopoverWrapper.tagName, CucumberPopoverWrapper);
 }
